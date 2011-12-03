@@ -261,7 +261,8 @@ moomins-MacBook-Pro:rails-test cormorant$ rails g scaffold_controller user_sessi
       invoke    test_unit
       create      test/unit/helpers/user_sessions_helper_test.rb
 
-
+	$ rails g kaminari:config
+	      create  config/initializers/kaminari_config.rb
 
 -----------------------
 #HOMEBREW JPEG LIBRARY PROBLEMS

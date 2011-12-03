@@ -8,11 +8,11 @@ class PostsController < ApplicationController
     if u 
       # For URLs like /user/1/posts 
       @user = User.find(u)
-      @posts = @user.posts.paginate(:page => params[:page], :per_page => 5)
+      @posts = @user.posts.order(:created_at).page params[:page] # kaminari pagination
       
     else
       # For /posts/
-      @posts = Post.paginate(:page => params[:page], :per_page => 5)
+      @posts = Post.order(:created_at).page params[:page]
       #@posts = Post.all
     end
       

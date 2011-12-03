@@ -34,6 +34,6 @@ gem 'jquery-rails'
 gem 'awesome_print'
 gem 'paperclip'
 gem 'authlogic'
-gem 'will_paginate'
+gem 'kaminari'
 
 # note: run 'bundle install' for new gems

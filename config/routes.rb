@@ -9,6 +9,7 @@ Worrk::Application.routes.draw do
     
   resources :posts do
     resources :comments
+    get 'page/:page', :action => :index, :on => :collection
   end
   
   # See http://edgeguides.rubyonrails.org/routing.html#nested-resources
