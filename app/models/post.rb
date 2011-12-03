@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
       :large =>   "400x400>" }
       
   validates :name, :presence => true
-  validates :title, :presence => true, :length => { :minimum => 5 }
+  validates :title, :presence => true, :length => { :minimum => 2 }
   has_many :comments, :dependent => :destroy
   has_many :tags
   belongs_to :user    

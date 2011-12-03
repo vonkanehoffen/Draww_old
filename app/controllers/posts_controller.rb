@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     if u 
       # For URLs like /user/1/posts 
       @user = User.find(u)
-      @posts = @user.posts
+      @posts = @user.posts.paginate(:page => params[:page], :per_page => 5)
       
     else
       # For /posts/
