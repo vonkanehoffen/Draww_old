@@ -1,0 +1,455 @@
+Tutorial:
+
+	http://guides.rubyonrails.org/getting_started.html
+
+
+$ rails generate controller home index
+      create  app/controllers/home_controller.rb
+       route  get "home/index"
+      invoke  erb
+      create    app/views/home
+      create    app/views/home/index.html.erb
+      invoke  test_unit
+      create    test/functional/home_controller_test.rb
+      invoke  helper
+      create    app/helpers/home_helper.rb
+      invoke    test_unit
+      create      test/unit/helpers/home_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/home.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/home.css.scss
+
+
+$ rails generate scaffold Post name:string title:string content:text
+      invoke  active_record
+      create    db/migrate/20111130112544_create_posts.rb
+      create    app/models/post.rb
+      invoke    test_unit
+      create      test/unit/post_test.rb
+      create      test/fixtures/posts.yml
+       route  resources :posts
+      invoke  scaffold_controller
+      create    app/controllers/posts_controller.rb
+      invoke    erb
+      create      app/views/posts
+      create      app/views/posts/index.html.erb
+      create      app/views/posts/edit.html.erb
+      create      app/views/posts/show.html.erb
+      create      app/views/posts/new.html.erb
+      create      app/views/posts/_form.html.erb
+      invoke    test_unit
+      create      test/functional/posts_controller_test.rb
+      invoke    helper
+      create      app/helpers/posts_helper.rb
+      invoke      test_unit
+      create        test/unit/helpers/posts_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/posts.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/posts.css.scss
+      invoke  scss
+      create    app/assets/stylesheets/scaffolds.css.scss
+
+
+
+$ rails generate model Comment commenter:string body:text post:references
+      invoke  active_record
+      create    db/migrate/20111130122144_create_comments.rb
+      create    app/models/comment.rb
+      invoke    test_unit
+      create      test/unit/comment_test.rb
+      create      test/fixtures/comments.yml
+
+
+$ rake db:migrate
+==  CreateComments: migrating =================================================
+-- create_table(:comments)
+   -> 0.1140s
+-- add_index(:comments, :post_id)
+   -> 0.1763s
+==  CreateComments: migrated (0.2905s) ========================================
+
+
+$ rails generate controller Comments
+      create  app/controllers/comments_controller.rb
+      invoke  erb
+      create    app/views/comments
+      invoke  test_unit
+      create    test/functional/comments_controller_test.rb
+      invoke  helper
+      create    app/helpers/comments_helper.rb
+      invoke    test_unit
+      create      test/unit/helpers/comments_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/comments.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/comments.css.scss
+
+
+
+$ rails generate model tag name:string post:references
+      invoke  active_record
+      create    db/migrate/20111201151005_create_tags.rb
+      create    app/models/tag.rb
+      invoke    test_unit
+      create      test/unit/tag_test.rb
+      create      test/fixtures/tags.yml
+
+
+$ rails generate scaffold user username:string email:string password:string 
+      invoke  active_record
+      create    db/migrate/20111202104311_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      test/unit/user_test.rb
+      create      test/fixtures/users.yml
+       route  resources :users
+      invoke  scaffold_controller
+      create    app/controllers/users_controller.rb
+      invoke    erb
+      create      app/views/users
+      create      app/views/users/index.html.erb
+      create      app/views/users/edit.html.erb
+      create      app/views/users/show.html.erb
+      create      app/views/users/new.html.erb
+      create      app/views/users/_form.html.erb
+      invoke    test_unit
+      create      test/functional/users_controller_test.rb
+      invoke    helper
+      create      app/helpers/users_helper.rb
+      invoke      test_unit
+      create        test/unit/helpers/users_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/users.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/users.css.scss
+      invoke  scss
+   identical    app/assets/stylesheets/scaffolds.css.scss
+
+
+$ rails generate model user_session
+      invoke  active_record
+      create    db/migrate/20111202135144_create_user_sessions.rb
+      create    app/models/user_session.rb
+      invoke    test_unit
+      create      test/unit/user_session_test.rb
+      create      test/fixtures/user_sessions.yml
+
+	$ rails destroy model user_session
+	      invoke  active_record
+	      remove    db/migrate/20111202135144_create_user_sessions.rb
+	      remove    app/models/user_session.rb
+	      invoke    test_unit
+	      remove      test/unit/user_session_test.rb
+	      remove      test/fixtures/user_sessions.yml
+
+$ rails generate model user_session
+      invoke  active_record
+      create    db/migrate/20111202143837_create_user_sessions.rb
+      create    app/models/user_session.rb
+      invoke    test_unit
+      create      test/unit/user_session_test.rb
+      create      test/fixtures/user_sessions.yml
+
+$ rails generate controller user_sessions
+      create  app/controllers/user_sessions_controller.rb
+      invoke  erb
+      create    app/views/user_sessions
+      invoke  test_unit
+      create    test/functional/user_sessions_controller_test.rb
+      invoke  helper
+      create    app/helpers/user_sessions_helper.rb
+      invoke    test_unit
+      create      test/unit/helpers/user_sessions_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/user_sessions.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/user_sessions.css.scss
+# And then I fucked all that off:
+$ rails destroy controller user_sessions
+      remove  app/controllers/user_sessions_controller.rb
+      invoke  erb
+      remove    app/views/user_sessions
+      invoke  test_unit
+      remove    test/functional/user_sessions_controller_test.rb
+      invoke  helper
+      remove    app/helpers/user_sessions_helper.rb
+      invoke    test_unit
+      remove      test/unit/helpers/user_sessions_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      remove      app/assets/javascripts/user_sessions.js.coffee
+      invoke    scss
+      remove      app/assets/stylesheets/user_sessions.css.scss
+
+	etc etc
+
+# http://www.logansbailey.com/2010/10/06/how-to-setup-authlogic-in-rails-3/
+
+$ rails generate scaffold user username:string email:string crypted_password:string password_salt:string persistence_token:string
+      invoke  active_record
+      create    db/migrate/20111202164154_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      test/unit/user_test.rb
+      create      test/fixtures/users.yml
+       route  resources :users
+      invoke  scaffold_controller
+      create    app/controllers/users_controller.rb
+      invoke    erb
+      create      app/views/users
+      create      app/views/users/index.html.erb
+      create      app/views/users/edit.html.erb
+      create      app/views/users/show.html.erb
+      create      app/views/users/new.html.erb
+      create      app/views/users/_form.html.erb
+      invoke    test_unit
+      create      test/functional/users_controller_test.rb
+      invoke    helper
+      create      app/helpers/users_helper.rb
+      invoke      test_unit
+      create        test/unit/helpers/users_helper_test.rb
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/users.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/users.css.scss
+      invoke  scss
+   identical    app/assets/stylesheets/scaffolds.css.scss
+moomins-MacBook-Pro:rails-test cormorant$ rake db:migrate
+==  CreateUsers: migrating ====================================================
+-- create_table(:users)
+rake aborted!
+An error has occurred, all later migrations canceled:
+
+Mysql2::Error: Table 'users' already exists: CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255), `email` varchar(255), `crypted_password` varchar(255), `password_salt` varchar(255), `persistence_token` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+moomins-MacBook-Pro:rails-test cormorant$ rake db:migrate
+==  CreateUsers: migrating ====================================================
+-- create_table(:users)
+   -> 0.1026s
+==  CreateUsers: migrated (0.1027s) ===========================================
+
+moomins-MacBook-Pro:rails-test cormorant$ rails g model user_session
+      invoke  active_record
+      create    db/migrate/20111202164910_create_user_sessions.rb
+      create    app/models/user_session.rb
+      invoke    test_unit
+      create      test/unit/user_session_test.rb
+      create      test/fixtures/user_sessions.yml
+moomins-MacBook-Pro:rails-test cormorant$ rails g scaffold_controller user_session username:string password:string
+      create  app/controllers/user_sessions_controller.rb
+      invoke  erb
+      create    app/views/user_sessions
+      create    app/views/user_sessions/index.html.erb
+      create    app/views/user_sessions/edit.html.erb
+      create    app/views/user_sessions/show.html.erb
+      create    app/views/user_sessions/new.html.erb
+      create    app/views/user_sessions/_form.html.erb
+      invoke  test_unit
+      create    test/functional/user_sessions_controller_test.rb
+      invoke  helper
+      create    app/helpers/user_sessions_helper.rb
+      invoke    test_unit
+      create      test/unit/helpers/user_sessions_helper_test.rb
+
+
+
+-----------------------
+#HOMEBREW JPEG LIBRARY PROBLEMS
+
+Basically:
+
+$ convert ~/Pictures/Image235.jpg -resize 50% imtest.jpg
+convert: no decode delegate for this image format `/Users/cormorant/Pictures/Image235.jpg' @ error/constitute.c/ReadImage/532.
+convert: missing an image filename `imtest.jpg' @ error/convert.c/ConvertImageCommand/3015.
+
+Jpeg library not found. also:
+
+$ brew install imagemagick
+File already downloaded in /Users/cormorant/Library/Caches/Homebrew
+
+
+$ brew info imagemagick
+imagemagick 6.7.1-1
+http://www.imagemagick.org
+Depends on: jpeg, libtiff, little-cms, jasper
+/usr/local/Cellar/imagemagick/6.7.1-1 (1381 files, 32M)
+
+Some tools will complain unless the ghostscript fonts are installed to:
+  /usr/local/share/ghostscript/fonts
+
+http://github.com/mxcl/homebrew/commits/master/Library/Formula/imagemagick.rb
+moomins-MacBook-Pro:Cellar cormorant$ brew install ghostscript
+==> Installing ghostscript dependency: pkg-config
+==> Downloading http://pkg-config.freedesktop.org/releases/pkg-config-0.25.tar.gz
+######################################################################## 100.0%
+==> ./configure --disable-debug --prefix=/usr/local/Cellar/pkg-config/0.25 --with-pc-path=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/X11/lib/pkgconfig
+==> make
+==> make check
+==> make install
+Warning: m4 macros were installed to "share/aclocal".
+Homebrew does not append "/usr/local/share/aclocal"
+to "/usr/share/aclocal/dirlist". If an autoconf script you use
+requires these m4 macros, you'll need to add this path manually.
+==> Summary
+/usr/local/Cellar/pkg-config/0.25: 9 files, 252K, built in 26 seconds
+==> Installing ghostscript
+==> Downloading http://downloads.ghostscript.com/public/ghostscript-9.02.tar.bz2
+######################################################################## 100.0%
+==> Patching
+patching file base/gdevpng.c
+patching file base/Makefile.in
+==> ./configure --prefix=/usr/local/Cellar/ghostscript/9.02 --disable-debug --disable-cups --disable-compile-inits --disable-gtk
+configure: WARNING: unrecognized options: --disable-debug
+checking for gcc... /usr/bin/gcc-4.2
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc-4.2 accepts -g... yes
+checking for /usr/bin/gcc-4.2 option to accept ISO C89... none needed
+checking how to run the C preprocessor... /usr/bin/gcc-4.2 -E
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for ranlib... ranlib
+checking for pkg-config... /usr/local/bin/pkg-config
+checking supported compiler flags... 
+   -O2
+   -Wall
+   -Wstrict-prototypes
+   -Wundef
+   -Wmissing-declarations
+   -Wmissing-prototypes
+   -Wwrite-strings
+   -Wno-strict-aliasing
+   -Wdeclaration-after-statement
+   -fno-builtin
+   -fno-common
+
+   -g
+   -O0
+ ...done.
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking malloc.h usability... no
+checking malloc.h presence... no
+checking for malloc.h... no
+checking for memory.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for strings.h... (cached) yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking syslog.h usability... yes
+checking syslog.h presence... yes
+checking for syslog.h... yes
+checking for unistd.h... (cached) yes
+checking sys/window.h usability... no
+checking sys/window.h presence... no
+checking for sys/window.h... no
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for mode_t... yes
+checking for off_t... yes
+checking for size_t... yes
+checking for struct stat.st_blocks... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking size of unsigned long int... 8
+checking for cos in -lm... yes
+checking for pthread_create in -lpthread... yes
+checking for iconv_open... no
+checking for libiconv_open in -liconv... no
+checking for iconv_open in -liconv... yes
+checking for stringprep in -lidn... no
+checking for systempapername in -lpaper... no
+configure: WARNING: disabling support for libpaper
+checking for fontconfig with pkg-config... yes
+checking for dbus with pkg-config... no
+checking for dbus_message_iter_get_basic in -ldbus... no
+checking for dlopen in -ldl... yes
+checking for local freetype library source... yes
+checking for local jpeg library source... no
+checking for jpeg_set_defaults in -ljpeg... no
+configure: error: I wasn't able to find a copy
+  of the jpeg library. This is required for compiling
+  ghostscript. Please download a copy of the source,
+  e.g. from http://www.ijg.org/, unpack it at the
+  top level of the gs source tree, and rename
+  the directory to 'jpeg'.
+  
+==> Exit Status: 1
+http://github.com/mxcl/homebrew/blob/master/Library/Formula/ghostscript.rb#L46
+==> Environment
+HOMEBREW_VERSION: 0.8
+HEAD: 5984adb82cbf3b2d5a74fd62ce83f203daa240d0
+HOMEBREW_PREFIX: /usr/local
+HOMEBREW_CELLAR: /usr/local/Cellar
+HOMEBREW_REPOSITORY: /usr/local
+HOMEBREW_LIBRARY_PATH: /usr/local/Library/Homebrew
+Hardware: quad-core 64-bit arrandale
+OS X: 10.6.8
+Kernel Architecture: i386
+Ruby: 1.8.7-249
+/usr/bin/ruby => /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+Xcode: 3.2.4
+GCC-4.0: build 5494
+GCC-4.2: build 5664
+LLVM: build 2326
+Clang: 1.5-60
+MacPorts or Fink? false
+X11 installed? true
+==> Build Flags
+CC: /usr/bin/gcc-4.2
+CXX: /usr/bin/g++-4.2
+LD: /usr/bin/gcc-4.2
+CFLAGS:  -march=core2 -w -pipe -O3
+CXXFLAGS:  -march=core2 -w -pipe -O3
+CPPFLAGS: -I/usr/X11/include
+LDFLAGS: -L/usr/X11/lib
+
+Error: Failed executing: ./configure --prefix=/usr/local/Cellar/ghostscript/9.02 --disable-debug --disable-cups --disable-compile-inits --disable-gtk
+These existing issues may help you:
+    https://github.com/mxcl/homebrew/issues/8658
+Otherwise, please report the bug:
+    https://github.com/mxcl/homebrew/wiki/checklist-before-filing-a-new-issue
+We saved the configure log, please gist it if you report the issue:
+    ~/Library/Logs/Homebrew/config.log

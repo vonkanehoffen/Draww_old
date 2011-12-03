@@ -1,0 +1,1223 @@
+moomins-MacBook-Pro:rails-test cormorant$ which convert
+/usr/local/bin/convert
+moomins-MacBook-Pro:rails-test cormorant$ which --help
+which: illegal option -- -
+usage: which [-as] program ...
+moomins-MacBook-Pro:rails-test cormorant$ which
+usage: which [-as] program ...
+moomins-MacBook-Pro:rails-test cormorant$ brew install imagemagick
+Warning: Formula already installed: imagemagick
+moomins-MacBook-Pro:rails-test cormorant$ which Magick-config
+/usr/local/bin/Magick-config
+moomins-MacBook-Pro:rails-test cormorant$ brew install jpeg
+Warning: Formula already installed: jpeg
+moomins-MacBook-Pro:rails-test cormorant$ brew
+Example usage:
+  brew install FORMULA...
+  brew uninstall FORMULA...
+  brew search [foo]
+  brew list [FORMULA...]
+  brew update
+  brew outdated
+  brew [info | home] [FORMULA...]
+
+Troubleshooting:
+  brew doctor
+  brew install -vd FORMULA
+  brew [--env | --config]
+
+Brewing:
+  brew create [URL [--no-fetch]]
+  brew edit [FORMULA...]
+  open https://github.com/mxcl/homebrew/wiki/Formula-Cookbook
+
+Further help:
+  man brew
+  brew home
+moomins-MacBook-Pro:rails-test cormorant$ brew update
+Initialized empty Git repository in /usr/local/.git/
+remote: Counting objects: 49356, done.
+remote: Compressing objects: 100% (21353/21353), done.
+remote: Total 49356 (delta 31232), reused 43563 (delta 27322)
+Receiving objects: 100% (49356/49356), 6.81 MiB | 1.18 MiB/s, done.
+Resolving deltas: 100% (31232/31232), done.
+From http://github.com/mxcl/homebrew
+ * branch            HEAD       -> FETCH_HEAD
+error: unable to unlink old '.gitignore' (Permission denied)
+error: unable to unlink old 'README.md' (Permission denied)
+fatal: Could not reset index file to revision 'FETCH_HEAD'.
+rm: .git: Permission denied
+Error: Failure while executing: rm -rf .git 
+moomins-MacBook-Pro:rails-test cormorant$ sudo brew update
+Password:
+Initialized empty Git repository in /usr/local/.git/
+remote: Counting objects: 49424, done.
+remote: Compressing objects: 100% (21397/21397), done.
+remote: Total 49424 (delta 31259), reused 43624 (delta 27343)
+Receiving objects: 100% (49424/49424), 6.86 MiB | 1.43 MiB/s, done.
+Resolving deltas: 100% (31259/31259), done.
+From https://github.com/mxcl/homebrew
+ * [new branch]      gh-pages   -> origin/gh-pages
+ * [new branch]      master     -> origin/master
+HEAD is now at f39dfb1 Sphinx: Use --without-mysql unless MySQL installed
+Already up-to-date.
+moomins-MacBook-Pro:rails-test cormorant$ sudo brew outdated
+moomins-MacBook-Pro:rails-test cormorant$ brew install --force jpeg
+moomins-MacBook-Pro:rails-test cormorant$ brew install --force imagemagick
+moomins-MacBook-Pro:rails-test cormorant$ imagemagick
+-bash: imagemagick: command not found
+moomins-MacBook-Pro:rails-test cormorant$ which convert
+/usr/local/bin/convert
+moomins-MacBook-Pro:rails-test cormorant$ covert -size 100x100 ~/Pictures/Image236.jpg im_test.jpg
+-bash: covert: command not found
+moomins-MacBook-Pro:rails-test cormorant$ convert -size 100x100 ~/Pictures/Image236.jpg im_test.jpg
+convert: no decode delegate for this image format `/Users/cormorant/Pictures/Image236.jpg' @ error/constitute.c/ReadImage/532.
+convert: missing an image filename `im_test.jpg' @ error/convert.c/ConvertImageCommand/3015.
+moomins-MacBook-Pro:rails-test cormorant$ convert -size 100x100 ~/Pictures/what\ if....png im_test.png
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/what\ -size 100x100 if....png im_test2.png
+convert: unable to open image `/Users/cormorant/Pictures/what -size': No such file or directory @ error/blob.c/OpenBlob/2588.
+convert: no decode delegate for this image format `/Users/cormorant/Pictures/what -size' @ error/constitute.c/ReadImage/532.
+convert: unable to open image `100x100': No such file or directory @ error/blob.c/OpenBlob/2588.
+convert: no decode delegate for this image format `100x100' @ error/constitute.c/ReadImage/532.
+convert: unable to open image `if....png': No such file or directory @ error/blob.c/OpenBlob/2588.
+convert: unable to open file `if....png' @ error/png.c/ReadPNGImage/3633.
+convert: missing an image filename `im_test2.png' @ error/convert.c/ConvertImageCommand/3015.
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/what\ if....png -size 100x100 im_test2.png
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/what\ if....png -size 50x50 im_test2.png
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/IMG_3515.JPG -size 50x50 im_test2.png
+convert: no decode delegate for this image format `/Users/cormorant/Pictures/IMG_3515.JPG' @ error/constitute.c/ReadImage/532.
+convert: missing an image filename `im_test2.png' @ error/convert.c/ConvertImageCommand/3015.
+moomins-MacBook-Pro:rails-test cormorant$ brew list
+imagemagick	jasper		jpeg		libtiff		little-cms
+moomins-MacBook-Pro:rails-test cormorant$ brew doctor
+Some folders in /usr/local/share/man aren't writable.
+This can happen if you "sudo make install" software that isn't managed
+by Homebrew. If a brew tries to add locale information to one of these
+folders, then the install will fail during the link step.
+You should probably `chown` them:
+
+    /usr/local/share/man/man5
+
+==> /usr/bin occurs before /usr/local/bin
+This means that system-provided programs will be used instead of those
+provided by Homebrew. This is an issue if you eg. brew installed Python.
+
+Consider editing your .bashrc to put:
+  /usr/local/bin
+ahead of /usr/bin in your $PATH.
+==> You have uncommitted modifications to Homebrew's core.
+Unless you know what you are doing, you should: git reset --hard
+
+moomins-MacBook-Pro:rails-test cormorant$ mate ~/.bash_profile 
+moomins-MacBook-Pro:rails-test cormorant$ mate ~/.bash_
+.bash_history  .bash_profile  
+moomins-MacBook-Pro:rails-test cormorant$ echo $PATH
+/Users/cormorant/.rvm/gems/ruby-1.8.7-p352/bin:/Users/cormorant/.rvm/gems/ruby-1.8.7-p352@global/bin:/Users/cormorant/.rvm/rubies/ruby-1.8.7-p352/bin:/Users/cormorant/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/X11/bin:/opt/local/bin:/Users/cormorant/bin/node/node_modules/less/bin/:/usr/local/mysql-5.1.50-osx10.6-x86_64/bin:/Users/cormorant/Documents/Code/Android/android-sdk-macosx/tools:/Users/cormorant/Documents/Code/Android/android-sdk-macosx/platform-tools
+moomins-MacBook-Pro:rails-test cormorant$ mate ~/.bash_profile 
+moomins-MacBook-Pro:rails-test cormorant$ ls /etc/pa
+pam.d/   passwd   paths    paths.d/ 
+moomins-MacBook-Pro:rails-test cormorant$ ls /etc/pa
+pam.d/   passwd   paths    paths.d/ 
+moomins-MacBook-Pro:rails-test cormorant$ ls /etc/paths
+/etc/paths
+moomins-MacBook-Pro:rails-test cormorant$ cat /etc/paths
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+/usr/local/bin
+moomins-MacBook-Pro:rails-test cormorant$ ls -la
+total 440
+drwxr-xr-x  20 cormorant  staff     680  1 Dec 22:53 .
+drwxr-xr-x   7 cormorant  staff     238  1 Dec 11:51 ..
+-rw-r--r--   1 cormorant  staff      49 30 Nov 10:44 .gitignore
+-rw-r--r--@  1 cormorant  staff     634  1 Dec 17:20 Gemfile
+-rw-r--r--@  1 cormorant  staff    2734  1 Dec 17:20 Gemfile.lock
+-rw-r--r--   1 cormorant  staff    9208 30 Nov 10:44 README
+-rw-r--r--   1 cormorant  staff     270 30 Nov 10:44 Rakefile
+drwxr-xr-x   9 cormorant  staff     306  1 Dec 15:38 app
+drwxr-xr-x  10 cormorant  staff     340 30 Nov 10:44 config
+-rw-r--r--   1 cormorant  staff     155 30 Nov 10:44 config.ru
+drwxr-xr-x   6 cormorant  staff     204  1 Dec 12:06 db
+drwxr-xr-x   5 cormorant  staff     170 30 Nov 11:20 doc
+-rw-r--r--   1 cormorant  staff  191317  1 Dec 22:53 im_test2.png
+drwxr-xr-x   4 cormorant  staff     136 30 Nov 10:44 lib
+drwxr-xr-x   4 cormorant  staff     136 30 Nov 11:12 log
+drwxr-xr-x   9 cormorant  staff     306  1 Dec 22:47 public
+drwxr-xr-x   3 cormorant  staff     102 30 Nov 10:44 script
+drwxr-xr-x   8 cormorant  staff     272 30 Nov 10:44 test
+drwxr-xr-x   6 cormorant  staff     204 30 Nov 11:12 tmp
+drwxr-xr-x   4 cormorant  staff     136 30 Nov 10:44 vendor
+moomins-MacBook-Pro:rails-test cormorant$ ls -la /etc/
+total 2096
+drwxr-xr-x  95 root    wheel    3230 18 Nov 14:33 .
+drwxr-xr-x@  6 root    wheel     204  5 May  2010 ..
+-rw-r--r--   1 root    wheel     753 11 Feb  2010 6to4.conf
+-rw-------   1 root    wheel      24 27 Sep  2010 AFP.conf
+-rw-r--r--   1 root    wheel     515 11 Feb  2010 afpovertcp.cfg
+lrwxr-xr-x   1 root    wheel      15  5 May  2010 aliases -> postfix/aliases
+-rw-r-----   1 root    wheel   16384 11 Feb  2010 aliases.db
+-rw-r--r--   1 root    wheel   31925 11 Feb  2010 amavisd.conf
+drwxr-xr-x  11 root    wheel     374 29 Sep  2010 apache2
+-rw-r--r--   1 root    wheel     860 11 Feb  2010 asl.conf
+-rw-r--r--   1 root    wheel   29647 18 Nov 14:33 authorization
+-rw-r--r--   1 root    wheel      67 22 Mar  2010 auto_home
+-rw-r--r--   1 root    wheel     194 22 Mar  2010 auto_master
+-rw-r--r--   1 root    wheel    1759 22 Mar  2010 autofs.conf
+-r--r--r--   1 root    wheel     196 15 Feb  2010 bashrc
+-rw-r--r--   1 root    wheel      82  7 Jul 20:57 com.apple.screensharing.agent.launchd
+-rw-r--r--   1 root    wheel     189 11 Feb  2010 csh.cshrc
+-rw-r--r--   1 root    wheel     121 11 Feb  2010 csh.login
+-rw-r--r--   1 root    wheel      39 11 Feb  2010 csh.logout
+drwxr-xr-x  14 root    _lp       476 22 Nov 09:10 cups
+drwxr-xr-x   3 root    wheel     102 18 May  2009 defaults
+-rw-r--r--   1 root    wheel    2378 12 Feb  2010 dnsextd.conf
+-rw-r--r--   1 root    wheel    1029 18 May  2009 efax.rc
+-rw-r--r--   1 root    wheel       0 11 Feb  2010 find.codes
+-rw-r--r--   1 root    wheel     150 11 Feb  2010 fstab.hd
+-rw-r--r--   1 root    wheel      54 18 May  2009 ftpd.conf
+-rw-r--r--   1 root    wheel     119 11 Feb  2010 ftpusers
+-rw-r--r--   1 root    wheel     526 21 Jul  2010 gdb.conf
+-rw-r--r--   1 root    wheel    5678 11 Feb  2010 gettytab
+-rw-r--r--   1 root    wheel    1674 11 Feb  2010 group
+-rw-r--r--   1 root    wheel     101  9 Sep 14:47 hostconfig
+-rw-r--r--   1 root    wheel    1091 22 Sep  2010 hosts
+-rw-r--r--   1 root    wheel       0 11 Feb  2010 hosts.equiv
+-r--r--r--   1 root    wheel    1299 11 Feb  2010 irbrc
+-rw-rw-r--   1 chalky  wheel      72  1 Mar  2005 jackd.conf
+-rw-r--r--   1 root    wheel       0 11 Feb  2010 kern_loader.conf
+-rw-------   1 root    wheel    1391 22 Sep  2010 krb5.keytab
+lrwxr-xr-x   1 root    wheel      33 22 Sep  2010 localtime -> /usr/share/zoneinfo/Europe/London
+-r--r--r--   1 root    wheel     616 18 May  2009 locate.rc
+drwxr-xr-x   5 root    wheel     170  6 Oct  2010 mach_init.d
+drwxr-xr-x   2 root    wheel      68 11 Feb  2010 mach_init_per_login_session.d
+drwxr-xr-x   3 root    wheel     102 25 Nov  2010 mach_init_per_user.d
+drwxr-xr-x   3 root    wheel     102  5 May  2010 mail
+-rw-r--r--   1 root    wheel     106 18 May  2009 mail.rc
+-rw-r--r--   1 root    wheel    4589 18 May  2009 man.conf
+-rw-r--r--   1 root    wheel      36 11 Feb  2010 manpaths
+drwxr-xr-x   4 root    wheel     136 26 May  2011 manpaths.d
+-rw-------   1 root    wheel    3929 11 Feb  2010 master.passwd
+-rwxr-xr-x   1 root    wheel     168 22 Sep  2010 memberd.conf
+-rw-r--r--   1 root    wheel  125811 11 Feb  2010 moduli
+-rw-r--r--   1 root    wheel    1238 27 Aug  2009 named.conf
+-r--r--r--   1 root    wheel      11 18 May  2009 nanorc
+-rw-r--r--   1 root    wheel      53 11 Feb  2010 networks
+-r--r--r--   1 root    wheel    1590 18 May  2009 newsyslog.conf
+drwxr-xr-x   4 root    wheel     136  5 May  2010 newsyslog.d
+-rw-r--r--   1 root    wheel     132 11 Feb  2010 notify.conf
+-rw-r--r--   1 root    wheel     366 18 May  2009 ntp-restrict.conf
+-rw-r--r--@  1 root    wheel      27 22 Sep  2010 ntp.conf
+drwxr-xr-x   7 root    wheel     238 12 Feb  2010 openldap
+drwxr-xr-x  15 root    wheel     510 13 Nov  2010 pam.d
+-rw-r--r--   1 root    wheel    3669 11 Feb  2010 passwd
+-rw-r--r--   1 root    wheel      45 11 Feb  2010 paths
+drwxr-xr-x   4 root    wheel     136 26 May  2011 paths.d
+-rw-r--r--   1 root    wheel    1220 12 Feb  2010 pear.conf
+drwxr-xr-x   5 root    wheel     170 18 May  2009 periodic
+-rw-r--r--   1 root    wheel   68961 27 Jun 20:17 php.ini
+-r--r--r--   1 root    wheel   69060  9 Mar  2011 php.ini.default
+drwxr-xr-x  22 root    wheel     748 16 Feb  2011 postfix
+drwxr-xr-x   2 root    wheel      68 22 Mar  2010 ppp
+-r--r--r--   1 root    wheel     189 15 Feb  2010 profile
+-rw-r--r--   1 root    wheel    5766 11 Feb  2010 protocols
+drwxr-xr-x   4 root    wheel     136  5 May  2010 racoon
+-rw-r--r--   1 root    wheel    1660 11 Feb  2010 rc.common
+-rw-r--r--   1 root    wheel    5142 11 Feb  2010 rc.netboot
+lrwxr-xr-x   1 root    wheel      20  5 May  2010 resolv.conf -> /var/run/resolv.conf
+-rw-r--r--   1 root    wheel       0 11 Feb  2010 rmtab
+-rw-r--r--   1 root    wheel     971 11 Feb  2010 rpc
+-rw-r--r--   1 root    wheel     983 11 Feb  2010 rtadvd.conf
+drwxr-xr-x   7 root    wheel     238 19 Jun  2009 security
+-rw-r--r--   1 root    wheel  677959 11 Feb  2010 services
+-rw-r--r--   1 root    wheel  677959 29 Sep  2010 services.bak
+-rw-r--r--   1 root    wheel     179 11 Feb  2010 shells
+-rw-r--r--   1 root    wheel    2975 22 Sep  2010 smb.conf
+-rw-r--r--   1 root    wheel    2955 11 Feb  2010 smb.conf.old
+-rw-r--r--   1 root    wheel    2975  7 May  2010 smb.conf.template
+drwxr-xr-x   4 root    wheel     136  5 Aug  2009 snmp
+-rw-r--r--   1 root    wheel    1545 11 Feb  2010 ssh_config
+-rw-r--r--   1 root    wheel    3723 11 Feb  2010 sshd_config
+-r--r-----   1 root    wheel    1242 25 Jun  2009 sudoers
+-rw-r--r--   1 root    wheel     772 11 Feb  2010 syslog.conf
+drwxr-xr-x   4 root    wheel     136 23 Sep  2010 thnuclnt
+-rw-r--r--   1 root    wheel    1441 11 Feb  2010 ttys
+drwxr-xr-x   4 root    wheel     136 12 Feb  2010 xgrid
+-rw-r--r--   1 root    wheel       0 11 Feb  2010 xtab
+-r--r--r--   1 root    wheel     126 11 May  2009 zshenv
+moomins-MacBook-Pro:rails-test cormorant$ ls -la /etc/paths.d/
+total 8
+drwxr-xr-x   4 root  wheel   136 26 May  2011 .
+drwxr-xr-x  95 root  wheel  3230 18 Nov 14:33 ..
+-rw-r--r--   1 root  wheel    13 11 Feb  2010 X11
+-rw-r--r--   1 root  wheel    19 17 Sep  2009 git
+moomins-MacBook-Pro:rails-test cormorant$ ls -la
+total 440
+drwxr-xr-x  20 cormorant  staff     680  1 Dec 22:53 .
+drwxr-xr-x   7 cormorant  staff     238  1 Dec 11:51 ..
+-rw-r--r--   1 cormorant  staff      49 30 Nov 10:44 .gitignore
+-rw-r--r--@  1 cormorant  staff     634  1 Dec 17:20 Gemfile
+-rw-r--r--@  1 cormorant  staff    2734  1 Dec 17:20 Gemfile.lock
+-rw-r--r--   1 cormorant  staff    9208 30 Nov 10:44 README
+-rw-r--r--   1 cormorant  staff     270 30 Nov 10:44 Rakefile
+drwxr-xr-x   9 cormorant  staff     306  1 Dec 15:38 app
+drwxr-xr-x  10 cormorant  staff     340 30 Nov 10:44 config
+-rw-r--r--   1 cormorant  staff     155 30 Nov 10:44 config.ru
+drwxr-xr-x   6 cormorant  staff     204  1 Dec 12:06 db
+drwxr-xr-x   5 cormorant  staff     170 30 Nov 11:20 doc
+-rw-r--r--   1 cormorant  staff  191317  1 Dec 22:53 im_test2.png
+drwxr-xr-x   4 cormorant  staff     136 30 Nov 10:44 lib
+drwxr-xr-x   4 cormorant  staff     136 30 Nov 11:12 log
+drwxr-xr-x   9 cormorant  staff     306  1 Dec 22:47 public
+drwxr-xr-x   3 cormorant  staff     102 30 Nov 10:44 script
+drwxr-xr-x   8 cormorant  staff     272 30 Nov 10:44 test
+drwxr-xr-x   6 cormorant  staff     204 30 Nov 11:12 tmp
+drwxr-xr-x   4 cormorant  staff     136 30 Nov 10:44 vendor
+moomins-MacBook-Pro:rails-test cormorant$ ls -la /usr/local/
+total 24
+drwxr-xr-x  17 root       wheel   578  1 Dec 22:40 .
+drwxr-xr-x@ 15 root       wheel   510  6 Nov  2010 ..
+drwxr-xr-x  14 cormorant  wheel   476  1 Dec 23:03 .git
+-rw-r--r--   1 root       wheel   116  1 Dec 22:40 .gitignore
+drwxr-xr-x   7 cormorant  wheel   238 17 Aug 17:07 Cellar
+drwxr-xr-x   6 cormorant  wheel   204 17 Aug 17:05 Library
+-rw-r--r--   1 root       wheel   679  1 Dec 22:40 README.md
+drwxrwxr-x  58 root       staff  1972  1 Dec 22:40 bin
+drwxrwxr-x   5 root       staff   170 17 Aug 17:09 etc
+drwxr-xr-x   8 root       wheel   272 26 May  2011 git
+drwxrwxr-x  16 root       staff   544  7 Sep 16:03 include
+drwx-w----   7 chalky     staff   238  7 Sep 16:03 lib
+lrwxr-xr-x   1 root       wheel    27 24 Sep  2010 mysql -> mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x  17 root       wheel   578  4 Aug  2010 mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 sbin
+drwxrwxr-x   8 root       staff   272 17 Aug 17:09 share
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 var
+moomins-MacBook-Pro:rails-test cormorant$ ls -la /usr/local/share/man/
+total 24
+drwxrwxr-x   6 root       staff    204 26 Nov 13:36 .
+drwxrwxr-x   8 root       staff    272 17 Aug 17:09 ..
+drwxrwxr-x  62 root       staff   2108  1 Dec 22:40 man1
+drwxr-xr-x  40 cormorant  staff   1360 17 Aug 17:06 man3
+drwxrwxr-x   4 chalky     admin    136 31 Aug 17:22 man5
+-rw-r--r--   1 root       staff  10689 26 Nov 13:36 whatis
+moomins-MacBook-Pro:rails-test cormorant$ sudo chown -R cormorant:staff man5
+Password:
+chown: man5: No such file or directory
+moomins-MacBook-Pro:rails-test cormorant$ sudo chown -R cormorant:staff man5/usr/local/share/man/
+chown: man5/usr/local/share/man/: No such file or directory
+moomins-MacBook-Pro:rails-test cormorant$ sudo chown -R cormorant:staff /usr/local/share/man/man5
+moomins-MacBook-Pro:rails-test cormorant$ brew doctor
+==> /usr/bin occurs before /usr/local/bin
+This means that system-provided programs will be used instead of those
+provided by Homebrew. This is an issue if you eg. brew installed Python.
+
+Consider editing your .bashrc to put:
+  /usr/local/bin
+ahead of /usr/bin in your $PATH.
+==> You have uncommitted modifications to Homebrew's core.
+Unless you know what you are doing, you should: git reset --hard
+
+moomins-MacBook-Pro:rails-test cormorant$ which brew
+/usr/local/bin/brew
+moomins-MacBook-Pro:rails-test cormorant$ cd /usr/local/bin/brew 
+-bash: cd: /usr/local/bin/brew: Not a directory
+moomins-MacBook-Pro:rails-test cormorant$ cd /usr/local/bin/
+moomins-MacBook-Pro:bin cormorant$ ls
+Magick-config		compare			gif2tiff		import			pal2rgb			tiff2bw			tiffdump
+MagickCore-config	composite		hg			jasper			ppm2tiff		tiff2pdf		tiffinfo
+MagickWand-config	conjure			icc2ps			jpegtran		ras2tiff		tiff2ps			tiffmedian
+Wand-config		convert			icclink			lynx			raw2tiff		tiff2rgba		tiffset
+animate			display			icctrans		mogrify			rdjpgcom		tiffcmp			tiffsplit
+bmp2tiff		djpeg			identify		montage			rgb2ycbcr		tiffcp			tmrdemo
+brew			fax2ps			imgcmp			node			stream			tiffcrop		wrjpgcom
+cjpeg			fax2tiff		imginfo			node-waf		thumbnail		tiffdither		wtpt
+moomins-MacBook-Pro:bin cormorant$ cd 'brew --cellar'
+-bash: cd: brew --cellar: No such file or directory
+moomins-MacBook-Pro:bin cormorant$ brew --cellar
+/usr/local/Cellar
+moomins-MacBook-Pro:bin cormorant$ cd /usr/local/Cellar/
+moomins-MacBook-Pro:Cellar cormorant$ ls
+imagemagick	jasper		jpeg		libtiff		little-cms
+moomins-MacBook-Pro:Cellar cormorant$ ls jpeg/
+8c
+moomins-MacBook-Pro:Cellar cormorant$ ls jpeg/8c/
+README   bin/     include/ lib/     share/   
+moomins-MacBook-Pro:Cellar cormorant$ ls jpeg/8c/
+README   bin/     include/ lib/     share/   
+moomins-MacBook-Pro:Cellar cormorant$ git reset --hard
+fatal: Unable to create '/usr/local/.git/refs/heads/master.lock': Permission denied
+moomins-MacBook-Pro:Cellar cormorant$ ls -la
+total 0
+drwxr-xr-x   7 cormorant  wheel  238 17 Aug 17:07 .
+drwxr-xr-x  17 root       wheel  578  1 Dec 22:40 ..
+drwxr-xr-x   3 cormorant  wheel  102 17 Aug 17:07 imagemagick
+drwxr-xr-x   3 cormorant  wheel  102 17 Aug 17:07 jasper
+drwxr-xr-x   3 cormorant  wheel  102 17 Aug 17:05 jpeg
+drwxr-xr-x   3 cormorant  wheel  102 17 Aug 17:06 libtiff
+drwxr-xr-x   3 cormorant  wheel  102 17 Aug 17:06 little-cms
+moomins-MacBook-Pro:Cellar cormorant$ pwd
+/usr/local/Cellar
+moomins-MacBook-Pro:Cellar cormorant$ git reset --hard HEAD
+fatal: Unable to create '/usr/local/.git/refs/heads/master.lock': Permission denied
+moomins-MacBook-Pro:Cellar cormorant$ ls -la ../
+total 24
+drwxr-xr-x  17 root       wheel   578  1 Dec 22:40 .
+drwxr-xr-x@ 15 root       wheel   510  6 Nov  2010 ..
+drwxr-xr-x  14 cormorant  wheel   476  1 Dec 23:50 .git
+-rw-r--r--   1 root       wheel   116  1 Dec 22:40 .gitignore
+drwxr-xr-x   7 cormorant  wheel   238 17 Aug 17:07 Cellar
+drwxr-xr-x   6 cormorant  wheel   204 17 Aug 17:05 Library
+-rw-r--r--   1 root       wheel   679  1 Dec 22:40 README.md
+drwxrwxr-x  58 root       staff  1972  1 Dec 22:40 bin
+drwxrwxr-x   5 root       staff   170 17 Aug 17:09 etc
+drwxr-xr-x   8 root       wheel   272 26 May  2011 git
+drwxrwxr-x  16 root       staff   544  7 Sep 16:03 include
+drwx-w----   7 chalky     staff   238  7 Sep 16:03 lib
+lrwxr-xr-x   1 root       wheel    27 24 Sep  2010 mysql -> mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x  17 root       wheel   578  4 Aug  2010 mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 sbin
+drwxrwxr-x   8 root       staff   272 17 Aug 17:09 share
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 var
+moomins-MacBook-Pro:Cellar cormorant$ ls -la ../.git/refs/heads/
+total 8
+drwxr-xr-x  3 root  wheel  102  1 Dec 22:40 .
+drwxr-xr-x  5 root  wheel  170  1 Dec 22:40 ..
+-rw-r--r--  1 root  wheel   41  1 Dec 22:40 master
+moomins-MacBook-Pro:Cellar cormorant$ cd ..
+moomins-MacBook-Pro:local cormorant$ chown --help[
+chown: illegal option -- -
+usage: chown [-fhv] [-R [-H | -L | -P]] owner[:group] file ...
+       chown [-fhv] [-R [-H | -L | -P]] :group file ...
+moomins-MacBook-Pro:local cormorant$ chown -R cormorant:wheel .git
+.git/       .gitignore  
+moomins-MacBook-Pro:local cormorant$ chown -R cormorant:wheel .git
+chown: .git/branches: Operation not permitted
+chown: .git/config: Operation not permitted
+chown: .git/description: Operation not permitted
+chown: .git/FETCH_HEAD: Operation not permitted
+chown: .git/HEAD: Operation not permitted
+chown: .git/hooks/applypatch-msg.sample: Operation not permitted
+chown: .git/hooks/commit-msg.sample: Operation not permitted
+chown: .git/hooks/post-commit.sample: Operation not permitted
+chown: .git/hooks/post-receive.sample: Operation not permitted
+chown: .git/hooks/post-update.sample: Operation not permitted
+chown: .git/hooks/pre-applypatch.sample: Operation not permitted
+chown: .git/hooks/pre-commit.sample: Operation not permitted
+chown: .git/hooks/pre-rebase.sample: Operation not permitted
+chown: .git/hooks/prepare-commit-msg.sample: Operation not permitted
+chown: .git/hooks/update.sample: Operation not permitted
+chown: .git/hooks: Operation not permitted
+chown: .git/info/exclude: Operation not permitted
+chown: .git/info: Operation not permitted
+chown: .git/logs/HEAD: Operation not permitted
+chown: .git/logs/refs/heads/master: Operation not permitted
+chown: .git/logs/refs/heads: Operation not permitted
+chown: .git/logs/refs/remotes/origin/gh-pages: Operation not permitted
+chown: .git/logs/refs/remotes/origin/master: Operation not permitted
+chown: .git/logs/refs/remotes/origin: Operation not permitted
+chown: .git/logs/refs/remotes: Operation not permitted
+chown: .git/logs/refs: Operation not permitted
+chown: .git/logs: Operation not permitted
+chown: .git/objects/info: Operation not permitted
+chown: .git/objects/pack/pack-9f219295d78810516e51f13fbfe7e7d070664c57.idx: Operation not permitted
+chown: .git/objects/pack/pack-9f219295d78810516e51f13fbfe7e7d070664c57.pack: Operation not permitted
+chown: .git/objects/pack: Operation not permitted
+chown: .git/objects: Operation not permitted
+chown: .git/ORIG_HEAD: Operation not permitted
+chown: .git/refs/heads/master: Operation not permitted
+chown: .git/refs/heads: Operation not permitted
+chown: .git/refs/remotes/origin/gh-pages: Operation not permitted
+chown: .git/refs/remotes/origin/master: Operation not permitted
+chown: .git/refs/remotes/origin: Operation not permitted
+chown: .git/refs/remotes: Operation not permitted
+chown: .git/refs/tags: Operation not permitted
+chown: .git/refs: Operation not permitted
+moomins-MacBook-Pro:local cormorant$ sudo chown -R cormorant:wheel .git
+Password:
+moomins-MacBook-Pro:local cormorant$ ls -la
+total 24
+drwxr-xr-x  17 root       wheel   578  1 Dec 22:40 .
+drwxr-xr-x@ 15 root       wheel   510  6 Nov  2010 ..
+drwxr-xr-x  14 cormorant  wheel   476  1 Dec 23:50 .git
+-rw-r--r--   1 root       wheel   116  1 Dec 22:40 .gitignore
+drwxr-xr-x   7 cormorant  wheel   238 17 Aug 17:07 Cellar
+drwxr-xr-x   6 cormorant  wheel   204 17 Aug 17:05 Library
+-rw-r--r--   1 root       wheel   679  1 Dec 22:40 README.md
+drwxrwxr-x  58 root       staff  1972  1 Dec 22:40 bin
+drwxrwxr-x   5 root       staff   170 17 Aug 17:09 etc
+drwxr-xr-x   8 root       wheel   272 26 May  2011 git
+drwxrwxr-x  16 root       staff   544  7 Sep 16:03 include
+drwx-w----   7 chalky     staff   238  7 Sep 16:03 lib
+lrwxr-xr-x   1 root       wheel    27 24 Sep  2010 mysql -> mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x  17 root       wheel   578  4 Aug  2010 mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 sbin
+drwxrwxr-x   8 root       staff   272 17 Aug 17:09 share
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 var
+moomins-MacBook-Pro:local cormorant$ cat .gitignore 
+/*
+!/.gitignore
+!/Library/
+!/README.md
+!/bin
+/bin/*
+!/bin/brew
+!/share/man/man1/brew.1
+.DS_Store
+/Library/LinkedKegsmoomins-MacBook-Pro:local cormorant$ sudo chown cormorant:wheel .gitignore 
+moomins-MacBook-Pro:local cormorant$ ls -la
+total 24
+drwxr-xr-x  17 root       wheel   578  1 Dec 22:40 .
+drwxr-xr-x@ 15 root       wheel   510  6 Nov  2010 ..
+drwxr-xr-x  14 cormorant  wheel   476  1 Dec 23:50 .git
+-rw-r--r--   1 cormorant  wheel   116  1 Dec 22:40 .gitignore
+drwxr-xr-x   7 cormorant  wheel   238 17 Aug 17:07 Cellar
+drwxr-xr-x   6 cormorant  wheel   204 17 Aug 17:05 Library
+-rw-r--r--   1 root       wheel   679  1 Dec 22:40 README.md
+drwxrwxr-x  58 root       staff  1972  1 Dec 22:40 bin
+drwxrwxr-x   5 root       staff   170 17 Aug 17:09 etc
+drwxr-xr-x   8 root       wheel   272 26 May  2011 git
+drwxrwxr-x  16 root       staff   544  7 Sep 16:03 include
+drwx-w----   7 chalky     staff   238  7 Sep 16:03 lib
+lrwxr-xr-x   1 root       wheel    27 24 Sep  2010 mysql -> mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x  17 root       wheel   578  4 Aug  2010 mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 sbin
+drwxrwxr-x   8 root       staff   272 17 Aug 17:09 share
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 var
+moomins-MacBook-Pro:local cormorant$ cd Cellar/
+moomins-MacBook-Pro:Cellar cormorant$ git reset --hard HEAD
+error: unable to unlink old '.gitignore' (Permission denied)
+fatal: Could not reset index file to revision 'HEAD'.
+moomins-MacBook-Pro:Cellar cormorant$ brew update
+remote: Counting objects: 9, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 5 (delta 4), reused 5 (delta 4)
+Unpacking objects: 100% (5/5), done.
+From https://github.com/mxcl/homebrew
+   f39dfb1..5984adb  master     -> origin/master
+Updated Homebrew from f39dfb10 to 5984adb8.
+==> Updated formulae
+boost
+moomins-MacBook-Pro:Cellar cormorant$ brew
+Example usage:
+  brew install FORMULA...
+  brew uninstall FORMULA...
+  brew search [foo]
+  brew list [FORMULA...]
+  brew update
+  brew upgrade [FORMULA...]
+  brew [info | home] [FORMULA...]
+
+Troubleshooting:
+  brew doctor
+  brew install -vd FORMULA
+  brew [--env | --config]
+
+Brewing:
+  brew create [URL [--no-fetch]]
+  brew edit [FORMULA...]
+  open https://github.com/mxcl/homebrew/wiki/Formula-Cookbook
+
+Further help:
+  man brew
+  brew home
+moomins-MacBook-Pro:Cellar cormorant$ brew upgrade
+moomins-MacBook-Pro:Cellar cormorant$ brew loist
+Error: Unknown command: loist
+moomins-MacBook-Pro:Cellar cormorant$ brew list
+imagemagick	jasper		jpeg		libtiff		little-cms
+moomins-MacBook-Pro:Cellar cormorant$ brew info imagemagick
+imagemagick 6.7.1-1
+http://www.imagemagick.org
+Depends on: jpeg, libtiff, little-cms, jasper
+/usr/local/Cellar/imagemagick/6.7.1-1 (1381 files, 32M)
+
+Some tools will complain unless the ghostscript fonts are installed to:
+  /usr/local/share/ghostscript/fonts
+
+http://github.com/mxcl/homebrew/commits/master/Library/Formula/imagemagick.rb
+moomins-MacBook-Pro:Cellar cormorant$ brew install ghostscript
+==> Installing ghostscript dependency: pkg-config
+==> Downloading http://pkg-config.freedesktop.org/releases/pkg-config-0.25.tar.gz
+######################################################################## 100.0%
+==> ./configure --disable-debug --prefix=/usr/local/Cellar/pkg-config/0.25 --with-pc-path=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/X11/lib/pkgconfig
+==> make
+==> make check
+==> make install
+Warning: m4 macros were installed to "share/aclocal".
+Homebrew does not append "/usr/local/share/aclocal"
+to "/usr/share/aclocal/dirlist". If an autoconf script you use
+requires these m4 macros, you'll need to add this path manually.
+==> Summary
+/usr/local/Cellar/pkg-config/0.25: 9 files, 252K, built in 26 seconds
+==> Installing ghostscript
+==> Downloading http://downloads.ghostscript.com/public/ghostscript-9.02.tar.bz2
+######################################################################## 100.0%
+==> Patching
+patching file base/gdevpng.c
+patching file base/Makefile.in
+==> ./configure --prefix=/usr/local/Cellar/ghostscript/9.02 --disable-debug --disable-cups --disable-compile-inits --disable-gtk
+configure: WARNING: unrecognized options: --disable-debug
+checking for gcc... /usr/bin/gcc-4.2
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc-4.2 accepts -g... yes
+checking for /usr/bin/gcc-4.2 option to accept ISO C89... none needed
+checking how to run the C preprocessor... /usr/bin/gcc-4.2 -E
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for ranlib... ranlib
+checking for pkg-config... /usr/local/bin/pkg-config
+checking supported compiler flags... 
+   -O2
+   -Wall
+   -Wstrict-prototypes
+   -Wundef
+   -Wmissing-declarations
+   -Wmissing-prototypes
+   -Wwrite-strings
+   -Wno-strict-aliasing
+   -Wdeclaration-after-statement
+   -fno-builtin
+   -fno-common
+
+   -g
+   -O0
+ ...done.
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking malloc.h usability... no
+checking malloc.h presence... no
+checking for malloc.h... no
+checking for memory.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for strings.h... (cached) yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking syslog.h usability... yes
+checking syslog.h presence... yes
+checking for syslog.h... yes
+checking for unistd.h... (cached) yes
+checking sys/window.h usability... no
+checking sys/window.h presence... no
+checking for sys/window.h... no
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for mode_t... yes
+checking for off_t... yes
+checking for size_t... yes
+checking for struct stat.st_blocks... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking size of unsigned long int... 8
+checking for cos in -lm... yes
+checking for pthread_create in -lpthread... yes
+checking for iconv_open... no
+checking for libiconv_open in -liconv... no
+checking for iconv_open in -liconv... yes
+checking for stringprep in -lidn... no
+checking for systempapername in -lpaper... no
+configure: WARNING: disabling support for libpaper
+checking for fontconfig with pkg-config... yes
+checking for dbus with pkg-config... no
+checking for dbus_message_iter_get_basic in -ldbus... no
+checking for dlopen in -ldl... yes
+checking for local freetype library source... yes
+checking for local jpeg library source... no
+checking for jpeg_set_defaults in -ljpeg... no
+configure: error: I wasn't able to find a copy
+  of the jpeg library. This is required for compiling
+  ghostscript. Please download a copy of the source,
+  e.g. from http://www.ijg.org/, unpack it at the
+  top level of the gs source tree, and rename
+  the directory to 'jpeg'.
+  
+==> Exit Status: 1
+http://github.com/mxcl/homebrew/blob/master/Library/Formula/ghostscript.rb#L46
+==> Environment
+HOMEBREW_VERSION: 0.8
+HEAD: 5984adb82cbf3b2d5a74fd62ce83f203daa240d0
+HOMEBREW_PREFIX: /usr/local
+HOMEBREW_CELLAR: /usr/local/Cellar
+HOMEBREW_REPOSITORY: /usr/local
+HOMEBREW_LIBRARY_PATH: /usr/local/Library/Homebrew
+Hardware: quad-core 64-bit arrandale
+OS X: 10.6.8
+Kernel Architecture: i386
+Ruby: 1.8.7-249
+/usr/bin/ruby => /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+Xcode: 3.2.4
+GCC-4.0: build 5494
+GCC-4.2: build 5664
+LLVM: build 2326
+Clang: 1.5-60
+MacPorts or Fink? false
+X11 installed? true
+==> Build Flags
+CC: /usr/bin/gcc-4.2
+CXX: /usr/bin/g++-4.2
+LD: /usr/bin/gcc-4.2
+CFLAGS:  -march=core2 -w -pipe -O3
+CXXFLAGS:  -march=core2 -w -pipe -O3
+CPPFLAGS: -I/usr/X11/include
+LDFLAGS: -L/usr/X11/lib
+
+Error: Failed executing: ./configure --prefix=/usr/local/Cellar/ghostscript/9.02 --disable-debug --disable-cups --disable-compile-inits --disable-gtk
+These existing issues may help you:
+    https://github.com/mxcl/homebrew/issues/8658
+Otherwise, please report the bug:
+    https://github.com/mxcl/homebrew/wiki/checklist-before-filing-a-new-issue
+We saved the configure log, please gist it if you report the issue:
+    ~/Library/Logs/Homebrew/config.log
+moomins-MacBook-Pro:Cellar cormorant$ identify --version
+Version: ImageMagick 6.7.1-1 2011-08-17 Q16 http://www.imagemagick.org
+Copyright: Copyright (C) 1999-2011 ImageMagick Studio LLC
+Features: OpenMP OpenCL  
+
+moomins-MacBook-Pro:Cellar cormorant$ brew install --force jpeg
+moomins-MacBook-Pro:Cellar cormorant$ cd ~/
+moomins-MacBook-Pro:~ cormorant$ history | grep convert
+  548  which convert
+  561  which convert
+  563  convert -size 100x100 ~/Pictures/Image236.jpg im_test.jpg
+  564  convert -size 100x100 ~/Pictures/what\ if....png im_test.png
+  565  convert ~/Pictures/what\ -size 100x100 if....png im_test2.png
+  567  convert ~/Pictures/what\ if....png -size 50x50 im_test2.png
+  568  convert ~/Pictures/IMG_3515.JPG -size 50x50 im_test2.png
+  621  history | grep convert
+moomins-MacBook-Pro:~ cormorant$ cd Sites/rails-apps/rails-test/
+moomins-MacBook-Pro:rails-test cormorant$ ls
+Gemfile		README		app		config.ru	doc		lib		public		test		vendor
+Gemfile.lock	Rakefile	config		db		im_test2.png	log		script		tmp
+moomins-MacBook-Pro:rails-test cormorant$ rm im_test2.png 
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/what\ if....png -resize 50% imtest.png
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/Image
+Image119.jpg  Image178.jpg  Image235.jpg  Image236.jpg  
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/Image235.jpg -resize 50% imtest.jpg
+convert: no decode delegate for this image format `/Users/cormorant/Pictures/Image235.jpg' @ error/constitute.c/ReadImage/532.
+convert: missing an image filename `imtest.jpg' @ error/convert.c/ConvertImageCommand/3015.
+moomins-MacBook-Pro:rails-test cormorant$ man brew
+
+[1]+  Stopped                 man brew
+moomins-MacBook-Pro:rails-test cormorant$ brew remove imagemagick
+Uninstalling /usr/local/Cellar/imagemagick/6.7.1-1...
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/Image235.jpg -resize 50% imtest.jpg
+-bash: /usr/local/bin/convert: No such file or directory
+moomins-MacBook-Pro:rails-test cormorant$ brew install imagemagick
+==> Downloading https://github.com/trevor/ImageMagick/tarball/6.7.1-1
+File already downloaded in /Users/cormorant/Library/Caches/Homebrew
+==> ./configure --disable-osx-universal-binary --without-perl --prefix=/usr/local/Cellar/imagemagick/6.7.1-1 --enable-shared --disable-static --with-modules --without-gslib 
+==> make install
+==> Caveats
+Some tools will complain unless the ghostscript fonts are installed to:
+  /usr/local/share/ghostscript/fonts
+Error: The linking step did not complete successfully
+The formula built, but is not symlinked into /usr/local
+You can try again using `brew link imagemagick'
+==> Summary
+/usr/local/Cellar/imagemagick/6.7.1-1: 1382 files, 32M, built in 2.1 minutes
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/Image235.jpg -resize 50% imtest.jpg
+convert: no decode delegate for this image format `/Users/cormorant/Pictures/Image235.jpg' @ error/constitute.c/ReadImage/532.
+convert: missing an image filename `imtest.jpg' @ error/convert.c/ConvertImageCommand/3015.
+moomins-MacBook-Pro:rails-test cormorant$ convert -list configure
+
+Path: /usr/local/Cellar/imagemagick/6.7.1-1/share/ImageMagick/configure.xml
+
+Name          Value
+-------------------------------------------------------------------------------
+CC            /usr/bin/gcc-4.2 -std=gnu99 -std=gnu99
+CFLAGS        -D_THREAD_SAFE -D_THREAD_SAFE -pthread -fopenmp -march=core2 -w -pipe -O3 -Wall -D_THREAD_SAFE -pthread
+CODER_PATH    /usr/local/Cellar/imagemagick/6.7.1-1/lib/ImageMagick/modules-Q16/coders
+CONFIGURE     ./configure  '--disable-osx-universal-binary' '--without-perl' '--prefix=/usr/local/Cellar/imagemagick/6.7.1-1' '--disable-dependency-tracking' '--enable-shared' '--disable-static' '--with-modules' '--without-gslib' '--with-gs-font-dir=/usr/local/share/ghostscript/fonts' '--without-magick-plus-plus' 'CC=/usr/bin/gcc-4.2' 'CFLAGS= -march=core2 -w -pipe -O3' 'LDFLAGS=-L/usr/X11/lib' 'CPPFLAGS=-I/usr/X11/include' 'CXX=/usr/bin/g++-4.2' 'CXXFLAGS= -march=core2 -w -pipe -O3'
+CONFIGURE_PATH /usr/local/Cellar/imagemagick/6.7.1-1/etc/ImageMagick/
+COPYRIGHT     Copyright (C) 1999-2011 ImageMagick Studio LLC
+CPPFLAGS      -I/usr/local/Cellar/imagemagick/6.7.1-1/include/ImageMagick
+CXX           /usr/bin/g++-4.2
+CXXFLAGS      -march=core2 -w -pipe -O3 -D_THREAD_SAFE -pthread
+DEFS          -DHAVE_CONFIG_H
+DELEGATES     bzlib fontconfig freetype png x11 xml zlib
+DISTCHECK_CONFIG_FLAGS 'CC=/usr/bin/gcc-4.2' 'CFLAGS= -march=core2 -w -pipe -O3' 'CPPFLAGS=-I/usr/X11/include' 'CXX=/usr/bin/g++-4.2' 'LDFLAGS=-L/usr/X11/lib' --disable-deprecated --with-quantum-depth=16 --with-umem=no --with-autotrace=no --with-gslib=no --with-fontpath= --with-gs-font-dir=/usr/local/share/ghostscript/fonts --with-perl=no
+DOCUMENTATION_PATH /usr/local/Cellar/imagemagick/6.7.1-1/share/doc/ImageMagick-6.7.1/
+EXEC-PREFIX   /usr/local/Cellar/imagemagick/6.7.1-1
+EXECUTABLE_PATH /usr/local/Cellar/imagemagick/6.7.1-1/bin
+FEATURES      OpenMP 
+FILTER_PATH   /usr/local/Cellar/imagemagick/6.7.1-1/lib/ImageMagick/modules-Q16/filters
+HOST          x86_64-apple-darwin10.8.0
+LDFLAGS       -L/usr/local/Cellar/imagemagick/6.7.1-1/lib -L/usr/X11/lib
+LIB_VERSION   0x671
+LIB_VERSION_NUMBER 6,7,1,1
+LIBRARY_PATH  /usr/local/Cellar/imagemagick/6.7.1-1/lib/ImageMagick
+LIBS          -lMagickCore -lfreetype -L/usr/X11/lib -lfontconfig -lXext -lSM -lICE -lX11 -lXt -lbz2 -lz -lm -lgomp -lclparser -Wl,-framework,OpenCL -L/System/Library/Frameworks/OpenCL.framework/Versions/A/Libraries -lm -lpthread 
+NAME          ImageMagick
+PCFLAGS       -fopenmp
+PREFIX        /usr/local/Cellar/imagemagick/6.7.1-1
+QuantumDepth  16
+RELEASE_DATE  2011-12-02
+SHARE_PATH    /usr/local/Cellar/imagemagick/6.7.1-1/share/ImageMagick
+SVN_REVISION  4768
+TARGET_CPU    x86_64
+TARGET_OS     darwin10.8.0
+TARGET_VENDOR apple
+VERSION       6.7.1
+WEBSITE       http://www.imagemagick.org
+
+Path: [built-in]
+
+Name          Value
+-------------------------------------------------------------------------------
+NAME          ImageMagick
+moomins-MacBook-Pro:rails-test cormorant$ brew list
+imagemagick	jasper		jpeg		libtiff		little-cms	pkg-config
+moomins-MacBook-Pro:rails-test cormorant$ which bzlib
+moomins-MacBook-Pro:rails-test cormorant$ which fontconfig
+moomins-MacBook-Pro:rails-test cormorant$ identify -list format
+   Format  Module    Mode  Description
+-------------------------------------------------------------------------------
+      3FR  DNG       r--   Hasselblad CFV/H3D39II
+        A* RAW       rw+   Raw alpha samples
+      AAI* AAI       rw+   AAI Dune image
+       AI  PDF       rw-   Adobe Illustrator CS2
+      ART* ART       rw-   PFS: 1st Publisher Clip Art
+      ARW  DNG       r--   Sony Alpha Raw Image Format
+      AVI  MPEG      r--   Microsoft Audio/Visual Interleaved
+      AVS* AVS       rw+   AVS X image
+        B* RAW       rw+   Raw blue samples
+      BGR* BGR       rw+   Raw blue, green, and red samples
+     BGRA* BGR       rw+   Raw blue, green, red, and alpha samples
+      BMP* BMP       rw-   Microsoft Windows bitmap image
+     BMP2* BMP       -w-   Microsoft Windows bitmap image (V2)
+     BMP3* BMP       -w-   Microsoft Windows bitmap image (V3)
+      BRF* BRAILLE   -w-   BRF ASCII Braille format
+        C* RAW       rw+   Raw cyan samples
+      CAL* CALS      r--   Continuous Acquisition and Life-cycle Support Type 1
+           Specified in MIL-R-28002 and MIL-PRF-28002
+     CALS* CALS      r--   Continuous Acquisition and Life-cycle Support Type 1
+           Specified in MIL-R-28002 and MIL-PRF-28002
+   CANVAS* XC        r--   Constant image uniform color
+  CAPTION* CAPTION   r--   Image caption
+      CIN* CIN       rw-   Cineon Image File
+      CIP* CIP       -w-   Cisco IP phone image format
+     CLIP* CLIP      -w+   Image Clip Mask
+     CMYK* CMYK      rw+   Raw cyan, magenta, yellow, and black samples
+    CMYKA* CMYK      rw+   Raw cyan, magenta, yellow, black, and alpha samples
+      CR2  DNG       r--   Canon Digital Camera Raw Image Format
+      CRW  DNG       r--   Canon Digital Camera Raw Image Format
+      CUR* CUR       rw-   Microsoft icon
+      CUT* CUT       r--   DR Halo
+      DCM* DCM       r--   Digital Imaging and Communications in Medicine image
+           DICOM is used by the medical community for images like X-rays.  The
+           specification, "Digital Imaging and Communications in Medicine
+           (DICOM)", is available at http://medical.nema.org/.  In particular,
+           see part 5 which describes the image encoding (RLE, JPEG, JPEG-LS),
+           and supplement 61 which adds JPEG-2000 encoding.
+      DCR  DNG       r--   Kodak Digital Camera Raw Image File
+      DCX* PCX       rw+   ZSoft IBM PC multi-page Paintbrush
+      DDS* DDS       r--   Microsoft DirectDraw Surface
+    DFONT* TTF       r--   Multi-face font package (Freetype 2.3.9)
+      DNG  DNG       r--   Digital Negative
+      DOT  DOT       ---   Graphviz
+      DPX* DPX       rw-   SMPTE 268M-2003 (DPX 2.0)
+           Digital Moving Picture Exchange Bitmap, Version 2.0.
+           See SMPTE 268M-2003 specification at http://www.smtpe.org
+           
+     EPDF  PDF       rw-   Encapsulated Portable Document Format
+      EPI  PS        rw-   Encapsulated PostScript Interchange format
+      EPS  PS        rw-   Encapsulated PostScript
+     EPS2* PS2       -w-   Level II Encapsulated PostScript
+     EPS3* PS3       -w+   Level III Encapsulated PostScript
+     EPSF  PS        rw-   Encapsulated PostScript
+     EPSI  PS        rw-   Encapsulated PostScript Interchange format
+      ERF  DNG       r--   Epson RAW Format
+      FAX* FAX       rw+   Group 3 FAX
+           FAX machines use non-square pixels which are 1.5 times wider than
+           they are tall but computer displays use square pixels, therefore
+           FAX images may appear to be narrow unless they are explicitly
+           resized using a geometry of "150x100%".
+           
+     FITS* FITS      rw-   Flexible Image Transport System
+  FRACTAL* PLASMA    r--   Plasma fractal image
+      FTS* FTS       rw-   Flexible Image Transport System
+        G* RAW       rw+   Raw green samples
+       G3* FAX       rw-   Group 3 FAX
+      GIF* GIF       rw+   CompuServe graphics interchange format
+    GIF87* GIF       rw-   CompuServe graphics interchange format (version 87a)
+ GRADIENT* GRADIENT  r--   Gradual linear passing from one shade to another
+     GRAY* GRAY      rw+   Raw gray samples
+     HALD*           r--   Identity Hald color lookup table image
+      HDR* HDR       rw+   Radiance RGBE image format
+HISTOGRAM* HISTOGRAM -w-   Histogram of the image
+      HRZ* HRZ       rw-   Slow Scan TeleVision
+      HTM* HTML      -w-   Hypertext Markup Language and a client-side image map
+     HTML* HTML      -w-   Hypertext Markup Language and a client-side image map
+      ICB* TGA       rw-   Truevision Targa image
+      ICO* ICON      rw+   Microsoft icon
+     ICON* ICON      rw-   Microsoft icon
+     INFO  INFO      -w+   The image format and characteristics
+   INLINE* INLINE    r--   Base64-encoded inline images
+      IPL* IPL       rw+   IPL Image Sequence
+   ISOBRL* BRAILLE   -w-   ISO/TR 11548-1 format
+      JNG* PNG       ---   JPEG Network Graphics
+           See http://www.libpng.org/pub/mng/ for details about the JNG
+           format.
+        K* RAW       rw+   Raw black samples
+      K25  DNG       r--   Kodak Digital Camera Raw Image Format
+      KDC  DNG       r--   Kodak Digital Camera Raw Image Format
+    LABEL* LABEL     r--   Image label
+        M* RAW       rw+   Raw magenta samples
+      M2V  MPEG      rw+   MPEG Video Stream
+      M4V  MPEG      rw+   Raw MPEG-4 Video
+      MAC* MAC       r--   MAC Paint
+      MAP* MAP       rw-   Colormap intensities and indices
+      MAT  MAT       rw+   MATLAB level 5 image format
+    MATTE* MATTE     -w+   MATTE format
+     MIFF* MIFF      rw+   Magick Image File Format
+      MNG* PNG       rw+   Multiple-image Network Graphics (libpng 1.2.35,1.2.46)
+           See http://www.libpng.org/pub/mng/ for details about the MNG
+           format.
+     MONO* MONO      rw-   Raw bi-level bitmap
+      MOV  MPEG      rw+   MPEG Video Stream
+      MP4  MPEG      rw+   MPEG-4 Video Stream
+      MPC* MPC       rw+   Magick Persistent Cache image format
+     MPEG  MPEG      rw+   MPEG Video Stream
+      MPG  MPEG      rw+   MPEG Video Stream
+      MRW  DNG       r--   Sony (Minolta) Raw Image File
+      MSL* MSL       rw+   Magick Scripting Language
+     MSVG  SVG       rw+   ImageMagick's own SVG internal renderer
+      MTV* MTV       rw+   MTV Raytracing image format
+      MVG* MVG       rw-   Magick Vector Graphics
+      NEF  DNG       r--   Nikon Digital SLR Camera Raw Image File
+     NULL* NULL      rw-   Constant image of uniform color
+        O* RAW       rw+   Raw opacity samples
+      ORF  DNG       r--   Olympus Digital Camera Raw Image File
+      OTB* OTB       rw-   On-the-air bitmap
+      OTF* TTF       r--   Open Type font (Freetype 2.3.9)
+      PAL* UYVY      rw-   16bit/pixel interleaved YUV
+     PALM* PALM      rw+   Palm pixmap
+      PAM* PNM       rw+   Common 2-dimensional bitmap format
+  PATTERN* PATTERN   r--   Predefined pattern
+      PBM* PNM       rw+   Portable bitmap format (black and white)
+      PCD* PCD       rw-   Photo CD
+     PCDS* PCD       rw-   Photo CD
+      PCL  PCL       rw+   Printer Control Language
+      PCT* PICT      rw-   Apple Macintosh QuickDraw/PICT
+      PCX* PCX       rw-   ZSoft IBM PC Paintbrush
+      PDB* PDB       rw+   Palm Database ImageViewer Format
+      PDF  PDF       rw+   Portable Document Format
+     PDFA  PDF       rw+   Portable Document Archive Format
+      PEF  DNG       r--   Pentax Electronic File
+      PES* PES       r--   Embrid Embroidery Format
+      PFA* TTF       r--   Postscript Type 1 font (ASCII) (Freetype 2.3.9)
+      PFB* TTF       r--   Postscript Type 1 font (binary) (Freetype 2.3.9)
+      PFM* PFM       rw+   Portable float format
+      PGM* PNM       rw+   Portable graymap format (gray scale)
+    PICON* XPM       rw-   Personal Icon
+     PICT* PICT      rw-   Apple Macintosh QuickDraw/PICT
+      PIX* PIX       r--   Alias/Wavefront RLE image format
+   PLASMA* PLASMA    r--   Plasma fractal image
+      PNG* PNG       rw-   Portable Network Graphics (libpng 1.2.35,1.2.46)
+           See http://www.libpng.org/ for details about the PNG format.
+    PNG24* PNG       rw-   opaque 24-bit RGB (zlib 1.2.3)
+    PNG32* PNG       rw-   opaque or transparent 32-bit RGBA
+     PNG8* PNG       rw-   8-bit indexed with optional binary transparency
+      PNM* PNM       rw+   Portable anymap
+      PPM* PNM       rw+   Portable pixmap format (color)
+  PREVIEW* PREVIEW   -w-   Show a preview an image enhancement, effect, or f/x
+       PS  PS        rw+   PostScript
+      PS2* PS2       -w+   Level II PostScript
+      PS3* PS3       -w+   Level III PostScript
+      PSB* PSD       rw+   Adobe Large Document Format
+      PSD* PSD       rw+   Adobe Photoshop bitmap
+      PWP* PWP       r--   Seattle Film Works
+        R* RAW       rw+   Raw red samples
+RADIAL-GRADIENT* GRADIENT  r--   Gradual radial passing from one shade to another
+      RAF  DNG       r--   Fuji CCD-RAW Graphic File
+      RAS* SUN       rw+   SUN Rasterfile
+      RGB* RGB       rw+   Raw red, green, and blue samples
+     RGBA* RGB       rw+   Raw red, green, blue, and alpha samples
+     RGBO* RGB       rw+   Raw red, green, blue, and opacity samples
+      RLA* RLA       r--   Alias/Wavefront image
+      RLE* RLE       r--   Utah Run length encoded image
+      SCR* SCR       r--   ZX-Spectrum SCREEN$
+      SCT* SCT       r--   Scitex HandShake
+      SFW* SFW       r--   Seattle Film Works
+      SGI* SGI       rw+   Irix RGB image
+    SHTML* HTML      -w-   Hypertext Markup Language and a client-side image map
+      SR2  DNG       r--   Sony Raw Format 2
+      SRF  DNG       r--   Sony Raw Format
+  STEGANO* STEGANO   r--   Steganographic image
+      SUN* SUN       rw+   SUN Rasterfile
+      SVG  SVG       rw+   Scalable Vector Graphics (XML 2.7.3)
+     SVGZ  SVG       rw+   Compressed Scalable Vector Graphics (XML 2.7.3)
+     TEXT* TXT       rw+   Text
+      TGA* TGA       rw-   Truevision Targa image
+THUMBNAIL* THUMBNAIL -w+   EXIF Profile Thumbnail
+     TILE* TILE      r--   Tile image with a texture
+      TIM* TIM       r--   PSX TIM
+      TTC* TTF       r--   TrueType font collection (Freetype 2.3.9)
+      TTF* TTF       r--   TrueType font (Freetype 2.3.9)
+      TXT* TXT       rw+   Text
+     UBRL* BRAILLE   -w-   Unicode Text format
+      UIL* UIL       -w-   X-Motif UIL table
+     UYVY* UYVY      rw-   16bit/pixel interleaved YUV
+      VDA* TGA       rw-   Truevision Targa image
+    VICAR* VICAR     rw-   VICAR rasterfile format
+      VID* VID       rw+   Visual Image Directory
+     VIFF* VIFF      rw+   Khoros Visualization image
+      VST* TGA       rw-   Truevision Targa image
+     WBMP* WBMP      rw-   Wireless Bitmap (level 0) image
+      WMV  MPEG      rw+   Windows Media Video
+      WPG* WPG       r--   Word Perfect Graphics
+        X* X         rw+   X Image
+      X3F  DNG       r--   Sigma Camera RAW Picture File
+      XBM* XBM       rw-   X Windows system bitmap (black and white)
+       XC* XC        r--   Constant image uniform color
+      XCF* XCF       r--   GIMP image
+      XPM* XPM       rw-   X Windows system pixmap (color)
+      XPS  XPS       r--   Microsoft XML Paper Specification
+       XV* VIFF      rw+   Khoros Visualization image
+      XWD* XWD       rw-   X Windows system window dump (color)
+        Y* RAW       rw+   Raw yellow samples
+    YCbCr* YCbCr     rw+   Raw Y, Cb, and Cr samples
+   YCbCrA* YCbCr     rw+   Raw Y, Cb, Cr, and alpha samples
+      YUV* YUV       rw-   CCIR 601 4:1:1 or 4:2:2
+
+* native blob support
+r read support
+w write support
++ support for multiple images
+moomins-MacBook-Pro:rails-test cormorant$ brew list
+imagemagick	jasper		jpeg		libtiff		little-cms	pkg-config
+moomins-MacBook-Pro:rails-test cormorant$ brew info jpeg
+jpeg 8c
+http://www.ijg.org
+/usr/local/Cellar/jpeg/8c (17 files, 1.6M)
+http://github.com/mxcl/homebrew/commits/master/Library/Formula/jpeg.rb
+moomins-MacBook-Pro:rails-test cormorant$ brew link imagemagick
+Linking /usr/local/Cellar/imagemagick/6.7.1-1... 
+Error: Permission denied - /usr/local/lib/pkgconfig
+moomins-MacBook-Pro:rails-test cormorant$ ls -la /usr/local/
+total 24
+drwxr-xr-x  17 root       wheel   578  1 Dec 22:40 .
+drwxr-xr-x@ 15 root       wheel   510  6 Nov  2010 ..
+drwxr-xr-x  14 cormorant  wheel   476  1 Dec 23:57 .git
+-rw-r--r--   1 cormorant  wheel   116  1 Dec 22:40 .gitignore
+drwxr-xr-x   8 cormorant  wheel   272  2 Dec 00:10 Cellar
+drwxr-xr-x   7 cormorant  wheel   238  1 Dec 23:59 Library
+-rw-r--r--   1 root       wheel   679  1 Dec 22:40 README.md
+drwxrwxr-x  59 root       staff  2006  2 Dec 00:35 bin
+drwxrwxr-x   5 root       staff   170 17 Aug 17:09 etc
+drwxr-xr-x   8 root       wheel   272 26 May  2011 git
+drwxrwxr-x  16 root       staff   544  2 Dec 00:35 include
+drwx-w----   7 chalky     staff   238  7 Sep 16:03 lib
+lrwxr-xr-x   1 root       wheel    27 24 Sep  2010 mysql -> mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x  17 root       wheel   578  4 Aug  2010 mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 sbin
+drwxrwxr-x   9 root       staff   306  2 Dec 00:35 share
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 var
+moomins-MacBook-Pro:rails-test cormorant$ sudo chown -R cormorant:wheel /usr/local
+Password:
+moomins-MacBook-Pro:rails-test cormorant$ brew link imagemagick
+Linking /usr/local/Cellar/imagemagick/6.7.1-1... 1170 symlinks created
+moomins-MacBook-Pro:rails-test cormorant$ convert -list configure
+
+Path: /usr/local/Cellar/imagemagick/6.7.1-1/share/ImageMagick/configure.xml
+
+Name          Value
+-------------------------------------------------------------------------------
+CC            /usr/bin/gcc-4.2 -std=gnu99 -std=gnu99
+CFLAGS        -D_THREAD_SAFE -D_THREAD_SAFE -pthread -fopenmp -march=core2 -w -pipe -O3 -Wall -D_THREAD_SAFE -pthread
+CODER_PATH    /usr/local/Cellar/imagemagick/6.7.1-1/lib/ImageMagick/modules-Q16/coders
+CONFIGURE     ./configure  '--disable-osx-universal-binary' '--without-perl' '--prefix=/usr/local/Cellar/imagemagick/6.7.1-1' '--disable-dependency-tracking' '--enable-shared' '--disable-static' '--with-modules' '--without-gslib' '--with-gs-font-dir=/usr/local/share/ghostscript/fonts' '--without-magick-plus-plus' 'CC=/usr/bin/gcc-4.2' 'CFLAGS= -march=core2 -w -pipe -O3' 'LDFLAGS=-L/usr/X11/lib' 'CPPFLAGS=-I/usr/X11/include' 'CXX=/usr/bin/g++-4.2' 'CXXFLAGS= -march=core2 -w -pipe -O3'
+CONFIGURE_PATH /usr/local/Cellar/imagemagick/6.7.1-1/etc/ImageMagick/
+COPYRIGHT     Copyright (C) 1999-2011 ImageMagick Studio LLC
+CPPFLAGS      -I/usr/local/Cellar/imagemagick/6.7.1-1/include/ImageMagick
+CXX           /usr/bin/g++-4.2
+CXXFLAGS      -march=core2 -w -pipe -O3 -D_THREAD_SAFE -pthread
+DEFS          -DHAVE_CONFIG_H
+DELEGATES     bzlib fontconfig freetype png x11 xml zlib
+DISTCHECK_CONFIG_FLAGS 'CC=/usr/bin/gcc-4.2' 'CFLAGS= -march=core2 -w -pipe -O3' 'CPPFLAGS=-I/usr/X11/include' 'CXX=/usr/bin/g++-4.2' 'LDFLAGS=-L/usr/X11/lib' --disable-deprecated --with-quantum-depth=16 --with-umem=no --with-autotrace=no --with-gslib=no --with-fontpath= --with-gs-font-dir=/usr/local/share/ghostscript/fonts --with-perl=no
+DOCUMENTATION_PATH /usr/local/Cellar/imagemagick/6.7.1-1/share/doc/ImageMagick-6.7.1/
+EXEC-PREFIX   /usr/local/Cellar/imagemagick/6.7.1-1
+EXECUTABLE_PATH /usr/local/Cellar/imagemagick/6.7.1-1/bin
+FEATURES      OpenMP 
+FILTER_PATH   /usr/local/Cellar/imagemagick/6.7.1-1/lib/ImageMagick/modules-Q16/filters
+HOST          x86_64-apple-darwin10.8.0
+LDFLAGS       -L/usr/local/Cellar/imagemagick/6.7.1-1/lib -L/usr/X11/lib
+LIB_VERSION   0x671
+LIB_VERSION_NUMBER 6,7,1,1
+LIBRARY_PATH  /usr/local/Cellar/imagemagick/6.7.1-1/lib/ImageMagick
+LIBS          -lMagickCore -lfreetype -L/usr/X11/lib -lfontconfig -lXext -lSM -lICE -lX11 -lXt -lbz2 -lz -lm -lgomp -lclparser -Wl,-framework,OpenCL -L/System/Library/Frameworks/OpenCL.framework/Versions/A/Libraries -lm -lpthread 
+NAME          ImageMagick
+PCFLAGS       -fopenmp
+PREFIX        /usr/local/Cellar/imagemagick/6.7.1-1
+QuantumDepth  16
+RELEASE_DATE  2011-12-02
+SHARE_PATH    /usr/local/Cellar/imagemagick/6.7.1-1/share/ImageMagick
+SVN_REVISION  4768
+TARGET_CPU    x86_64
+TARGET_OS     darwin10.8.0
+TARGET_VENDOR apple
+VERSION       6.7.1
+WEBSITE       http://www.imagemagick.org
+
+Path: [built-in]
+
+Name          Value
+-------------------------------------------------------------------------------
+NAME          ImageMagick
+moomins-MacBook-Pro:rails-test cormorant$ brew remove imagemagick
+Uninstalling /usr/local/Cellar/imagemagick/6.7.1-1...
+moomins-MacBook-Pro:rails-test cormorant$ brew remove jpeg
+Uninstalling /usr/local/Cellar/jpeg/8c...
+moomins-MacBook-Pro:rails-test cormorant$ man brew
+
+[2]+  Stopped                 man brew
+moomins-MacBook-Pro:rails-test cormorant$ brew doctor
+Unbrewed dylibs were found in /usr/local/lib.
+
+If you didn't put them there on purpose they could cause problems when
+building Homebrew formulae, and may need to be deleted.
+
+Unexpected dylibs:
+    /usr/local/lib/libssl.0.9.8.dylib
+
+Unbrewed .pc files were found in /usr/local/lib/pkgconfig.
+
+If you didn't put them there on purpose they could cause problems when
+building Homebrew formulae, and may need to be deleted.
+
+Unexpected .pc files:
+    /usr/local/lib/pkgconfig/nodejs.pc
+
+==> /usr/bin occurs before /usr/local/bin
+This means that system-provided programs will be used instead of those
+provided by Homebrew. This is an issue if you eg. brew installed Python.
+
+Consider editing your .bashrc to put:
+  /usr/local/bin
+ahead of /usr/bin in your $PATH.
+==> You should brew install these missing dependencies:
+jasper: jpeg
+
+==> You have uncommitted modifications to Homebrew's core.
+Unless you know what you are doing, you should: git reset --hard
+
+moomins-MacBook-Pro:rails-test cormorant$ cd /usr/local/
+moomins-MacBook-Pro:local cormorant$ ls -la
+total 24
+drwxr-xr-x  17 cormorant  wheel   578  1 Dec 22:40 .
+drwxr-xr-x@ 15 root       wheel   510  6 Nov  2010 ..
+drwxr-xr-x  14 cormorant  wheel   476  2 Dec 00:41 .git
+-rw-r--r--   1 cormorant  wheel   116  1 Dec 22:40 .gitignore
+drwxr-xr-x   6 cormorant  wheel   204  2 Dec 00:40 Cellar
+drwxr-xr-x   7 cormorant  wheel   238  1 Dec 23:59 Library
+-rw-r--r--   1 cormorant  wheel   679  1 Dec 22:40 README.md
+drwxrwxr-x  39 cormorant  wheel  1326  2 Dec 00:40 bin
+drwxrwxr-x   5 cormorant  wheel   170 17 Aug 17:09 etc
+drwxr-xr-x   8 cormorant  wheel   272 26 May  2011 git
+drwxrwxr-x  12 cormorant  wheel   408  2 Dec 00:40 include
+drwx-w----   7 cormorant  wheel   238  2 Dec 00:40 lib
+lrwxr-xr-x   1 cormorant  wheel    27 24 Sep  2010 mysql -> mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x  17 cormorant  wheel   578  4 Aug  2010 mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 sbin
+drwxrwxr-x   9 cormorant  wheel   306  2 Dec 00:35 share
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 var
+moomins-MacBook-Pro:local cormorant$ brew clenup
+Error: Unknown command: clenup
+moomins-MacBook-Pro:local cormorant$ brew cleanup
+Pruned 1 symbolic links and 16 directories from /usr/local
+moomins-MacBook-Pro:local cormorant$ ls -la
+total 24
+drwxr-xr-x  16 cormorant  wheel   544  2 Dec 00:42 .
+drwxr-xr-x@ 15 root       wheel   510  6 Nov  2010 ..
+drwxr-xr-x  14 cormorant  wheel   476  2 Dec 00:41 .git
+-rw-r--r--   1 cormorant  wheel   116  1 Dec 22:40 .gitignore
+drwxr-xr-x   6 cormorant  wheel   204  2 Dec 00:40 Cellar
+drwxr-xr-x   7 cormorant  wheel   238  1 Dec 23:59 Library
+-rw-r--r--   1 cormorant  wheel   679  1 Dec 22:40 README.md
+drwxrwxr-x  39 cormorant  wheel  1326  2 Dec 00:40 bin
+drwxrwxr-x   4 cormorant  wheel   136  2 Dec 00:42 etc
+drwxr-xr-x   8 cormorant  wheel   272 26 May  2011 git
+drwxrwxr-x  11 cormorant  wheel   374  2 Dec 00:42 include
+drwx-w----   5 cormorant  wheel   170  2 Dec 00:42 lib
+lrwxr-xr-x   1 cormorant  wheel    27 24 Sep  2010 mysql -> mysql-5.1.50-osx10.6-x86_64
+drwxr-xr-x  17 cormorant  wheel   578  4 Aug  2010 mysql-5.1.50-osx10.6-x86_64
+drwxrwxr-x   8 cormorant  wheel   272  2 Dec 00:42 share
+drwxr-xr-x   2 cormorant  wheel    68 17 Aug 17:05 var
+moomins-MacBook-Pro:local cormorant$ man brew
+
+[3]+  Stopped                 man brew
+moomins-MacBook-Pro:local cormorant$ cd Cellar/
+moomins-MacBook-Pro:Cellar cormorant$ git reset --hard HEAD
+HEAD is now at 5984adb boost: Fix boost::BOOST_FOREACH errors
+moomins-MacBook-Pro:Cellar cormorant$ man brew
+
+[4]+  Stopped                 man brew
+moomins-MacBook-Pro:Cellar cormorant$ man brew
+
+[5]+  Stopped                 man brew
+moomins-MacBook-Pro:Cellar cormorant$ brew update
+Already up-to-date.
+moomins-MacBook-Pro:Cellar cormorant$ brew install jpeg
+==> Downloading http://www.ijg.org/files/jpegsrc.v8c.tar.gz
+######################################################################## 100.0%
+==> ./configure --prefix=/usr/local/Cellar/jpeg/8c
+==> make install
+/usr/local/Cellar/jpeg/8c: 18 files, 1.6M, built in 27 seconds
+moomins-MacBook-Pro:Cellar cormorant$ brew install imagemagick
+==> Downloading https://github.com/trevor/ImageMagick/tarball/6.7.1-1
+######################################################################## 100.0%
+==> ./configure --disable-osx-universal-binary --without-perl --prefix=/usr/local/Cellar/imagemagick/6.7.1-1 --enable-shared --disable-static --with-modules --without-gslib 
+==> make install
+==> Caveats
+Some tools will complain unless the ghostscript fonts are installed to:
+  /usr/local/share/ghostscript/fonts
+==> Summary
+/usr/local/Cellar/imagemagick/6.7.1-1: 1384 files, 32M, built in 2.1 minutes
+moomins-MacBook-Pro:Cellar cormorant$ cd ~/Sites/rails-apps/rails-test/
+moomins-MacBook-Pro:rails-test cormorant$ convert ~/Pictures/Image235.jpg -resize 50% imtest.jpg
+moomins-MacBook-Pro:rails-test cormorant$ mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 639
+Server version: 5.1.50 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
+This software comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to modify and redistribute it under the GPL v2 license
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit
+Bye
+moomins-MacBook-Pro:rails-test cormorant$ 

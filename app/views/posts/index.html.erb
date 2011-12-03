@@ -1,0 +1,40 @@
+<h1>Listing 
+<%= @user.username+"'s" if @user %> posts</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+	<th>Purpose</th>
+    <th>Content</th>
+	<th>Photo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.name %></td>
+    <td><%= post.title %></td>
+	<td><%= post.purpose %></td>
+    <td><%= post.content %></td>
+	<td>
+	<% if post.photo.exists? then %>
+	<%= image_tag post.photo.url(:small) %></p>
+	<% else %>
+	No photos here
+	<% end %>
+	</td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @posts %>
+
+<br />
+
+<%= link_to 'New Post', new_post_path %>
