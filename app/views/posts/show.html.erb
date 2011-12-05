@@ -35,7 +35,18 @@
 <%= render @post.comments %>
 
 <h2>Add a comment:</h2>
-<%= form_for([@post, @post.comments.build]) do |f| %>
+<%= form_for([@post, @comment]) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :commenter %><br />
     <%= f.text_field :commenter %>
