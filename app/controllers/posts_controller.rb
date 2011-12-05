@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    # @comment = @post.comments.build
+    @comment = @post.comments.build
 
     respond_to do |format|
       format.html # show.html.erb
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        current_user.posts << @post
+        current_user.posts << @post unless current_user.nil?  # really ought to have "require_user"
         format.html { redirect_to @post, :notice => 'Post was successfully created.' }
         format.json { render :json => @post, :status => :created, :location => @post }
       else
