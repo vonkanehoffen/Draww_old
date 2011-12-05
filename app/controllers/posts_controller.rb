@@ -58,7 +58,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        current_user.posts << @post unless current_user.nil?  # really ought to have "require_user"
+        current_user.posts << @post
         format.html { redirect_to @post, :notice => 'Post was successfully created.' }
         format.json { render :json => @post, :status => :created, :location => @post }
       else
