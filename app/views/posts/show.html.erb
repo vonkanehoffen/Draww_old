@@ -32,7 +32,7 @@
 <% end %>
 
 <h2>Comments</h2>
-<%= render @post.comments %>
+<%= render @post.comments - [@comment] %>
 
 <h2>Add a comment:</h2>
 <%= form_for([@post, @comment]) do |f| %>
@@ -47,10 +47,6 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :commenter %><br />
-    <%= f.text_field :commenter %>
-  </div>
   <div class="field">
     <%= f.label :body %><br />
     <%= f.text_area :body %>
