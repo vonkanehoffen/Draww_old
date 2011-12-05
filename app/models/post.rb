@@ -17,9 +17,5 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :tags, :allow_destroy => :true,
       :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
 
-  #cattr_reader :per_page
-  #@@per_page = 5
 end
-
-# see http://www.andyhawthorne.net/2011/05/pagination-with-rails-3/
 

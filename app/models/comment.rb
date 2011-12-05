@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
   belongs_to :post
-  validates :commenter, :presence => true
-  validates :body, :presence => true
+  belongs_to :user
+  validates_presence_of :body, :message => "You need to write something"
 end

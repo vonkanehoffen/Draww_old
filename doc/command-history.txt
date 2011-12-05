@@ -264,6 +264,16 @@ moomins-MacBook-Pro:rails-test cormorant$ rails g scaffold_controller user_sessi
 	$ rails g kaminari:config
 	      create  config/initializers/kaminari_config.rb
 
+
+rails generate migration AddUserToComments 
+      invoke  active_record
+      create    db/migrate/20111205135026_add_user_to_comments.rb
+moomins-MacBook-Pro:Worrk cormorant$ rake db:migrate
+==  AddUserToComments: migrating ==============================================
+-- change_table(:comments)
+   -> 0.0974s
+==  AddUserToComments: migrated (0.0975s) =====================================
+
 -----------------------
 #HOMEBREW JPEG LIBRARY PROBLEMS
 
