@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def require_user 
    unless current_user 
      store_location 
-     flash[:notice] = "You must be logged in to access this page" 
+     flash[:notice] = "You must be logged in to do this." 
      redirect_to login_path 
      return false 
    end 
@@ -32,5 +32,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_url 
       return false 
     end 
+  end
+  
+  def store_location
+    # TODO: WTF is going on here and does this help:
+    # http://railspikes.com/2008/5/1/quick-tip-store_location-with-subdomains
+    # need to redirect to original page on before_filter :require_user
+    #session[:return_to] = request.request_uri
   end
 end

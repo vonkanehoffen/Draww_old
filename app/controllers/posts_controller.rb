@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 
+  before_filter :require_user, :only => [:new, :create, :update, :destroy]
   #http_basic_authenticate_with :name => "kane", :password => "password", :except => :index
   # GET /posts
   # GET /posts.json
@@ -12,7 +13,7 @@ class PostsController < ApplicationController
       
     else
       # For /posts/
-      @posts = Post.order(:created_at).page params[:page]
+      @posts = Post.order("created_at DESC").page params[:page]
       #@posts = Post.all
     end
       
