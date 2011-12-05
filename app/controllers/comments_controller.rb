@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
           format.html { redirect_to post_path(@post), :notice => 'Comment Posted. Thanks!' }
           # format.json { render :json => @post, :status => :created, :location => @post }
         else
+          # TODO: Trouble with this is we get duplicated content "/posts/xx/comments"
+          # and a blank comment on bad submission due to the comments.build call
           format.html { render "posts/show", :error => "Couldn't save the comment!" }
           # format.json { render :json => @post.errors, :status => :unprocessable_entity }
         end

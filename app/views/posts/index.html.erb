@@ -3,10 +3,8 @@
 
 <table>
   <tr>
-    <th>Name</th>
     <th>Title</th>
-	<th>Purpose</th>
-    <th>Content</th>
+    <th>Description</th>
 	<th>Photo</th>
     <th></th>
     <th></th>
@@ -15,10 +13,8 @@
 
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.name %></td>
     <td><%= post.title %></td>
-	<td><%= post.purpose %></td>
-    <td><%= post.content %></td>
+    <td><%= post.description %></td>
 	<td>
 	<% if post.photo.exists? then %>
 	<%= image_tag post.photo.url(:small) %></p>

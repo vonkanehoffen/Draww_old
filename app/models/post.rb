@@ -8,8 +8,9 @@ class Post < ActiveRecord::Base
       :medium => "300x300>",
       :large =>   "400x400>" }
       
-  validates :name, :presence => true
-  validates :title, :presence => true, :length => { :minimum => 2 }
+  validates_presence_of :title, :message => "No Title!"
+  validates_attachment_presence :photo
+  # validates :title, :presence => true, :length => { :minimum => 2 }
   has_many :comments, :dependent => :destroy
   has_many :tags
   belongs_to :user    
