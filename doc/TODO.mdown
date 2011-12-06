@@ -1,0 +1,11 @@
+#1 controllers/user_sessions :create
+Redirect to user posts page (like /users/xx/posts)
+
+#2 views/posts/show
+Back link doesn't go to the appropriate page (kaminari pagination)
+
+#3 views/layous/application
+"My Worrk" should link to user posts page (see 1)
+
+#4 controllers/application :require_user
+Needs to redirect back to the same page and highlight the login box. Currently :store_location fucks up and gets .../comments for the current URL on some pages, cos the comments model is called as part of the posts/show view etc.
