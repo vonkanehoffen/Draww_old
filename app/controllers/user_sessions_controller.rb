@@ -18,7 +18,8 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to(:users, :notice => 'Login Successful') }
+        # TODO: maybe just redirect_to(request.url) with login form always on page.
+        format.html { redirect_to(session[:return_to], :notice => 'Login Successful') }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
       else
         format.html { render :action => "new" }
@@ -34,7 +35,7 @@ class UserSessionsController < ApplicationController
     @user_session.destroy
 
     respond_to do |format|
-      format.html { redirect_to(:users, :notice => 'Goodbye!') }
+      format.html { redirect_to(:root, :notice => 'Goodbye!') }
       format.xml  { head :ok }
     end
   end

@@ -8,16 +8,17 @@
 </head>
 <body>
 <header>
-	<%= link_to "Home", root_path %>
+	<%= link_to "Worrk", root_path %>
 </header>
 <nav id="user_nav">
 	<% if current_user %>
 		Logged in as <strong><%= current_user.username %></strong><br/>
 		<%= link_to "Edit Profile", edit_user_path(current_user.id)%>
-		<%= link_to "Logout", :logout%>
+		<%= link_to "My Worrk", :posts %>
+		<%= link_to "Logout", :logout %>
 	<% else %>
+		<%= render 'user_sessions/form' %>
 		<%= link_to "Register", new_user_path%> | 
-		<%= link_to "Login", :login %>
 	<% end %>
 </nav>
 <div id="flash">

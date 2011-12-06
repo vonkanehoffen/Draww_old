@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :prepare_new_session # get user session object on every page so login form can be there
+  
   # filter_parameter_logging :password, :password_confirmation 
   # that bit's deprecated in rails 3 so set stuff in config/application.rb
   helper_method :current_user_session, :current_user
@@ -38,6 +40,10 @@ class ApplicationController < ActionController::Base
     # TODO: WTF is going on here and does this help:
     # http://railspikes.com/2008/5/1/quick-tip-store_location-with-subdomains
     # need to redirect to original page on before_filter :require_user
-    #session[:return_to] = request.request_uri
+    session[:return_to] = request.url
+  end
+  
+  def prepare_new_session
+    @user_session = UserSession.new if current_user.blank?
   end
 end

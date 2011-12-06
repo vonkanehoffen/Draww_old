@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :require_user, :only => [:new, :create, :update, :destroy]
+  before_filter :require_user, :only => [:new, :create, :update, :edit, :destroy]
   #http_basic_authenticate_with :name => "kane", :password => "password", :except => :index
   # GET /posts
   # GET /posts.json

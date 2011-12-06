@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :require_user
   def create
       @post = Post.find(params[:post_id])
       @comment = @post.comments.build(params[:comment])
@@ -10,7 +11,7 @@ class CommentsController < ApplicationController
           # format.json { render :json => @post, :status => :created, :location => @post }
         else
           # TODO: Trouble with this is we get duplicated content "/posts/xx/comments"
-          # and a blank comment on bad submission due to the comments.build call
+          # and the index action gets callewd for it in some cases, which doesn't exist
           format.html { render "posts/show", :error => "Couldn't save the comment!" }
           # format.json { render :json => @post.errors, :status => :unprocessable_entity }
         end
