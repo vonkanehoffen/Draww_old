@@ -23,8 +23,10 @@
 	<% end %>
 	</td>
     <td><%= link_to 'Show', post %></td>
+	<% if belongs_to_current_user(post) %>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>
