@@ -12,3 +12,7 @@ Needs to redirect back to the same page and highlight the login box. Currently :
 
 #5 views/tags/form or /models/tag
 Make tags save as separate entities when they're separated by spaces
+
+#6 routes
+Get /users/username to work:
+better than /users/userid/posts and can't it be a helper wotsit like user_posts_path(@user) or something?
