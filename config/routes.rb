@@ -17,7 +17,7 @@ Worrk::Application.routes.draw do
   resources :users do
     resources :posts
   end
-  #match "users/:username" => "posts#index", :as => :user_posts
+  # match "users/:username" => "users#index", :as => :user_posts
   
   get "home/index"
   # root :to => 'home#index'
