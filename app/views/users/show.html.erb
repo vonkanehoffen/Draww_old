@@ -8,6 +8,9 @@
   <%= @user.email %>
 </p>
 
+<h1><%= @user.username %>'s Posts</h1>
+<%= render '/posts/list' %>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

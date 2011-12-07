@@ -18,8 +18,10 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        # TODO: maybe just redirect_to(request.url) with login form always on page.
-        format.html { redirect_to(:root, :notice => 'Login Successful') }
+        #puts "user id is"
+        #puts @user_session.username
+        # TODO: Get this to redirect to current user ID
+        format.html { redirect_to(user_path(1), :notice => 'Login Successful') }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
       else
         format.html { render :action => "new" }
