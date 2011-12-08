@@ -13,7 +13,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    if(params[:username])
+      # TODO: display sorry msg rather than NoMethodError when a user doesn't exist
+      @user = User.where(:username => params[:username]).first
+    else
+      @user = User.find(params[:id])
+    end
     @posts = @user.posts.order(:created_at).page params[:page]
 
     respond_to do |format|

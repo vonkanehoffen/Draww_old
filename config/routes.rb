@@ -7,6 +7,7 @@ Worrk::Application.routes.draw do
   # map.login   'login',  :controller => 'user_sessions', :action => 'new'
   match 'logout', :to => 'user_sessions#destroy', :as => :logout
     
+  match '/user/:username' => "Users#show", :as => 'user_by_name'
   resources :posts do
     resources :comments
     get 'page/:page', :action => :index, :on => :collection
@@ -17,7 +18,6 @@ Worrk::Application.routes.draw do
   resources :users do
     resources :posts
   end
-  # match "users/:username" => "users#index", :as => :user_posts
   
   get "home/index"
   # root :to => 'home#index'
