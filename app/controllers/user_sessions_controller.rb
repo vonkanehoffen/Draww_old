@@ -18,10 +18,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        # we need this cos actual user ID isn't in @user_session
-        userid = User.where(:username => @user_session.username).first.id
-        # TODO: Get this to redirect to current user ID
-        format.html { redirect_to(user_path(userid), :notice => 'Login Successful') }
+        format.html { redirect_to(name_user_path(@user_session.username), :notice => 'Login Successful') }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
       else
         format.html { render :action => "new" }

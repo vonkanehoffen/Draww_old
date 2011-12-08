@@ -1,15 +1,10 @@
 #2 views/posts/show
 Back link doesn't go to the appropriate page (kaminari pagination)
 
-#3 views/layous/application
-"My Worrk" should link to user posts page (see 1)
-
 #4 controllers/application :require_user
 Needs to redirect back to the same page and highlight the login box. Currently :store_location fucks up and gets .../comments for the current URL on some pages, cos the comments model is called as part of the posts/show view etc.
 
 #5 views/tags/form or /models/tag
 Make tags save as separate entities when they're separated by spaces
 
-#6 routes
-Get /users/username to work:
-better than /users/userid/posts and can't it be a helper wotsit like user_posts_path(@user) or something?
+# stop /user/nonexistentuser/ erroring out. Need "user not found" page

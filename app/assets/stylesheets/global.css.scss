@@ -1,0 +1,64 @@
+/* Styles for main layout & global stuff : views/layouts/application */
+
+@import "lib/css3_mixins.scss";
+body { 
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:14px; 
+	// background: #fff url('/images/gradient-ccc.jpg') top left repeat-x;
+	background: #fff;
+}
+
+#site_title {
+	font-size:60px;
+	letter-spacing:-1px;
+	color:#404040;
+	font-weight:bold;
+	text-decoration:none;
+	padding:20px;
+}
+nav.user {
+	position:absolute;
+	top:0; right:0;
+	padding:5px;
+	margin:10px;
+	form, div { display: inline; }
+	input[type=text], input[type=password] {
+		width:120px;
+	}
+	background:#f5f5f5;
+	@include border-radius(2px);
+}
+
+// GLOBAL FORMS -------------------------------
+
+input, .button, a.button {
+	margin:5px;
+	@include border-radius(2px);
+	display:inline-block;
+}
+input[type=text], input[type=password] {
+	font-size:14px;
+	padding:5px;
+	border:1px solid #999;
+	@include box-shadow(0,0, 6px, #ccc);
+	// @include linear-gradient(#fff, #eee);
+}
+input[type=submit], .button, a.button {
+	border:0;
+	font-size:12px;
+	padding:6px 10px;
+	font-weight:bold;
+	color:#fff;
+	text-decoration:none;
+	text-transform:uppercase;
+	@include box-shadow(0,0, 6px, #ccc);
+	@include linear-gradient(#888, #666);
+	// text-shadow: 0 0 4px #222;
+	@include transition(opacity 0.5s);
+	&:hover {
+		opacity:0.85;
+	}
+	&.green { @include linear-gradient(#6db667, #3d9d35); }
+	&.light { @include linear-gradient(#bbb, #999); }
+}

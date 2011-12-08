@@ -8,19 +8,22 @@
 </head>
 <body>
 <header>
-	<%= link_to "Worrk", root_path %>
+	<%= link_to "Worrk", root_path, :id => 'site_title' %>
 </header>
-<nav id="user_nav">
+<nav class="user">
 	<% if current_user %>
-		Logged in as <strong><%= current_user.username %></strong><br/>
-		<%= link_to "Edit Profile", edit_user_path(current_user.id)%>
-		<%= link_to "My Worrk", :posts %>
-		<%= link_to "Logout", :logout %>
+		<div class="msg">Logged in as <strong><%= current_user.username %></strong></div>
+		<%= link_to "Edit Profile", edit_user_path(current_user.id), :class => 'button' %>
+		<%= link_to "My Worrk", name_user_path(current_user.username), :class => 'button green' %>
+		<%= link_to "Logout", :logout, :class => 'button light' %>
 	<% else %>
-		<%= render 'user_sessions/form' %>
-		<%= link_to "Register", new_user_path%>
+		<div class="logged_in">
+			<%= render 'user_sessions/form' %>
+			<%= link_to "Register", new_user_path, :class => 'button green' %>
+		</div>
 	<% end %>
 </nav>
+
 <div id="flash">
 	<%= render 'shared/flashes' %>
 </div>

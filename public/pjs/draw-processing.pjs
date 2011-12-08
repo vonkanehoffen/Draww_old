@@ -1,0 +1,129 @@
+int barWidth = 40;
+int[] hue;
+
+bool imageSet = false;
+int imgeWaitTime = 0;
+bool inited = false;
+PImage im;
+
+
+var imWidth;
+var imHeight; 
+var imX = 0;
+var imY = 0;
+
+var mouseDown = false;
+ 
+void setup() 
+{
+  size(800, 600);
+  background(#000000);
+  colorMode(HSB, 360, 1, 1); 
+  smooth();
+  noStroke();
+}
+ 
+void draw() 
+{
+  
+  if(imageSet){ 
+	
+	if(im){
+		
+		//wait a few frames before trying to display image.
+		//TODO: need to find a better way to know when the image is ready.
+		// the imageLoaded callback doesn't seem to work.
+		if(imgeWaitTime >= 0){
+			imgeWaitTime-= 1;
+		}else{
+			imageSet = false;
+			inited = true;	
+			
+			//clear background
+			background(#000000);	
+		
+			//draw image
+			image(im , imX , imY , width , height);
+			
+			console.log("draw" , im.width , imY);
+		}
+	}
+
+  }else if(!inited){
+
+  	var tWidth = 100;
+	var tHeight = 50;
+	PFont fontA	  = loadFont("Arial");
+	int fontSize = 30;
+	textFont(fontA, fontSize);
+	textAlign(CENTER);
+	//fill(128, 128 , 128);
+	text( "Drop in an image!", width*0.5, height*0.5 );	  	
+  }else{
+    if(mouseDown){
+		 	//draw circles.
+  		variableEllipse(mouseX, mouseY, pmouseX, pmouseY);  	
+  	}	
+  }
+  
+
+  
+  
+
+}
+
+
+void setImage( s )
+{
+	im = loadImage(s , "" , imageLoaded());
+
+
+}
+
+void imageLoaded(){
+	imageSet = true;
+	imgeWaitTime = 10; // wait for 10 frames before displaing the image 
+	//to give time for it to load and init.
+	
+	//var ratio;		
+
+	//imHeight = 800;
+	//imHeight = 600
+	
+	/*if(im.width > im.height){
+		ratio = im.height/im.width;
+		imHeight = 800*ratio;
+		imWidth = 800;
+		imX = 600*0.5 - imHeight*0.5;
+		imY = 0;
+	}else{
+		ratio = im.width/im.height;
+		imWidth = 600*ratio;
+		imHeight = 600;
+		imX = 0;
+		imY = (800*0.5) - (imWidth*0.5);
+	}
+	
+	console.log("imageLoaded" , imX , imY , imWidth, imHeight, ratio , im.width, im.height );
+
+	*/
+	
+	console.log("imageLoaded");
+
+}
+
+void mousePressed() {  
+  mouseDown = true;
+}  
+  
+void mouseReleased()  
+{  
+  mouseDown = false; 
+}  
+
+void variableEllipse(int x, int y, int px, int py)   
+{  
+  float speed = min(abs(x-px) + abs(y-py) , 60);  
+  stroke(speed);  
+  ellipse(x, y, speed, speed);  
+} 
