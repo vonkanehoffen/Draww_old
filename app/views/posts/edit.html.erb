@@ -1,5 +1,13 @@
 <h1>Editing post</h1>
 
+<% content_for :head do %>
+<script type="text/javascript">
+	// called from draw-processing.pjs
+	function processingReady() {
+		loadRemoteImage('<%= @post.photo.url(:medium) if @post.photo.exists? %>');
+	}
+</script>
+<% end %>
 <%= render 'form' %>
 
 <%= link_to 'Show', @post %> |

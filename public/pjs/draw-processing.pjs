@@ -1,3 +1,5 @@
+// Jo's stuff
+
 int barWidth = 40;
 int[] hue;
 
@@ -21,6 +23,11 @@ void setup()
   colorMode(HSB, 360, 1, 1); 
   smooth();
   noStroke();
+
+  // Callback for normal JS stuff
+  if(typeof window.processingReady == 'function') {
+	processingReady();
+  }
 }
  
 void draw() 

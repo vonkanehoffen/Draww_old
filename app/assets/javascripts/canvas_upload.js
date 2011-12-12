@@ -1,18 +1,21 @@
-/* Canvas Upload Handler with Joe! */
+/* Canvas Upload Handler with Jo! */
 
 $(document).ready(function() {
-	var dropbox = document.getElementById("canvas")
+	if($('#canvas')) {
+		// TODO: This script should be conditionally included only on new & edit pages
+		var dropbox = document.getElementById("canvas")
 
-	// init event handlers
-	dropbox.addEventListener("dragenter", dragEnter, false);
-	dropbox.addEventListener("dragexit", dragExit, false);
-	dropbox.addEventListener("dragover", dragOver, false);
-	dropbox.addEventListener("drop", drop, false);
+		// init event handlers
+		dropbox.addEventListener("dragenter", dragEnter, false);
+		dropbox.addEventListener("dragexit", dragExit, false);
+		dropbox.addEventListener("dragover", dragOver, false);
+		dropbox.addEventListener("drop", drop, false);
 	
-	// Save canvas
-    $('#new_post').submit(function() {
-      $('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
-    });
+		// Save canvas
+	    $('#new_post').submit(function() {
+	      $('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
+	    });
+	}
 	
 });
 
@@ -77,4 +80,11 @@ function handleReaderLoadEnd(evt) {
 	var p=Processing.getInstanceById('canvas');
     ////p.resize($("#main").width(),$("#main").height());
 	p.setImage( evt.target.result );
+}
+
+// This is called by embedded JS to load approriate image on edit pages
+function loadRemoteImage(img) {
+	var p=Processing.getInstanceById('canvas');
+	console.log(p);
+	p.setImage(img);
 }

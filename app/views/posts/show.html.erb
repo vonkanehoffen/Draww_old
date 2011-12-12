@@ -14,7 +14,7 @@
 </p>
 
 <% if @post.photo.exists? then %>
-<p>Photo: <%= image_tag @post.photo.url(:medium) %></p>
+	<%= image_tag @post.photo.url(:medium) %></p>
 <% else %>
 <p>No photos here</p>
 <% end %>

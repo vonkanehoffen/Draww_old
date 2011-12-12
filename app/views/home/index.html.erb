@@ -2,7 +2,9 @@
 	<h1>Hello, <%= current_user.username %></h1>
 	<%= link_to 'New Post', new_post_path %>
 <% else %>
-	<h1>Welcome to Draww!</h1>
-	<p>Some BS here encouraging people to <%= link_to "Sign Up", new_user_path %></p>
+	<div class="banner">
+		<h1>Collaborative Image Sharing</h1>
+		<p>Draww is a place to share images and stuff. Some BS needed here encouraging people to <%= link_to "Sign Up", new_user_path %></p>
+	</div>
 <% end %>
 <%= render 'posts/list' %>
