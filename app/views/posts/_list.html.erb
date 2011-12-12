@@ -1,8 +1,8 @@
 <% @posts.each do |post| %>
-  <div class="post">
+  <div class="post medium">
 	<div class="image">
 	<% if post.photo.exists? then %>
-	<%= link_to(image_tag(post.photo.url(:medium), :alt => post.title), post) %></p>
+	<%= link_to(image_tag(post.photo.url(:medium), :alt => post.title), post) %>
 	<% else %>
 	No photos here
 	<% end %>
@@ -16,6 +16,7 @@
     		<%= link_to content_tag(:span, 'Delete'), post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
 		</div>
 	<% end %>
+  	</div>
   </div>
 <% end %>
 
