@@ -1,6 +1,5 @@
 class Post < ActiveRecord::Base
   
-  require Rails.root.join('lib', 'datafy.rb')
   attr_accessor :attachment64
   before_validation :save_attachment64
   
@@ -24,6 +23,7 @@ class Post < ActiveRecord::Base
       
   private
     def save_attachment64
+      require Rails.root.join('lib', 'datafy.rb')
       File.open("tmp/reply.png", "wb") { |f| f.write(Datafy::decode_data_uri(attachment64)[0]) }  
       self.photo = File.open("tmp/reply.png", "r")
     end
