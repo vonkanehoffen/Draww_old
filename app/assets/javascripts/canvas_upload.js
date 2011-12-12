@@ -11,7 +11,7 @@ $(document).ready(function() {
 	
 	// Save canvas
     $('#new_post').submit(function() {
-      $('#post_attachment64').val(dropbox.toDataURL());
+      $('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
     });
 	
 });

@@ -4,12 +4,14 @@ class Post < ActiveRecord::Base
   before_validation :save_attachment64
   
   # Paperclip
+  # All photos should be 3 to 2 aspect
   has_attached_file :photo,
     :styles => {
-      :thumb=> "100x100#",
-      :small  => "150x150>",
-      :medium => "300x300>",
-      :large =>   "400x400>" }
+      :thumb=>    ["160x107>", :jpg],
+      :small  =>  ["320x213>", :jpg],
+      :medium =>  ["640x427>", :jpg],
+      :large =>   ["1024x683>", :jpg] 
+      }
       
   validates_presence_of :title, :message => "No Title!"
   validates_attachment_presence :photo
@@ -24,8 +26,8 @@ class Post < ActiveRecord::Base
   private
     def save_attachment64
       require Rails.root.join('lib', 'datafy.rb')
-      File.open("tmp/reply.png", "wb") { |f| f.write(Datafy::decode_data_uri(attachment64)[0]) }  
-      self.photo = File.open("tmp/reply.png", "r")
+      File.open("tmp/reply.jpg", "wb") { |f| f.write(Datafy::decode_data_uri(attachment64)[0]) }  
+      self.photo = File.open("tmp/reply.jpg", "r")
     end
 
 end
