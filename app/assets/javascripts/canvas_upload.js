@@ -11,16 +11,21 @@ $(document).ready(function() {
 
 	// init the widgets
 	//$("#progressbar").progressbar();
-	$("#new_post").ajaxForm({
-		target: 		'#ajax_out',			// target element(s) to be updated with server response 
-		beforeSubmit: 	showRequest,  			// pre-submit callback 
-		success: 		showResponse  			// post-submit callback
-	});
+	// $("#new_post").ajaxForm({
+	// 		target: 		'#ajax_out',			// target element(s) to be updated with server response 
+	// 		beforeSubmit: 	showRequest,  			// pre-submit callback 
+	// 		success: 		showResponse  			// post-submit callback
+	// 	});
 	// $('#new_post input[name="commit"]').click(function() {
 	// 		console.log($('#new_post input[name="post\\[title\\]"]').val());
 	// 		return false;		
 	// 	});
 	// save_init();
+	
+    $('#new_post').submit(function() {
+      $('#post_attachment64').val(dropbox.toDataURL());
+    });
+	
 });
 
 // pre-submit callback 
