@@ -1,3 +1,4 @@
+<%# TODO: get the image to update / re-upload from canvas in edit view %>
 <% @post.tags.build %>
 <%= form_for(@post,:html => { :multipart => true }) do |f| %>
   <% if @post.errors.any? %>

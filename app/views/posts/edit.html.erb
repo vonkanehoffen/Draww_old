@@ -2,7 +2,7 @@
 
 <% content_for :head do %>
 <script type="text/javascript">
-	// called from draw-processing.pjs
+	// called from draw-processing.pjs on ready
 	function processingReady() {
 		loadRemoteImage('<%= @post.photo.url(:medium) if @post.photo.exists? %>');
 	}
