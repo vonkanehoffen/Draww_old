@@ -1,4 +1,8 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-<%= link_to "The Posts", posts_path %>
+<% if current_user %>
+	<h1>Hello, <%= current_user.username %></h1>
+	<%= link_to 'New Post', new_post_path %>
+<% else %>
+	<h1>Welcome to Draww!</h1>
+	<p>Some BS here encouraging people to <%= link_to "Sign Up", new_user_path %></p>
+<% end %>
+<%= render 'posts/list' %>
