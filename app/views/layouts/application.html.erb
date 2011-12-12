@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-	<%= link_to "Draww.co", root_path, :id => 'site_title' %>
+	<%= link_to content_tag(:span, "Draww.co"), root_path, :id => 'site_title' %>
 </header>
 <nav class="user">
 	<% if current_user %>

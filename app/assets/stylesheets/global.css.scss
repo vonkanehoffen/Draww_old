@@ -9,13 +9,16 @@ body {
 	background: #fff;
 }
 
+header {
+	
+}
 #site_title {
-	font-size:60px;
-	letter-spacing:-1px;
-	color:#404040;
-	font-weight:bold;
-	text-decoration:none;
-	padding:20px;
+	width:144px;
+	height:30px;
+	margin:20px;
+	display:block;
+	background:url('/images/draww.co.png') top left no-repeat;
+	span { display:none; }
 }
 nav.user {
 	position:absolute;

@@ -1,18 +1,20 @@
 <% @posts.each do |post| %>
   <div class="post">
-    <h3 class="title"><%= post.title %></h3>
-    <p class="description"><%= post.description %></p>
 	<div class="image">
 	<% if post.photo.exists? then %>
-	<%= image_tag post.photo.url(:medium) %></p>
+	<%= link_to(image_tag(post.photo.url(:medium), :alt => post.title), post) %></p>
 	<% else %>
 	No photos here
 	<% end %>
 	</div>
-    <div><%= link_to 'Show', post %></div>
+	<div class="info">
+		<h3 class="title"><%= post.title %></h3>
+		<span class="author">by <%= link_to post.user.username, name_user_path(post.user.username) %></span>
 	<% if belongs_to_current_user(post) %>
     <div><%= link_to 'Edit', edit_post_path(post) %></div>
     <div><%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %></div>
 	<% end %>
   </div>
 <% end %>
+
+<%= paginate @posts %>
