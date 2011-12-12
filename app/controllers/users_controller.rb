@@ -14,16 +14,20 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     if(params[:username])
-      # TODO: display sorry msg rather than NoMethodError when a user doesn't exist
       @user = User.where(:username => params[:username]).first
     else
       @user = User.find(params[:id])
     end
-    @posts = @user.posts.order(:created_at).page params[:page]
-
+    
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @user }
+      if @user    
+        @posts = @user.posts.order("created_at DESC").page params[:page]
+        format.html # show.html.erb
+        format.json { render :json => @user }
+      else
+        format.html { render :action=> 'not_found' }
+        # redirect_to :action => 'not_found'  # TODO: can this be an action so we don't end up with duplicate content
+      end
     end
   end
 

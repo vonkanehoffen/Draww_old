@@ -10,8 +10,6 @@ class CommentsController < ApplicationController
           format.html { redirect_to post_path(@post), :notice => 'Comment Posted. Thanks!' }
           # format.json { render :json => @post, :status => :created, :location => @post }
         else
-          # TODO: Trouble with this is we get duplicated content "/posts/xx/comments"
-          # and the index action gets callewd for it in some cases, which doesn't exist
           format.html { render "posts/show", :error => "Couldn't save the comment!" }
           # format.json { render :json => @post.errors, :status => :unprocessable_entity }
         end
