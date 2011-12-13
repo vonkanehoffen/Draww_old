@@ -1,7 +1,7 @@
 /* Canvas Upload Handler with Jo! */
 
 $(document).ready(function() {
-	if($('#canvas')) {
+	if($('#canvas').length) {
 		// TODO: This script should be conditionally included only on new & edit pages
 		var dropbox = document.getElementById("canvas")
 
