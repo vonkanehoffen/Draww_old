@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Worrk::Application.load_tasks
+Draww::Application.load_tasks
