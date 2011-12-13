@@ -12,7 +12,7 @@ $(document).ready(function() {
 		dropbox.addEventListener("drop", drop, false);
 	
 		// Save canvas
-	    $('#new_post').submit(function() {
+	    $('#new_post, form.edit_post').submit(function() {
 	      $('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
 	    });
 	}
