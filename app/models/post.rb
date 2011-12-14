@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   
   attr_accessor :attachment64
   before_validation :save_attachment64
+  paginates_per 10
   # TODO: needs to validate filesize
   
   # Paperclip

@@ -1,8 +1,8 @@
 <% @posts.each do |post| %>
-  <div class="post medium">
+  <div class="post small">
 	<div class="image">
 	<% if post.photo.exists? then %>
-	<%= link_to(image_tag(post.photo.url(:medium), :alt => post.title), post) %>
+	<%= link_to(image_tag(post.photo.url(:small), :alt => post.title), post) %>
 	<% else %>
 	No photos here
 	<% end %>

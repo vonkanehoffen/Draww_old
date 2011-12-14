@@ -7,7 +7,7 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
-<%= link_to 'New Post', new_post_path %>
+<%= render 'posts/new_link' %>
 
 <h1><%= @user.username %>'s Posts</h1>
 <%= render '/posts/list' %>
