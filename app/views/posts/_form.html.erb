@@ -32,7 +32,10 @@
 	<%= f.hidden_field :attachment64 %>
 	
 <h2>Tags</h2>
-<%= render :partial => 'tags/form', :locals => {:form => f} %>
+<p>
+  <%= f.label :tag_names %><br />
+  <%= f.text_field :tag_names %>
+</p>
   <div class="actions">
     <%= f.submit %>
   </div>

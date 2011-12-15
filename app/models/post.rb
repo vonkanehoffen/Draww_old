@@ -21,7 +21,10 @@ class Post < ActiveRecord::Base
   validates_attachment_presence :photo
   # validates :title, :presence => true, :length => { :minimum => 2 }
   has_many :comments, :dependent => :destroy
-  has_many :tags
+  has_many :taggings, :dependent => :destroy
+  has_many :tags, :through => :taggings
+  attr_writer :tag_names
+  after_save :assign_tags
   belongs_to :user    
       
   accepts_nested_attributes_for :tags, :allow_destroy => :true,
@@ -53,6 +56,24 @@ class Post < ActiveRecord::Base
     self.upvote = 1 unless self.upvote
     self.downvote = 0 unless self.downvote
     self.rank = 1 unless self.rank
+  end
+  
+  # Tagging
+  
+  public
+  
+  def tag_names
+    @tag_names || tags.map(&:name).join(' ')
+  end
+
+  private
+
+  def assign_tags
+    if @tag_names
+      self.tags = @tag_names.split(/\s+/).map do |name|
+        Tag.find_or_create_by_name(name)
+      end
+    end
   end
 
 end
