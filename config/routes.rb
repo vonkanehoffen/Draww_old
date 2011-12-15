@@ -9,7 +9,7 @@ Draww::Application.routes.draw do
   
   match '/posts/:id/upvote' => 'Posts#upvote', :as => :upvote
   
-  match '/tags/:tag_name' => 'Posts#index'
+  match '/tags/:tag_name' => 'Posts#index', :as => :tag_name
     
   match '/user/:username' => "Users#show", :as => :name_user
   resources :posts do

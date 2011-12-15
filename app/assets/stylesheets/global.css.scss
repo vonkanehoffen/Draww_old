@@ -9,6 +9,10 @@ body {
 	background: #fff;
 	color:#333;
 }
+a {
+	@include transition(opacity 0.5s);
+	&:hover { opacity:0.7; }
+}
 
 // HEADER -------------------------------------
 #site_title {
@@ -94,9 +98,6 @@ input[type=submit], .button, a.button {
 	@include linear-gradient(#888, #666);
 	// text-shadow: 0 0 4px #222;
 	@include transition(opacity 0.5s);
-	&:hover {
-		opacity:0.85;
-	}
 	&.green { @include linear-gradient(#6db667, #3d9d35); }
 	&.light { @include linear-gradient(#bbb, #999); }
 }
