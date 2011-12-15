@@ -5,8 +5,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-
-    @posts = Post.order("created_at DESC").page params[:page]
+    if params[:tag_name]
+      # find posts by tag: /tags/tagname
+      @posts = Tag.find_by_name(params[:tag_name]).posts.order("created_at DESC").page params[:page]
+    else
+      # find all posts
+      @posts = Post.order("created_at DESC").page params[:page]
+    end
       
     respond_to do |format|
       format.html # index.html.erb

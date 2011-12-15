@@ -8,6 +8,8 @@ Draww::Application.routes.draw do
   match 'logout', :to => 'user_sessions#destroy', :as => :logout
   
   match '/posts/:id/upvote' => 'Posts#upvote', :as => :upvote
+  
+  match '/tags/:tag_name' => 'Posts#index'
     
   match '/user/:username' => "Users#show", :as => :name_user
   resources :posts do

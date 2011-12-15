@@ -27,9 +27,6 @@ class Post < ActiveRecord::Base
   after_save :assign_tags
   belongs_to :user    
       
-  accepts_nested_attributes_for :tags, :allow_destroy => :true,
-      :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
-      
   private
   def save_attachment64
     if self.attachment64

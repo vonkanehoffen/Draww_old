@@ -10,7 +10,7 @@
 
 <p>
   <b>Tags:</b>
-  <%= @post.tag_names %>
+  <%= join_tags(@post) %>
 </p>
 
 <% if @post.photo.exists? then %>
