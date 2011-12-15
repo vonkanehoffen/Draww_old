@@ -36,4 +36,9 @@ gem 'paperclip'
 gem 'authlogic'
 gem 'kaminari'
 
+# robins voting stuff
+gem 'rspec'
+gem 'rspec-rails', '~> 2.7.0'
+gem 'factory_girl'
+
 # note: run 'bundle install' for new gems
