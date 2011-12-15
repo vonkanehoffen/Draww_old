@@ -30,12 +30,10 @@ class Post < ActiveRecord::Base
   def save_attachment64
     if self.attachment64
       require Rails.root.join('lib', 'datafy.rb')
-      # filename = friendly_name(:title.to_s)
-      # puts "Friendly name = "+filename
-      # puts @post.title.inspect
-      # TODO: How do I get the post title here so I can make a filename out of it?
-      File.open("tmp/reply.jpg", "wb") { |f| f.write(Datafy::decode_data_uri(attachment64)[0]) }  
-      self.photo = File.open("tmp/reply.jpg", "r")
+      tmp_uri = "tmp/"+friendly_name(self.title)+".jpg"
+      puts "Friendly name = "+tmp_uri
+      File.open(tmp_uri, "wb") { |f| f.write(Datafy::decode_data_uri(attachment64)[0]) }  
+      self.photo = File.open(tmp_uri, "r")
     end
   end
 
