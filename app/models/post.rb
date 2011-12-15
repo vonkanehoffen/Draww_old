@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   before_save :default_values
   paginates_per 10
   # TODO: needs to validate filesize
+  # TODO: Stop blank images being submitted (canvas saves even when just "drop an image!" text)
   
   # Paperclip
   # All photos should be 3 to 2 aspect

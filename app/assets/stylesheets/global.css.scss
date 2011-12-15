@@ -31,6 +31,20 @@ nav.user {
 	// background:#f5f5f5;
 	@include border-radius(2px);
 }
+#flash {
+	margin:20px;
+	p {
+		display:block;
+		padding:10px;
+		@include linear-gradient(#6db667, #3d9d35);
+		@include border-radius(5px);
+		color:#fff;
+		font-weight:bold;
+		text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+		border:none;
+		border-bottom:1px solid #296b05;
+	}
+}
 
 // VIEW --------------------------------------
 

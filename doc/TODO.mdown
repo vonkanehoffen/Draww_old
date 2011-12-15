@@ -6,5 +6,3 @@ Needs to redirect back to the same page and highlight the login box. Currently :
 
 #5 views/tags/form or /models/tag
 Make tags save as separate entities when they're separated by spaces
-
-# stop /user/nonexistentuser/ erroring out. Need "user not found" page
