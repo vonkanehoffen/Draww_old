@@ -6,6 +6,8 @@ Draww::Application.routes.draw do
   # the above is equivalent to (rails 2) I think:
   # map.login   'login',  :controller => 'user_sessions', :action => 'new'
   match 'logout', :to => 'user_sessions#destroy', :as => :logout
+  
+  match '/posts/:id/upvote' => 'Posts#upvote', :as => :upvote
     
   match '/user/:username' => "Users#show", :as => :name_user
   resources :posts do

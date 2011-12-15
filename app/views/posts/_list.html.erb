@@ -10,6 +10,7 @@
 	<div class="info">
 		<h3 class="title"><%= post.title %></h3>
 		<span class="author">by <%= link_to post.user.username, name_user_path(post.user.username) %></span>
+		<%= render :partial => 'posts/ranking', :locals => { :post => post } %>
 	<% if belongs_to_current_user(post) %>
 		<div class="actions">
     		<%= link_to content_tag(:span, 'Edit'), edit_post_path(post), :class => 'edit' %>

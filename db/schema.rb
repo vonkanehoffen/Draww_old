@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205165413) do
+ActiveRecord::Schema.define(:version => 20111214161141) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20111205165413) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "user_id"
+    t.integer  "upvote"
+    t.integer  "downvote"
+    t.integer  "rank",               :limit => 8
   end
 
   create_table "tags", :force => true do |t|

@@ -1,15 +1,5 @@
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-<%= render 'posts/new_link' %>
-
 <h1><%= @user.username %>'s Posts</h1>
+<%= render 'posts/new_link' %>
 <%= render '/posts/list' %>
 
 

@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   
   attr_accessor :attachment64
   before_validation :save_attachment64
+  before_save :default_values
   paginates_per 10
   # TODO: needs to validate filesize
   
@@ -26,7 +27,8 @@ class Post < ActiveRecord::Base
       :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
       
   private
-    def save_attachment64
+  def save_attachment64
+    if self.attachment64
       require Rails.root.join('lib', 'datafy.rb')
       # filename = friendly_name(:title.to_s)
       # puts "Friendly name = "+filename
@@ -35,15 +37,24 @@ class Post < ActiveRecord::Base
       File.open("tmp/reply.jpg", "wb") { |f| f.write(Datafy::decode_data_uri(attachment64)[0]) }  
       self.photo = File.open("tmp/reply.jpg", "r")
     end
+  end
 
-    def friendly_name(str)
-      s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
-      s.downcase!
-      s.gsub!(/'/, '')
-      s.gsub!(/[^A-Za-z0-9]+/, ' ')
-      s.strip!
-      s.gsub!(/\ +/, '-')
-      return s
-    end
+  def friendly_name(str)
+    s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
+    s.downcase!
+    s.gsub!(/'/, '')
+    s.gsub!(/[^A-Za-z0-9]+/, ' ')
+    s.strip!
+    s.gsub!(/\ +/, '-')
+    return s
+  end
+  
+  # Ranking
+  def default_values
+    self.upvote = 1 unless self.upvote
+    self.downvote = 0 unless self.downvote
+    self.rank = 1 unless self.rank
+  end
+
 end
 

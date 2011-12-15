@@ -86,4 +86,21 @@ class PostsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def upvote
+    puts "Upvote Called"
+    @post = Post.find(params[:id])
+    @post.upvote += 1
+    
+    respond_to do |format|
+      if @post.save
+        format.html { render :upvote, :notice => "Successful upvote" }
+        format.json { head :ok }
+      else
+        format.html 
+        format.json { render :json => @post.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
 end
