@@ -15,6 +15,21 @@ $(document).ready(function() {
 	    $('#new_post, form.edit_post').submit(function() {
 	      $('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
 	    });
+	
+		// Resize Canvas
+		// TODO: this needs to happen onLoad as well and not get caught out if processing aint loaded
+		$(window).resize(function() {
+			// work out max size @ 3 to 2 aspect ratio
+			cw = $('#canvas_container').width();
+			ch = $(window).height() - $('nav.user').height() - 40;
+			w = cw;
+			h = (cw/3)*2
+			if(h > ch) {
+				h = ch;
+				w = (ch/2)*3; 
+			}
+			resizeCanvas(w,h);
+		})
 	}
 	
 });
@@ -70,6 +85,20 @@ function handleReaderProgress(evt) {
 	}
 }
 */
+
+//////////////////////////////////////////
+// Linking functions to processing stuff
+//////////////////////////////////////////
+
+// On Ready handler:
+// Add functions to this object to be called when Processing is ready
+var pjsReadyFn = {}
+function processingReady() {
+	for(f in pjsReadyFn) {
+		pjsReadyFn[f]();
+	}
+}
+
 function imageLoaded(evt)
 {    
      var p=Processing.getInstanceById('canvas');
@@ -78,7 +107,6 @@ function imageLoaded(evt)
 
 function handleReaderLoadEnd(evt) {
 	var p=Processing.getInstanceById('canvas');
-    ////p.resize($("#main").width(),$("#main").height());
 	p.setImage( evt.target.result );
 }
 
@@ -87,4 +115,9 @@ function loadRemoteImage(img) {
 	var p=Processing.getInstanceById('canvas');
 	console.log(p);
 	p.setImage(img);
+}
+
+function resizeCanvas(w, h) {
+	var p=Processing.getInstanceById('canvas');
+	p.resizeCanvas(w, h);
 }

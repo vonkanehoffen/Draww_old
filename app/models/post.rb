@@ -25,7 +25,7 @@ class Post < ActiveRecord::Base
   has_many :tags, :through => :taggings
   attr_writer :tag_names
   after_save :assign_tags
-  belongs_to :user    
+  belongs_to :user
       
   private
   def save_attachment64

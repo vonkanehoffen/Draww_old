@@ -12,11 +12,13 @@
       </ul>
     </div>
   <% end %>
-
-	<canvas datasrc="/pjs/draw-processing.pjs" id="canvas" width="640" height="427" tabindex="0">
-		<p>Sorry, you should really upgrade your browser.</p>
-	</canvas>
+	<div id="canvas_container">
+		<canvas datasrc="/pjs/draw-processing.pjs" id="canvas" width="640" height="427" tabindex="0">
+			<p>Sorry, you should really upgrade your browser.</p>
+		</canvas>
+	</div>
 	<div id="ajax_out">Ajax out: </div>
+	<a href="#" id="resize">Resize</a>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>

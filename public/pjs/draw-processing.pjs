@@ -134,3 +134,10 @@ void variableEllipse(int x, int y, int px, int py)
   stroke(speed);  
   ellipse(x, y, speed, speed);  
 } 
+
+// Kanes new bits
+
+void resizeCanvas(w, h) {
+	size(w, h);
+	if(im) { image(im , imX , imY , width , height); }
+}
