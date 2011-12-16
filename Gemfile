@@ -38,8 +38,7 @@ gem 'kaminari'
 
 # robins voting stuff
 group :test do
-  gem 'rspec'
-  gem 'rspec-rails', '~> 2.7.0'
+  gem 'rspec-rails' #, '~> 2.7.0'
   gem 'factory_girl'
 end
 

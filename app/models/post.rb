@@ -25,7 +25,9 @@ class Post < ActiveRecord::Base
   has_many :tags, :through => :taggings
   attr_writer :tag_names
   after_save :assign_tags
-  belongs_to :user    
+  belongs_to :user
+  has_many :votes
+  
       
   private
   def save_attachment64
@@ -54,7 +56,7 @@ class Post < ActiveRecord::Base
     self.downvote = 0 unless self.downvote
     self.rank = 1 unless self.rank
   end
-  
+    
   # Tagging
   
   public
@@ -62,6 +64,15 @@ class Post < ActiveRecord::Base
   def tag_names
     @tag_names || tags.map(&:name).join(' ')
   end
+    # ranking system
+  def votes_count
+    self.votes.count
+  end
+  
+  def votes_score
+    votes.inject(0){|s,v| s += v.points || 0} 
+  end
+
 
   private
 
