@@ -20,7 +20,16 @@ class CommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-    @comment.destroy
-    redirect_to post_path(@post)
+    respond_to do |format|
+      if @comment.user == current_user
+        @comment.destroy
+        format.html { redirect_to post_path(@post), 
+          :notice => 'Your comment has been deleted.' }
+      else
+        # TODO: This should be an error. Howd I do that?
+        format.html { redirect_to post_path(@post), 
+          :notice => "Oi! That's not your comment to delete!" }
+      end     
+    end
   end
 end

@@ -1,15 +1,17 @@
 <div class="comment">
-	<p>
-	  <b>Commenter:</b>
- 	  <%= comment.user.username %>
-	</p>
-	<p>
-	  <b>Comment:</b>
+	<div class="user">
+		<% if comment.user == current_user %>
+			<span class="you">You said:</span>
+		<% else %>
+ 	  		<%= link_to(comment.user.username, name_user_path(comment.user.username)) %> says:
+		<% end %>
+	</div>
+	<div class="body">
 	  <%= comment.body %>
-	</p>
-	<p>
-	  <%= link_to 'Destroy Comment', [comment.post, comment],
+	</div>
+	<div class="actions">
+	  <%= link_to('Delete', [comment.post, comment],
 	               :confirm => 'Are you sure?',
-	               :method => :delete %>
-	</p>
+	               :method => :delete, :class => "delete") if comment.user == current_user %>
+	</div>
 </div>

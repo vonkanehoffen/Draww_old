@@ -55,3 +55,11 @@ a.tag {
 	border:none;
 	border-bottom:1px solid #777;
 }
+
+// views/posts/show
+
+.post_title {
+	margin-bottom:10px;
+	h1 { display:inline; }
+	.by { display:inline; font-size:16px; padding-left:5px; }
+}

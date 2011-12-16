@@ -1,7 +1,13 @@
-<p>
-  <b>Title:</b>
-  <%= @post.title %>
-</p>
+<div class="post_title">
+	<h1><%= @post.title %></h1>
+	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+</div>
+
+<% if @post.photo.exists? then %>
+	<%= image_tag @post.photo.url(:medium) %></p>
+<% else %>
+<p>No photos here</p>
+<% end %>
 
 <p>
   <b>Description:</b>
@@ -12,12 +18,6 @@
   <b>Tags:</b>
   <%= tag_links(@post) %>
 </p>
-
-<% if @post.photo.exists? then %>
-	<%= image_tag @post.photo.url(:medium) %></p>
-<% else %>
-<p>No photos here</p>
-<% end %>
 
 <h2>Comments</h2>
 <%= render @post.comments - [@comment] %>
@@ -36,7 +36,6 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :body %><br />
     <%= f.text_area :body %>
   </div>
   <div class="actions">
