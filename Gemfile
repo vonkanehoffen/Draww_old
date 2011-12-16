@@ -37,8 +37,15 @@ gem 'authlogic'
 gem 'kaminari'
 
 # robins voting stuff
-gem 'rspec'
-gem 'rspec-rails', '~> 2.7.0'
-gem 'factory_girl'
+group :test do
+  gem 'rspec'
+  gem 'rspec-rails', '~> 2.7.0'
+  gem 'factory_girl'
+end
+
+local_gemfile = File.dirname(__FILE__) + "/Gemfile.robin.rb"  # for my local gem's (e.g. sqlite) file in my local repo only
+if File.file?(local_gemfile)
+  self.instance_eval(Bundler.read_file(local_gemfile))
+end
 
 # note: run 'bundle install' for new gems

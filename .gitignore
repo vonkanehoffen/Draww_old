@@ -7,3 +7,4 @@ tmp/
 public/system/photos/
 config/database.yml
 doc/psd/
+.DS_Store

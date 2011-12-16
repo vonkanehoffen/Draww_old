@@ -54,6 +54,9 @@ describe "Ranking Mechanism" do
         high_score_user.vote!(b)
         a.score.should < b.score
       end
+      it "should not give undue weight to a post with only one (100% positive) vote" do
+        pending
+      end
     end
     describe "User Scores" do
       it "should be higher with more (authored) post votes" do
@@ -69,6 +72,11 @@ describe "Ranking Mechanism" do
         pending "whether this is any different to Post spec"
       end
     end
+    describe "Efficiency" do
+      it "shouldn't take too long to calculate" do
+        pending "Some method to compare poly/ exp time"
+      end
+    end
   end
-
 end
+
