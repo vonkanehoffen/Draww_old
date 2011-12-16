@@ -17,19 +17,22 @@ $(document).ready(function() {
 	    });
 	
 		// Resize Canvas
-		// TODO: this needs to happen onLoad as well and not get caught out if processing aint loaded
-		$(window).resize(function() {
-			// work out max size @ 3 to 2 aspect ratio
-			cw = $('#canvas_container').width();
-			ch = $(window).height() - $('nav.user').height() - 40;
-			w = cw;
-			h = (cw/3)*2
-			if(h > ch) {
-				h = ch;
-				w = (ch/2)*3; 
+		pjsReadyFn['auto_resize'] = function() {
+			r();
+			$(window).resize(function() { r(); })
+			function r() {
+				// work out max size @ 3 to 2 aspect ratio
+				cw = $('#canvas_container').width();
+				ch = $(window).height() - $('nav.user').height() - 40;
+				w = cw;
+				h = (cw/3)*2
+				if(h > ch) {
+					h = ch;
+					w = (ch/2)*3; 
+				}
+				resizeCanvas(w,h);
 			}
-			resizeCanvas(w,h);
-		})
+		}
 	}
 	
 });
