@@ -44,7 +44,6 @@ FactoryGirl.define do
     factory :hi_point_vote do
       points 5
     end
-#    points 1
   end
   
   factory :author, :parent => :user do
