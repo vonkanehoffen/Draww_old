@@ -37,9 +37,11 @@ gem 'authlogic'
 gem 'kaminari'
 
 # robins voting stuff
-group :test do
+group :test, :cucumber do
   gem 'rspec-rails' #, '~> 2.7.0'
   gem 'factory_girl'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 local_gemfile = File.dirname(__FILE__) + "/Gemfile.robin.rb"  # for my local gem's (e.g. sqlite) file in my local repo only
