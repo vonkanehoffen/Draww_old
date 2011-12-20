@@ -1,7 +1,17 @@
 class PostsController < ApplicationController
 
   before_filter :require_user, :only => [:new, :create, :update, :edit, :destroy]
-  #http_basic_authenticate_with :name => "kane", :password => "password", :except => :index
+
+  # NOTE: This could be simplified with the following.
+  # from http://railscasts.com/episodes/302-in-place-editing
+  #
+  # respond_to :html, :json
+  # def update
+  #   @user = User.find(params[:id])
+  #   @user.update_attributes(params[:user])
+  #   respond_with @user
+  # end
+  
   # GET /posts
   # GET /posts.json
   def index

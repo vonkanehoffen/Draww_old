@@ -1,5 +1,8 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag "canvas" %>
+<%= javascript_include_tag "lib/jquery.form" %>
+<%= javascript_include_tag "lib/processing" %>
+<%= javascript_include_tag "canvas_upload" %>
 <% end %>
 
 <% @post.tags.build %>
