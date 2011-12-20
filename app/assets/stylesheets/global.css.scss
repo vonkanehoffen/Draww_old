@@ -18,7 +18,7 @@ a {
 #site_title {
 	width:144px;
 	height:30px;
-	margin:20px;
+	margin:8px;
 	display:block;
 	background:url('/images/draww.co.png') top left no-repeat;
 	span { display:none; }
@@ -26,8 +26,7 @@ a {
 nav.user {
 	position:absolute;
 	top:0; right:0;
-	padding:5px;
-	margin:10px;
+	margin:3px;
 	form, div { display: inline; }
 	input[type=text], input[type=password] {
 		width:120px;
@@ -36,8 +35,8 @@ nav.user {
 	@include border-radius(2px);
 }
 #flash {
-	margin:20px;
 	p {
+		margin:20px;
 		display:block;
 		padding:10px;
 		@include linear-gradient(#6db667, #3d9d35);
@@ -62,7 +61,7 @@ nav.user {
 	}
 }
 #view {
-	margin:20px;
+	//margin:20px;
 }
 
 // FOOTER -------------------------------------

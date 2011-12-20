@@ -1,4 +1,7 @@
-<%# TODO: get the image to update / re-upload from canvas in edit view %>
+<% content_for :head do %>
+<%= stylesheet_link_tag "canvas" %>
+<% end %>
+
 <% @post.tags.build %>
 <%= form_for(@post,:html => { :multipart => true }) do |f| %>
   <% if @post.errors.any? %>
@@ -17,8 +20,15 @@
 			<p>Sorry, you should really upgrade your browser.</p>
 		</canvas>
 	</div>
-	<div id="ajax_out">Ajax out: </div>
-	<a href="#" id="resize">Resize</a>
+	<div class="canvas_tools">
+		<div class="left">
+			<a href="#" id="crop"></a>
+			<a href="#" id="pencil"></a>
+		</div>
+		<div class="right">
+			<%= f.submit %>
+		</div>
+	</div>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -39,6 +49,6 @@
   <%= f.text_field :tag_names %>
 </p>
   <div class="actions">
-    <%= f.submit %>
+
   </div>
 <% end %>

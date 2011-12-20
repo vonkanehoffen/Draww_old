@@ -8,3 +8,21 @@
 		margin:0 auto;
 		display:block;
 	}
+.canvas_tools {
+	position:relative;
+	height:28px;
+	padding:5px;
+	.left 	{ position:absolute; top:0; left:0; }
+	.right 	{ position:absolute; top:0; right:0; }	
+	a {
+		float:left;
+		width:40px;
+		height:28px;
+		margin:5px 0 5px 5px;
+		padding:0;
+		background-position:top left;
+		background-repeat:none;
+	}
+	#crop { background-image: url('/images/canvas_tools/crop.png'); }
+	#pencil { background-image: url('/images/canvas_tools/pencil.png'); }
+}
