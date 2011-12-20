@@ -116,7 +116,7 @@ void imageLoaded(){
 	*/
 	
 	console.log("imageLoaded");
-
+	ready_to_save = true;
 }
 
 void mousePressed() {  

@@ -1,5 +1,7 @@
 /* Canvas Upload Handler with Jo! */
 
+var ready_to_save = false;
+
 $(document).ready(function() {
 
 	var dropbox = document.getElementById("canvas")
@@ -12,7 +14,11 @@ $(document).ready(function() {
 
 	// Save canvas
     $('#new_post, form.edit_post').submit(function() {
-      $('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
+		if (ready_to_save) {
+      		$('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
+		} else {
+      		$('#post_attachment64').val('no_image');
+		}
     });
 
 	// Resize Canvas
