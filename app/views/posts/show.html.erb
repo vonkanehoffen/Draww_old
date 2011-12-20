@@ -1,48 +1,50 @@
-<div class="post_title">
-	<h1><%= @post.title %></h1>
-	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+<div class="posts_show">
+	<div class="post_title">
+		<h1><%= @post.title %></h1>
+		<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+	</div>
+
+	<% if @post.photo.exists? then %>
+		<%= image_tag @post.photo.url(:medium) %></p>
+	<% else %>
+	<p>No photos here</p>
+	<% end %>
+
+	<p>
+	  <b>Description:</b>
+	  <%= @post.description %>
+	</p>
+
+	<p>
+	  <b>Tags:</b>
+	  <%= tag_links(@post) %>
+	</p>
+
+	<h2>Comments</h2>
+	<%= render @post.comments - [@comment] %>
+
+	<h2>Add a comment:</h2>
+	<%= form_for([@post, @comment]) do |f| %>
+	  <% if @comment.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+	      <ul>
+	      <% @comment.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	  <div class="field">
+	    <%= f.text_area :body %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+	<% end %>
+
+
+	<%= link_to 'Edit', edit_post_path(@post) %> |
+	<%= link_to 'Back', posts_path %>
 </div>
-
-<% if @post.photo.exists? then %>
-	<%= image_tag @post.photo.url(:medium) %></p>
-<% else %>
-<p>No photos here</p>
-<% end %>
-
-<p>
-  <b>Description:</b>
-  <%= @post.description %>
-</p>
-
-<p>
-  <b>Tags:</b>
-  <%= tag_links(@post) %>
-</p>
-
-<h2>Comments</h2>
-<%= render @post.comments - [@comment] %>
-
-<h2>Add a comment:</h2>
-<%= form_for([@post, @comment]) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

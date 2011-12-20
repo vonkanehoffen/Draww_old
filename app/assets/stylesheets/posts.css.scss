@@ -4,6 +4,10 @@
 
 @import "lib/css3_mixins.scss";
 
+// View containers
+.posts_list, .posts_show { margin:20px; }
+
+// Post show / index
 .post {
 	
 	.info {
