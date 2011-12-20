@@ -1,8 +1,5 @@
 class UserSessionsController < ApplicationController
 
-  before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => :destroy
-
   # GET /user_sessions/new
   # GET /user_sessions/new.xml
   def new
@@ -18,17 +15,12 @@ class UserSessionsController < ApplicationController
   # POST /user_sessions.xml
   def create
     @user_session = UserSession.new(params[:user_session])
-    
-    # TODO: how the fuck does OAuth work?
-    # https://github.com/viatropos/authlogic-connect-example
-    # https://github.com/viatropos/authlogic-connect
-    
+
     respond_to do |format|
       if @user_session.save
         format.html { redirect_to(name_user_path(@user_session.username), :notice => 'Login Successful') }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
       else
-        puts "ERRORS: "+@user_session.errors.inspect
         format.html { render :action => "new" }
         format.xml  { render :xml => @user_session.errors, :status => :unprocessable_entity }
       end

@@ -1,10 +1,5 @@
 class User < ActiveRecord::Base
-  acts_as_authentic do |config|
-    config.validate_email_field    = false
-    config.validate_login_field    = false
-    config.validate_password_field = false
-  end
-
+  acts_as_authentic
   has_many :posts
   has_many :comments
   has_many :votes

@@ -13,10 +13,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-
-    puts "SESSION: #{session.inspect}"
-    puts @current_user.access_tokens.inspect
-
     if(params[:username])
       @user = User.where(:username => params[:username]).first
     else

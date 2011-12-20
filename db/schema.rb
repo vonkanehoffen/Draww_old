@@ -10,20 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219103945) do
-
-  create_table "access_tokens", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "type",       :limit => 30
-    t.string   "key"
-    t.string   "token",      :limit => 1024
-    t.string   "secret"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "access_tokens", ["key"], :name => "index_access_tokens_on_key", :unique => true
+ActiveRecord::Schema.define(:version => 20111216200708) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"

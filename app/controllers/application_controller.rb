@@ -40,12 +40,7 @@ class ApplicationController < ActionController::Base
     # TODO: WTF is going on here and does this help:
     # http://railspikes.com/2008/5/1/quick-tip-store_location-with-subdomains
     # need to redirect to original page on before_filter :require_user
-    session[:return_to] = request.fullpath
-  end
-  
-  def redirect_back_or_default(default)
-    redirect_to(session[:return_to] || default)
-    session[:return_to] = nil
+    session[:return_to] = request.url
   end
   
   def prepare_new_session

@@ -36,13 +36,6 @@ gem 'paperclip'
 gem 'authlogic'
 gem 'kaminari'
 
-gem "ruby-openid"
-gem "rack-openid", ">=0.2.1", :require => "rack/openid"
-gem 'oauth'
-gem 'oauth2'
-gem 'authlogic-connect'
-
-
 # robins voting stuff
 group :test, :cucumber do
   gem 'rspec-rails' #, '~> 2.7.0'
