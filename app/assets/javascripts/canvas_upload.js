@@ -17,7 +17,7 @@ $(document).ready(function() {
 		if (ready_to_save) {
       		$('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
 		} else {
-      		$('#post_attachment64').val('no_image');
+      		$('#post_attachment64').remove();
 		}
     });
 
