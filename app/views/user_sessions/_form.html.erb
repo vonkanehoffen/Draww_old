@@ -12,6 +12,9 @@
   <% end %>
 
   <div class="login">
+	<%# f.hidden_field :authentication_type, :value => 'session' %>
+	<%= oauth_login_hidden_input %>
+	<%= f.radio_button :oauth_provider, 'facebook' %>
     <%= f.text_field :username, :placeholder => 'User Name' %>
     <%= f.password_field :password, :placeholder => 'Password' %>
     <%= f.submit("Login") %>

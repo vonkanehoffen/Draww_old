@@ -6,5 +6,6 @@ tmp/
 .sass-cache/
 public/system/photos/
 config/database.yml
+config/facebook.yml
 doc/psd/
 .DS_Store

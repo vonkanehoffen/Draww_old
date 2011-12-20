@@ -1,6 +1,12 @@
 <h1>Login</h1>
-<p>The user_session new.html.erb</p>
+<p>Hi! Please enter your login details below, or connect with your favourite social media service.</p>
 
-<%= render 'form' %>
-
+<%= form_for @user_session, :url => { :action => "create" } do |f| %>
+	<%= oauth_login_hidden_input %>
+	<%= f.label :oauth_provider, 'Facebook' %>
+	<%= f.radio_button :oauth_provider, 'facebook' %>
+    <%= f.text_field :username, :placeholder => 'User Name' %>
+    <%= f.password_field :password, :placeholder => 'Password' %>
+    <%= f.submit("Login") %>
+<% end %>
 <%= link_to 'Back', user_sessions_path %>
