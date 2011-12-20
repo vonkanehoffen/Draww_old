@@ -44,6 +44,9 @@ group :test, :cucumber do
   gem 'database_cleaner'
 end
 
+#inline editing
+gem 'best_in_place'
+
 local_gemfile = File.dirname(__FILE__) + "/Gemfile.robin.rb"  # for my local gem's (e.g. sqlite) file in my local repo only
 if File.file?(local_gemfile)
   self.instance_eval(Bundler.read_file(local_gemfile))

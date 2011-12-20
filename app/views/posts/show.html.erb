@@ -1,6 +1,6 @@
 <div class="posts_show">
 	<div class="post_title">
-		<h1><%= @post.title %></h1>
+		<h1><%= best_in_place @post, :title %></h1>
 		<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
 	</div>
 
@@ -12,7 +12,7 @@
 
 	<p>
 	  <b>Description:</b>
-	  <%= @post.description %>
+	  <%= best_in_place @post, :description, :type => :textarea %>
 	</p>
 
 	<p>

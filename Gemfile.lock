@@ -34,6 +34,9 @@ GEM
       activerecord (>= 3.0.7)
       activerecord (>= 3.0.7)
     awesome_print (1.0.1)
+    best_in_place (1.0.3)
+      jquery-rails
+      rails (~> 3.1.0)
     builder (3.0.0)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -169,6 +172,7 @@ PLATFORMS
 DEPENDENCIES
   authlogic
   awesome_print
+  best_in_place
   coffee-rails (~> 3.1.1)
   cucumber-rails
   database_cleaner
