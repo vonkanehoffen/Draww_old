@@ -5,8 +5,7 @@ class Post < ActiveRecord::Base
   before_save :default_values
   paginates_per 10
   # TODO: needs to validate filesize
-  # TODO: Stop blank images being submitted (canvas saves even when just "drop an image!" text)
-  
+ 
   # Paperclip
   # All photos should be 3 to 2 aspect
   has_attached_file :photo,
@@ -17,7 +16,9 @@ class Post < ActiveRecord::Base
       :large =>   ["1024x683>", :jpg] 
       }
       
-  validates_presence_of :title, :message => "No Title!"
+  validates :title, 
+    :length => { :minimum => 2, :maximum => 40, :message => "Sorry, title too long or too short" },
+    :presence => {:message => "Title can't be blank" }
   validates_attachment_presence :photo
   # validates :title, :presence => true, :length => { :minimum => 2 }
   has_many :comments, :dependent => :destroy

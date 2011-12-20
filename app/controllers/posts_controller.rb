@@ -1,16 +1,6 @@
 class PostsController < ApplicationController
 
   before_filter :require_user, :only => [:new, :create, :update, :edit, :destroy]
-
-  # NOTE: This could be simplified with the following.
-  # from http://railscasts.com/episodes/302-in-place-editing
-  #
-  # respond_to :html, :json
-  # def update
-  #   @user = User.find(params[:id])
-  #   @user.update_attributes(params[:user])
-  #   respond_with @user
-  # end
   
   # GET /posts
   # GET /posts.json
@@ -78,14 +68,14 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
+ 
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to @post, :notice => 'Post was successfully updated.' }
-        format.json { head :ok }
+        format.json { respond_with_bip(@post) }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @post.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@post) }
       end
     end
   end

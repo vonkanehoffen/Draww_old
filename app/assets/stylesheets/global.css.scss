@@ -34,6 +34,9 @@ nav.user {
 	// background:#f5f5f5;
 	@include border-radius(2px);
 }
+
+// MESSAGES --------------------------------------
+
 #flash {
 	p {
 		margin:20px;
@@ -47,6 +50,17 @@ nav.user {
 		border:none;
 		border-bottom:1px solid #296b05;
 	}
+}
+
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  border: solid 2px #C66;
+  &:first-letter { text-transform: uppercase; }
 }
 
 // VIEW --------------------------------------
