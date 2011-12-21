@@ -1,5 +1,5 @@
 Given /^I am logged in$/ do
-  u = FactoryGirl.create(:user, {:username => "Herbert"})
+  @current_user = FactoryGirl.create(:user, {:username => "Herbert"})
   step 'I am logged in as "Herbert" with password "cormorant"'
 end
 

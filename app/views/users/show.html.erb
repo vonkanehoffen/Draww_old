@@ -1,8 +1,14 @@
 <h1><%= @user.username %>'s Posts</h1>
 <%# TODO: Wouldn't it be nice if there was a "follow user" button here %>
+<%# TODO: https://github.com/tcocca/acts_as_follower/ perhaps? %>
+
 <%= render 'posts/new_link' %>
 <%= render '/posts/list' %>
 
+<p>
+  <strong>Reputation: </strong><%= @user.author_score %>
+  The score you have received from the images you've posted.  This currently gives you a casting power of <%= @user.casting_power %> for your votes.
+</p>
 
 <%# link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'Back', users_path %>
