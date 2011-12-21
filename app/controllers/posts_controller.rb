@@ -41,6 +41,15 @@ class PostsController < ApplicationController
       format.json { render :json => @post }
     end
   end
+  
+  def new_child
+    @post = Post.new
+    @post_parent = Post.find(params[:id])
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render :json => @post }
+    end
+  end
 
   # GET /posts/1/edit
   def edit

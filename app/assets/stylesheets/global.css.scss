@@ -1,6 +1,8 @@
 /* Styles for main layout & global stuff : views/layouts/application */
 
 @import "lib/css3_mixins.scss";
+@import "variables.scss";
+
 body { 
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight:200;
@@ -34,7 +36,6 @@ nav.user {
 	input[type=text], input[type=password] {
 		width:120px;
 	}
-	// background:#f5f5f5;
 	@include border-radius(2px);
 }
 
@@ -71,7 +72,7 @@ nav.user {
 .banner {
 	padding:20px;
 	margin:20px 0;
-	background:#f5f5f5;
+	background:$white_smoke;
 	@include border-radius(5px);
 	h1 {
 		margin-top:0;
@@ -84,7 +85,7 @@ nav.user {
 // FOOTER -------------------------------------
 
 footer {
-	background:#f5f5f5;
+	background:$white_smoke;
 	padding:20px;
 }
 
@@ -100,7 +101,6 @@ input[type=text], input[type=password], textarea {
 	padding:5px;
 	border:1px solid #999;
 	@include box-shadow(0,0, 6px, #ccc);
-	// @include linear-gradient(#fff, #eee);
 }
 input[type=submit], .button, a.button {
 	border:0;
@@ -114,8 +114,8 @@ input[type=submit], .button, a.button {
 	@include linear-gradient(#888, #666);
 	// text-shadow: 0 0 4px #222;
 	@include transition(opacity 0.5s);
-	&.green { @include linear-gradient(#6db667, #3d9d35); }
-	&.light { @include linear-gradient(#bbb, #999); }
+	&.green { @include green_gradient; }
+	&.light { @include grey_gradient; }
 }
 
 // IN-PLACE EDITING -------------------------------
@@ -123,5 +123,5 @@ input[type=submit], .button, a.button {
 span.best_in_place {
 	padding-right:20px;
 	background:url('/images/bip_edit.png') center right no-repeat;
-	&:hover { background-color:#f5f5f5;}
+	&:hover { background-color:$white_smoke;}
 }

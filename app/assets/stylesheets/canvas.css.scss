@@ -1,7 +1,10 @@
 // Styles for Canvas / Image Editing
 // /views/posts/_form
 
-.posts.new { 
+@import "lib/css3_mixins.scss";
+@import "variables.scss";
+
+.posts.new, .posts.new_child { 
 	// Nav nudged in just for canvas page
 	#site_title { margin:8px; }
 	nav.user { padding:0; margin:3px; }

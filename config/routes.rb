@@ -12,6 +12,9 @@ Draww::Application.routes.draw do
   match '/tags/:tag_name' => 'Posts#index', :as => :tag_name
     
   match '/user/:username' => "Users#show", :as => :name_user
+
+  match '/posts/new/:id' => 'Posts#new_child', :as => :new_child_post
+  
   resources :posts do
     resources :comments
     get 'page/:page', :action => :index, :on => :collection

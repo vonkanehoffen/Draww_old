@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "lib/css3_mixins.scss";
+@import "variables.scss";
 
 // View containers
 .posts_list, .posts_show { margin:20px; }
@@ -18,17 +19,27 @@
 			margin:0;
 			font-size:14px;
 		}
+		.author {
+			font-size:11px;
+		}
 	}
 	.actions {
 		position:absolute;
 		top:0; right:0;
+		.new_deriv {
+			display:block;
+			float:right;
+			width:18px; height:18px;
+			background:url('/images/plus.png') top left no-repeat;
+			span { display:none; }
+		}
 	}
 }
-img.medium { 
+img.medium { // posts/show
 	margin:20px; 
 	width:640px; 
 }
-.post.small	{ 
+.post.small	{ // posts/index
 	display:inline-block; 
 	width:320px; 
 }

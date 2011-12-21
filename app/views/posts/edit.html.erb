@@ -1,11 +1,14 @@
 <h1>Editing post</h1>
-
+<%# TODO: Pretty sure we're not going to need this view any more now we have BIP editing 
+  - child posts take its place %>
 <% content_for :head do %>
 <script type="text/javascript">
-	// see processingReady()
-	pjsReadyFn['load_image_for_edit'] = function() {
-		loadRemoteImage('<%= @post.photo.url(:medium) if @post.photo.exists? %>');
-	}
+	$(document).ready(function(){
+		// see processingReady()
+		pjsReadyFn['load_image_for_edit'] = function() {
+			loadRemoteImage('<%= @post.photo.url(:medium) if @post.photo.exists? %>');
+		}
+	});
 </script>
 <% end %>
 <%= render 'form' %>

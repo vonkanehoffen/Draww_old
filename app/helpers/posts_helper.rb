@@ -16,4 +16,10 @@ module PostsHelper
       return false
     end
   end
+  
+  def include_canvas_js
+    javascript_include_tag "lib/jquery.form"
+    javascript_include_tag "lib/processing"
+    javascript_include_tag "canvas_upload"
+  end
 end

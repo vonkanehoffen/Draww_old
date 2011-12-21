@@ -1,49 +1,54 @@
-
-
-	<% if @post.photo.exists? then %>
-		<%= image_tag @post.photo.url(:medium), :class => 'medium' %></p>
-	<% else %>
-	<p>No photos here</p>
+<div class="actions">
+	<%# link_to content_tag(:span, 'Edit'), edit_post_path(post), :class => 'edit' %>
+	<% if belongs_to_current_user(@post) %>
+		<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
 	<% end %>
-	<div class="post_title">
-		<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
-		<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
-	</div>
-	<p>
-	  <b>Description:</b>
-	  <%= best_in_place_if @post.user == current_user, @post, :description, :type => :textarea %>
-	</p>
+</div>
 
-	<p>
-	  <b>Tags:</b>
-	  <%= tag_links(@post) %>
-	</p>
+<% if @post.photo.exists? then %>
+	<%= image_tag @post.photo.url(:medium), :class => 'medium' %></p>
+<% else %>
+<p>Error: No photo.</p>
+<% end %>
+<div class="post_title">
+	<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
+	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+</div>
+<p>
+  <b>Description:</b>
+  <%= best_in_place_if @post.user == current_user, @post, :description, :type => :textarea %>
+</p>
 
-	<h2>Comments</h2>
-	<%= render @post.comments - [@comment] %>
+<p>
+  <b>Tags:</b>
+  <%= tag_links(@post) %>
+</p>
 
-	<h2>Add a comment:</h2>
-	<%= form_for([@post, @comment]) do |f| %>
-	  <% if @comment.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<h2>Comments</h2>
+<%= render @post.comments - [@comment] %>
 
-	      <ul>
-	      <% @comment.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
-	  <div class="field">
-	    <%= f.text_area :body %>
-	  </div>
-	  <div class="actions">
-	    <%= f.submit %>
-	  </div>
-	<% end %>
+<h2>Add a comment:</h2>
+<%= form_for([@post, @comment]) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 
-	<%= link_to 'Edit', edit_post_path(@post) %> |
-	<%= link_to 'Back', posts_path %>
+<%# link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
 

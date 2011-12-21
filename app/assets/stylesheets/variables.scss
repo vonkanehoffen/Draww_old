@@ -1,0 +1,25 @@
+// GLOBAL VARIABLES
+// --------------------------------------------------
+
+// Colours
+
+$m_green: #6db667;
+$d_green: #3d9d35;
+
+$white_smoke: #f5f5f5;
+$l_grey: #bbb;
+$m_grey: #999;
+
+// Gradients
+
+@mixin green_gradient {
+	@include linear-gradient($m_green, $d_green);
+}
+@mixin grey_gradient {
+	@include linear-gradient($l_grey, $m_grey);
+}
+
+// Measurements
+
+$pad: 20px;
+
