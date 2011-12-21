@@ -1,6 +1,12 @@
 // Styles for Canvas / Image Editing
 // /views/posts/_form
 
+.posts.new { 
+	// Nav nudged in just for canvas page
+	#site_title { margin:8px; }
+	nav.user { padding:0; margin:3px; }
+}
+
 #canvas_container {
 	width:auto;
 }

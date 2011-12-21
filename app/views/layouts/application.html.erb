@@ -7,13 +7,13 @@
   <%= csrf_meta_tags %>
   <%= yield :head %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 <header>
 	<%= link_to content_tag(:span, "Draww.co"), root_path, :id => 'site_title' %>
 
 	<nav class="user">
 		<% if current_user %>
-			<div class="msg">Logged in as <strong><%= current_user.username %></strong></div>
+			<div class="msg">Hello, <strong><%= current_user.username %></strong></div>
 			<%= link_to "Edit Profile", edit_user_path(current_user.id), :class => 'button' %>
 			<%= link_to "My Images", name_user_path(current_user.username), :class => 'button green' %>
 			<%= link_to "Logout", :logout, :class => 'button light' %>
