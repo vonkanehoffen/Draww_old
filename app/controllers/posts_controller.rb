@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :require_user, :only => [:new, :create, :update, :edit, :destroy]
+  before_filter :require_user, :only => [:new, :create, :update, :edit, :destroy, :vote]
 
   # NOTE: This could be simplified with the following.
   # from http://railscasts.com/episodes/302-in-place-editing
@@ -102,20 +102,27 @@ class PostsController < ApplicationController
     end
   end
   
-  def upvote
-    puts "Upvote Called"
-    @post = Post.find(params[:id])
-    @post.upvote += 1
-    
-    respond_to do |format|
-      if @post.save
-        format.html { render :upvote, :notice => "Successful upvote" }
-        format.json { head :ok }
-      else
-        format.html 
-        format.json { render :json => @post.errors, :status => :unprocessable_entity }
-      end
+  def vote
+    @post = Post.find(params[:id])    
+    logger.info "#{current_user.username } voting for #{@post.title}"
+    vote = current_user.vote!(@post)
+    if vote.valid?
+      flash[:notice] = "You voted for #{@post.title}!\nOn behalf of #{@post.user.username}, thanks!"
+    elsif vote.errors.messages.has_key?(:user_id)
+      flash[:errors] = "You've already voted for #{@post.title}!"
+    else
+      flash[:errors] = "Could vote sorry!"
     end
+    redirect_to request.referer
+    #respond_to do |format|
+    #  if current_user.vote!(@post).save
+    #    format.html { render :upvote, :notice => "You voted for #{@post.title}!\nOn behalf of #{@post.user.username}, thanks!" }
+    #    format.json { head :ok }
+    #  else
+    #    format.html { render :upvote, :errors => @post.errors }
+    #    format.json { render :json => @post.errors, :status => :unprocessable_entity }
+    #  end
+    #end
   end
   
 end

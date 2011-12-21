@@ -7,11 +7,11 @@ Draww::Application.routes.draw do
   # map.login   'login',  :controller => 'user_sessions', :action => 'new'
   match 'logout', :to => 'user_sessions#destroy', :as => :logout
   
-  match '/posts/:id/upvote' => 'Posts#upvote', :as => :upvote
+  match '/posts/:id/vote' => 'posts#vote', :as => :vote
   
-  match '/tags/:tag_name' => 'Posts#index', :as => :tag_name
+  match '/tags/:tag_name' => 'posts#index', :as => :tag_name
     
-  match '/user/:username' => "Users#show", :as => :name_user
+  match '/user/:username' => "users#show", :as => :name_user
   resources :posts do
     resources :comments
     get 'page/:page', :action => :index, :on => :collection

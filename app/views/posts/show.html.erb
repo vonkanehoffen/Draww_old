@@ -5,7 +5,7 @@
 	</div>
 
 	<% if @post.photo.exists? then %>
-		<%= image_tag @post.photo.url(:medium) %></p>
+		<p><%= image_tag @post.photo.url(:medium) %></p>
 	<% else %>
 	<p>No photos here</p>
 	<% end %>
@@ -19,6 +19,12 @@
 	  <b>Tags:</b>
 	  <%= tag_links(@post) %>
 	</p>
+
+	<p>
+	  <b>Votes:</b>
+	  <%= render :partial => 'ranking', :locals => {:post => @post} %>
+	</p>
+
 
 	<h2>Comments</h2>
 	<%= render @post.comments - [@comment] %>

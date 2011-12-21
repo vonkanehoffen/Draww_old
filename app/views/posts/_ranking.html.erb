@@ -1,4 +1,6 @@
 <div class="ranking">
-	Votes: <%= post.upvote - post.downvote %>
-	<%# link_to "Up", upvote_path %>
+	Votes: <%= "#{post.votes_count} votes worth #{post.votes_score} reputation" %>
+	<%- post.upvote - post.downvote %>
+	<%# link_to "Up", upvote_path %>	
+	<%= link_to "vote for this post", vote_path(post) %>
 </div>

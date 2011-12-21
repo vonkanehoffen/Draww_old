@@ -48,6 +48,11 @@ describe "Ranking Mechanism" do
         @u.casting_power.should > old_power
       end
     end
+    it "shouldn't be able to vote for the same post twice" do
+      p = FactoryGirl.create(:post)
+      @u.vote!(p)
+      lambda { @u.vote!(p) }.should raise_error
+    end
   end
   describe Post do
     before(:each) do

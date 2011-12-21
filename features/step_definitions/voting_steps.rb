@@ -1,14 +1,16 @@
 Then /^I should see a link to vote for the post$/ do
-  page.links.detect{|l| l =~ /vote/}.count.should > 0
+#  binding.pry
+  page.has_link?('vote')
 end
 
 When /^I click the vote button$/ do
-  step 'I press "vote for this post"'
+  #step 'I press "vote for this post"'
+  page.find_link('vote').click
   #page.links.detect{|l| l =~ /vote/}.click
 end
 
 Then /^the post should have received my vote$/ do
-  Post.last.vote_count.should > 0
+  Post.last.votes_count.should > 0
 end
 
 Given /^I am a post author$/ do
