@@ -42,9 +42,11 @@ class PostsController < ApplicationController
     end
   end
   
+  # /posts/new/1
   def new_child
     @post = Post.new
-    @post_parent = Post.find(params[:id])
+    @post.parent = Post.find(params[:id])
+    # @post_parent = Post.find(params[:id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @post }
@@ -59,8 +61,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    # TODO: Isn't this creating the object twice? Thre's already Post.new in 'new' action
     @post = Post.new(params[:post])
-
+    @post.parent = Post.find(params[:parent_id]) if params[:parent_id]
     respond_to do |format|
       if @post.save
         current_user.posts << @post
