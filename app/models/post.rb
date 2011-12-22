@@ -24,10 +24,6 @@ class Post < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
-  
-  has_many :children, :class_name => "Post"
-  belongs_to :parent, :class_name => "Post", :foreign_key => "parent_id"
-
   attr_writer :tag_names
   after_save :assign_tags
   belongs_to :user

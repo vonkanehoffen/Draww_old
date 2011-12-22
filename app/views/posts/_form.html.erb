@@ -7,9 +7,6 @@
 
 <% @post.tags.build %>
 <%= form_for(@post,:html => { :multipart => true }) do |f| %>
-
-<%= f.hidden_field :parent_id, :value => @post_parent.id if @post_parent %>
-
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>

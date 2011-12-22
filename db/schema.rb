@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111221153353) do
+ActiveRecord::Schema.define(:version => 20111216200708) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20111221153353) do
     t.integer  "upvote"
     t.integer  "downvote"
     t.integer  "rank",               :limit => 8
-    t.integer  "parent_id"
   end
 
   create_table "taggings", :force => true do |t|
