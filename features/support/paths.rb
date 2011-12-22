@@ -10,7 +10,12 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
-
+    when /my profile page/
+      user_path(@current_user)
+    when /^the show page for the post$/
+      @post ||= Post.last
+      raise "No post" unless @post
+      post_path(@post)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

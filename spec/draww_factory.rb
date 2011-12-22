@@ -5,7 +5,10 @@ FactoryGirl.define do
   sequence :email do |n|
     "user#{n+100}@domain.net"
   end
- factory :user do
+  sequence :sext do |n|
+    "a load of n (#{n}th edition)"
+  end
+  factory :user do
     username
     email
     password "cormorant"
@@ -19,8 +22,8 @@ FactoryGirl.define do
   end
   factory :post do
     user
-    title "dont even"
-    description "quite unremarkable"
+    title { FactoryGirl.generate(:sext) }#"dont even"
+    description { FactoryGirl.generate(:sext) } #"quite unremarkable"
     photo File.new(Rails.root + 'spec/invisible_cormorant.png')
     factory :post_many_votes do
       after_create { |p| 5.times { Factory(:lo_point_vote, :post => p)}}

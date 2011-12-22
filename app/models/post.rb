@@ -33,6 +33,7 @@ class Post < ActiveRecord::Base
   private
   def save_attachment64
     if self.attachment64
+    # unless self.attachment64 == 'no_image' || self.attachment64.nil?
       require Rails.root.join('lib', 'datafy.rb')
       tmp_uri = "tmp/"+friendly_name(self.title)+".jpg"
       puts "Friendly name = "+tmp_uri
