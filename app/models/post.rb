@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   attr_accessor :attachment64
   before_validation :save_attachment64
   before_save :default_values
-  paginates_per 10
+  # paginates_per 10 < set in config/initializers/kaminari_config
   # TODO: needs to validate filesize
  
   # Paperclip
@@ -34,7 +34,6 @@ class Post < ActiveRecord::Base
   has_many :parents, :through => :relationships
   has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id"
   has_many :children, :through => :inverse_relationships, :source => :post
-  #TODO: :dependent => :destroy
   
   private
   def save_attachment64

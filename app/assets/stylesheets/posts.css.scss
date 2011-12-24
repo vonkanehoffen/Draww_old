@@ -9,6 +9,7 @@
 .posts_list, .posts_show { margin:20px; }
 
 // Post show / index
+
 .post {
 	
 	.info {
@@ -20,6 +21,9 @@
 			font-size:14px;
 		}
 		.author {
+			font-size:11px;
+		}
+		.ranking {
 			font-size:11px;
 		}
 	}
@@ -73,6 +77,15 @@ a.tag {
 
 // views/posts/show
 
+#show {
+	// Container for pic and main actions
+	float:left;
+	width:680px;
+}
+#meta {
+	// Container for all info
+	padding-left:680px;
+}
 .post_title {
 	margin-bottom:10px;
 	h1 { display:inline; }

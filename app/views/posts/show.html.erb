@@ -1,70 +1,74 @@
-<div class="actions">
-	<%# link_to content_tag(:span, 'Edit'), edit_post_path(post), :class => 'edit' %>
-	<% if belongs_to_current_user(@post) %>
-		<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
+<div id="show">
+	<div class="actions">
+		<%# link_to content_tag(:span, 'Edit'), edit_post_path(post), :class => 'edit' %>
+		<% if belongs_to_current_user(@post) %>
+			<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
+		<% end %>
+		<%= link_to 'Back', posts_path %>
+	</div>
+	<% if @post.photo.exists? then %>
+		<%= image_tag @post.photo.url(:medium), :class => 'medium' %></p>
+	<% else %>
+		<p>Error: No photo.</p>
 	<% end %>
 </div>
-<% if @post.photo.exists? then %>
-	<%= image_tag @post.photo.url(:medium), :class => 'medium' %></p>
-<% else %>
-	<p>Error: No photo.</p>
-<% end %>
-<div class="post_title">
-	<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
-	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+<div id="meta">
+	<div class="post_title">
+		<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
+		<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+	</div>
+	<p>
+	  <b>Description:</b>
+	  <%= best_in_place_if @post.user == current_user, @post, :description, :type => :textarea %>
+	</p>
+
+	<p>
+	  <b>Tags:</b>
+	  <%= tag_links(@post) %>
+	</p>
+
+	<p>
+	  <b>Votes:</b>
+	  <%= render :partial => 'ranking', :locals => {:post => @post} %>
+	</p>
+
+	<% unless @post.parents.empty? %>
+		<h3>Parents</h3>
+		<% for parent in @post.parents %>
+		<%= link_to(image_tag(parent.photo(:thumb)), parent, :class => 'relation') %>
+		<% end %>
+	<% end %>
+	<% unless @post.inverse_relationships.empty? %>
+		<h3>Children</h3>
+		<% for relationship in @post.inverse_relationships %>
+		<%= link_to(image_tag(relationship.post.photo(:thumb)), relationship.post, :class => 'relation') %>
+		<% end %>
+	<% end %>
+
+	<h2>Comments</h2>
+	<%= render @post.comments - [@comment] %>
+
+	<h2>Add a comment:</h2>
+	<%= form_for([@post, @comment]) do |f| %>
+	  <% if @comment.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+	      <ul>
+	      <% @comment.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	  <div class="field">
+	    <%= f.text_area :body %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+	<% end %>
 </div>
-<p>
-  <b>Description:</b>
-  <%= best_in_place_if @post.user == current_user, @post, :description, :type => :textarea %>
-</p>
 
-<p>
-  <b>Tags:</b>
-  <%= tag_links(@post) %>
-</p>
-
-<p>
-  <b>Votes:</b>
-  <%= render :partial => 'ranking', :locals => {:post => @post} %>
-</p>
-
-<% unless @post.parents.empty? %>
-	<h3>Parents</h3>
-	<% for parent in @post.parents %>
-	<p><%= link_to(image_tag(parent.photo(:thumb)), parent) %>
-	<% end %>
-<% end %>
-<% unless @post.inverse_relationships.empty? %>
-	<h3>Children</h3>
-	<% for relationship in @post.inverse_relationships %>
-	<p><%= link_to(image_tag(relationship.post.photo(:thumb)), relationship.post) %></p>
-	<% end %>
-<% end %>
-
-<h2>Comments</h2>
-<%= render @post.comments - [@comment] %>
-
-<h2>Add a comment:</h2>
-<%= form_for([@post, @comment]) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%# link_to 'Edit', edit_post_path(@post) %>
+<div class="clearfix"></div>
