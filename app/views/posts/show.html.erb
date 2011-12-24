@@ -15,7 +15,7 @@
 </div>
 <p>
   <b>Description:</b>
-  <%= best_in_place @post, :description, :type => :textarea %>
+  <%= best_in_place_if @post.user == current_user, @post, :description, :type => :textarea %>
 </p>
 
 <p>
@@ -28,6 +28,17 @@
   <%= render :partial => 'ranking', :locals => {:post => @post} %>
 </p>
 
+<h3>Parents</h3>
+<%# @post.relationships.each do | parent | %>
+<% for parent in @post.parents %>
+<p><%# image_tag relationship.post.photo(:thumb) %></p>
+<p><%= image_tag parent.photo(:thumb) %>
+<% end %>
+<h3>Children</h3>
+<%# @post.relationships.each do | parent | %>
+<% for relationship in @post.inverse_relationships %>
+<p><%= image_tag relationship.post.photo(:thumb) %></p>
+<% end %>
 
 <h2>Comments</h2>
 <%= render @post.comments - [@comment] %>

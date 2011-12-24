@@ -29,7 +29,13 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   has_many :votes
-        
+  
+  has_many :relationships, :dependent => :destroy
+  has_many :parents, :through => :relationships
+  has_many :inverse_relationships, :class_name => "Relationship", :foreign_key => "relation_id"
+  has_many :children, :through => :inverse_relationships, :source => :post
+  #TODO: :dependent => :destroy
+  
   private
   def save_attachment64
     if self.attachment64

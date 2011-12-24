@@ -69,8 +69,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    relation_id = params[:post][:relation_id]
+    params[:post].delete(:relation_id) if relation_id
 
+    @post = Post.new(params[:post])
+    # If it's new_child, build relationship to parent
+    @post.relationships.build(:relation_id => relation_id) if relation_id
+    
     respond_to do |format|
       if @post.save
         current_user.posts << @post

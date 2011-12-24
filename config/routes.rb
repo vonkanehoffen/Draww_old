@@ -1,4 +1,8 @@
 Draww::Application.routes.draw do
+  get "relationship/create"
+
+  get "relationship/destroy"
+
   resources :users, :user_sessions
   
   # /login & /logout

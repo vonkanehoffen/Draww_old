@@ -45,6 +45,7 @@
 		<%# f.file_field :photo %>
 	</div>
 	<%= f.hidden_field :attachment64 %>
+	<%= f.hidden_field :relation_id, :value => @post_parent.id if @post_parent %>
 	
 <h2>Tags</h2>
 <p>
