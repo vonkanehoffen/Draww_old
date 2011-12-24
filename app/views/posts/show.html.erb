@@ -28,16 +28,17 @@
   <%= render :partial => 'ranking', :locals => {:post => @post} %>
 </p>
 
-<h3>Parents</h3>
-<%# @post.relationships.each do | parent | %>
-<% for parent in @post.parents %>
-<p><%# image_tag relationship.post.photo(:thumb) %></p>
-<p><%= image_tag parent.photo(:thumb) %>
+<% unless @post.parents.empty? %>
+	<h3>Parents</h3>
+	<% for parent in @post.parents %>
+	<p><%= link_to(image_tag(parent.photo(:thumb)), parent) %>
+	<% end %>
 <% end %>
-<h3>Children</h3>
-<%# @post.relationships.each do | parent | %>
-<% for relationship in @post.inverse_relationships %>
-<p><%= image_tag relationship.post.photo(:thumb) %></p>
+<% unless @post.inverse_relationships.empty? %>
+	<h3>Children</h3>
+	<% for relationship in @post.inverse_relationships %>
+	<p><%= link_to(image_tag(relationship.post.photo(:thumb)), relationship.post) %></p>
+	<% end %>
 <% end %>
 
 <h2>Comments</h2>
