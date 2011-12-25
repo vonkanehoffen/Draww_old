@@ -27,6 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user 
+    # TODO: Needs to redirect back to the same page and highlight the login box. 
+    # Currently :store_location fucks up and gets .../comments for the current 
+    # URL on some pages, cos the comments model is called as part of the 
+    # posts/show view etc.
+    
    unless current_user 
      store_location 
      flash[:notice] = "You must be logged in to do this." 

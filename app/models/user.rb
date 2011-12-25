@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  
+  # TODO: Add Twitter / Faebook OAuth
+  # TODO: Add Website / Gravatar Icon / About you fields
+  
   acts_as_authentic
   has_many :posts
   has_many :comments

@@ -13,6 +13,8 @@
 
 	<nav class="user">
 		<% if current_user %>
+			<%# TODO: Change Links to "My Page | New Image | Logout"
+			TODO: Move "Edit Profile" to BIP on users/show %>
 			<div class="msg">Hello, <strong><%= current_user.username %></strong></div>
 			<%= link_to "Edit Profile", edit_user_path(current_user.id), :class => 'button' %>
 			<%= link_to "My Images", name_user_path(current_user.username), :class => 'button green' %>
@@ -33,6 +35,7 @@
 
 <footer>
 	Footer here
+	<%# TODO: Add Creative Commons notice + main social media links + contact %>
 </footer>
 </body>
 </html>

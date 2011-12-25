@@ -2,6 +2,7 @@
 	<% @posts.each do |post| %>
 	  <div class="post small">
 		<div class="image">
+		<%# TODO: Add vote up/down arrows (on hover?) %>
 		<% if post.photo.exists? then %>
 		<%= link_to(image_tag(post.photo.url(:small), :alt => post.title), post) %>
 		<% else %>
@@ -14,6 +15,7 @@
 			<%= render :partial => 'posts/ranking', :locals => { :post => post } %>
 		
 			<div class="actions">
+				<%# TODO: Add tooltip to make the plus more obvious %>
 				<%= link_to content_tag(:span, 'New Derivative'), new_child_post_path(post), :class => 'new_deriv' %>
 	    		<%# link_to content_tag(:span, 'Edit'), edit_post_path(post), :class => 'edit' %>
 			</div>

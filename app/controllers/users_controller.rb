@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    # TODO: If logged in, show comments on own posts
     if(params[:username])
       @user = User.where(:username => params[:username]).first
     else

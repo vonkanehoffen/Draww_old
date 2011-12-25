@@ -1,10 +1,12 @@
 <div id="show">
 	<div class="actions">
+		<%# TODO: Add Create Derivative link for image here %>
 		<%# link_to content_tag(:span, 'Edit'), edit_post_path(post), :class => 'edit' %>
 		<% if belongs_to_current_user(@post) %>
 			<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
 		<% end %>
 		<%= link_to 'Back', posts_path %>
+		<%# TODO: Back link doesn't go to the appropriate page (kaminari pagination) %>
 	</div>
 	<% if @post.photo.exists? then %>
 		<%= image_tag @post.photo.url(:medium), :class => 'medium' %></p>
@@ -25,6 +27,7 @@
 	<p>
 	  <b>Tags:</b>
 	  <%= tag_links(@post) %>
+		<%# TODO: find a way to get in-place tag add/delete %>
 	</p>
 
 	<p>
