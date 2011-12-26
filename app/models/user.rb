@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_many :liked_posts, :through => :votes
+  has_many :authentications
     
   def author_score
     posts.inject(1){|s,p| s += p.votes_score}

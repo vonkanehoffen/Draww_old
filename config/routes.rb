@@ -1,4 +1,7 @@
 Draww::Application.routes.draw do
+  match '/auth/:provider/callback' => 'authentications#create'
+  resources :authentications
+
   get "relationship/create"
 
   get "relationship/destroy"

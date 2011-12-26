@@ -31,10 +31,15 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'nifty-generators'
+
 gem 'awesome_print'
 gem 'paperclip'
-gem 'authlogic'
 gem 'kaminari'
+
+gem 'authlogic'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 # robins voting stuff
 group :test, :cucumber do
@@ -53,3 +58,4 @@ if File.file?(local_gemfile)
 end
 
 # note: run 'bundle install' for new gems
+gem "mocha", :group => :test
