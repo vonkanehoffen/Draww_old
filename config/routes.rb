@@ -1,41 +1,40 @@
 Draww::Application.routes.draw do
+  
+  get "home/index"
+  root :to => 'home#index'
+  
+  # User Management
+  resources :authentications, :users, :user_sessions
+
   match '/auth/:provider/callback' => 'authentications#create'
-  resources :authentications
-
   get "relationship/create"
-
   get "relationship/destroy"
 
-  resources :users, :user_sessions
-  
-  # /login & /logout
   match 'login', :to => 'user_sessions#new', :as => :login
-  # the above is equivalent to (rails 2) I think:
-  # map.login   'login',  :controller => 'user_sessions', :action => 'new'
   match 'logout', :to => 'user_sessions#destroy', :as => :logout
   
-  match '/posts/:id/vote' => 'posts#vote', :as => :vote
-  
+  # Posts Display
   match '/tags/:tag_name' => 'posts#index', :as => :tag_name
-    
   match '/user/:username' => "Users#show", :as => :name_user
-
   match '/posts/new/:id' => 'Posts#new_child', :as => :new_child_post
   
   resources :posts do
     resources :comments
     get 'page/:page', :action => :index, :on => :collection
   end
+
+  # Voting
+  match '/posts/:id/vote' => 'posts#vote', :as => :vote
+
+
   
   # See http://edgeguides.rubyonrails.org/routing.html#nested-resources
   # i.e. /users/1/posts
-  resources :users do
-    resources :posts
-  end
+  #resources :users do
+  #  resources :posts
+  #end
   
-  get "home/index"
   # root :to => 'posts#index'
-  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
