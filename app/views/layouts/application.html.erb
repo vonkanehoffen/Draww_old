@@ -13,17 +13,15 @@
 
 	<nav class="user">
 		<% if current_user %>
-			<%# TODO: Change Links to "My Page | New Image | Logout"
-			TODO: Move "Edit Profile" to BIP on users/show %>
+			<%# TODO: Move "Edit Profile" to BIP on users/show %>
 			<div class="msg">Hello, <strong><%= current_user.username %></strong></div>
-			<%= link_to "Edit Profile", edit_user_path(current_user.id), :class => 'button' %>
-			<%= link_to "My Images", name_user_path(current_user.username), :class => 'button green' %>
+			<%# link_to "Edit Profile", edit_user_path(current_user.id), :class => 'button' %>
+			<%= link_to "My Page", name_user_path(current_user.username), :class => 'button grey' %>
+			<%= link_to 'New Image', new_post_path, :class => 'button green' %>
 			<%= link_to "Logout", :logout, :class => 'button light' %>
 		<% else %>
-			<div class="logged_in">
-				<%= render 'user_sessions/form' %>
-				<%= link_to "Sign Up", new_user_path, :class => 'button green' %>
-			</div>
+			<%= link_to "Login", login_path, :class => 'button grey' %>
+			<%= link_to "Sign Up", new_user_path, :class => 'button green' %>
 		<% end %>
 	</nav>
 </header>
