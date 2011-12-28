@@ -40,6 +40,7 @@ gem 'kaminari'
 gem 'authlogic'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 # robins voting stuff
 group :test, :cucumber do

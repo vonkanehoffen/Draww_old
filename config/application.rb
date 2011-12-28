@@ -36,8 +36,8 @@ module Draww
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
-    # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, :password_confirmation]
+    # Configure sensitive parameters which will be filtered from the log file. (+image data)
+    config.filter_parameters += [:password, :password_confirmation, :attachment64]
 
     # Enable the asset pipeline
     config.assets.enabled = true
