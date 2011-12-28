@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # TODO: Add Website / Gravatar Icon / About you fields
   
   acts_as_authentic do |c|
+    # TODO: This raises "unknown attribute: password_confirmation" for edit user action
     c.ignore_blank_passwords = true #ignoring passwords
     c.validate_password_field = false #ignoring validations for password fields
   end
