@@ -11,7 +11,7 @@
 		</div>
 		<div class="info">
 			<h3 class="title"><%= post.title %></h3>
-			<span class="author">by <%= link_to post.user.username, name_user_path(post.user.username) %></span>
+			<span class="author">by <%= link_to post.user.username, name_user_path(post.user.username) %><%# TODO: Check if user exists to stop errors on deleted accounts %></span>
 			<%= render :partial => 'posts/ranking', :locals => { :post => post } %>
 		
 			<div class="actions">

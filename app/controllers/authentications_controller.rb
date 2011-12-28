@@ -31,8 +31,9 @@ class AuthenticationsController < ApplicationController
 
     else
       
-      puts "hash: "+omniauth.except('extra').to_yaml.log_red
       # This is a new user. Create an account and log him in
+      # puts "hash: "+omniauth.to_yaml.log_red
+      # TODO: Display new user form if username taken - errors out at the moment
       @new_auth = Authentication.create_from_hash(omniauth, current_user) #Create a new user
       flash[:notice] = "Welcome #{omniauth['provider']} user. Your account has been created."
       UserSession.create(@new_auth.user, true) # Log the authorizing user in.
@@ -47,6 +48,7 @@ class AuthenticationsController < ApplicationController
   end
   
   def destroy
+    # TODO: User needs to be deleted if all auths are destroyed and no local password set
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
     flash[:notice] = "Successfully destroyed authentication."
