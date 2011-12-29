@@ -4,12 +4,15 @@
 @import "lib/css3_mixins.scss";
 @import "variables.scss";
 
+// TODO: http://coding.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/
+
 /* Contents:
  * - Text & Basic Element Styles
  * - Form & Button Styles
  * --- In-place Editing
  * - Layout Containers
  * - Header & User Navigation
+ * - Notifications
  * - Footer
  * - Post List View
  * - Post Show View
@@ -102,6 +105,36 @@ nav.user {
 	}
 }
 
+// -------------------------------------------------------------------------------
+// Notifications -----------------------------------------------------------------
+// -------------------------------------------------------------------------------
+
+#flash {
+	p {
+		margin:20px;
+		display:block;
+		padding:10px;
+		@include linear-gradient(#6db667, #3d9d35);
+		@include border-radius(5px);
+		color:#fff;
+		font-weight:bold;
+		text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+		border:none;
+		border-bottom:1px solid #296b05;
+	}
+}
+
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  border: solid 2px #C66;
+  &:first-letter { text-transform: uppercase; }
+}
+
 // -------------------------------------------------------------------------------	
 // Footer ------------------------------------------------------------------------
 // -------------------------------------------------------------------------------
@@ -164,6 +197,8 @@ nav.user {
 					font-weight:bold;
 					color:#fff;
 					text-shadow:0 0 7px #000;
+					opacity:1;
+					text-decoration:none;
 				}
 				.up, .down {
 					display:block;
@@ -189,6 +224,61 @@ nav.user {
 // -------------------------------------------------------------------------------
 // Post Show View ----------------------------------------------------------------
 // -------------------------------------------------------------------------------
+
+#show {
+	// Container for pic and main actions
+	float:left;
+	width:640px;
+}
+#meta {
+	// Container for all info
+	padding-left:660px;
+}
+#show .actions {
+	display:block;
+	margin-bottom:20px;
+	height:30px;
+	@include linear-gradient(#fbfbfb, #ebebeb);
+	@include border-radius(5px);
+	border:1px solid;
+/*	border-color:#E2E2E2 #E8E8E8 #E4E4E4 #DDD;*/
+	border-color:#eee #e4e4e4 #e0e0e0 #f0f0f0;
+	color:$d_grey;
+	.ranking { display:inline; }
+	a {
+		display:block;
+		float:left;
+		padding:5px 10px;
+		height:20px;
+		border-right:1px solid #e0e0e0;
+		border-left:1px solid #fff;
+		color:$d_grey;
+		text-decoration:none;
+		&:hover { 
+			opacity:1; 
+			background-color:#e0e0e0;
+			border-left:1px solid #e0e0e0;
+		}
+		&:first-child { border-left:none; }
+	}
+	.up {
+		background:url('/images/vote_up_sm.png') 5px center no-repeat;
+		padding-left:26px;
+	}
+	.down {
+		background:url('/images/vote_down_sm.png') 5px center no-repeat;
+		padding-left:26px;
+	}
+	.edit {
+		background:url('/images/plus.png') 5px center no-repeat;
+		padding-left:26px;
+	}
+}
+.post_title {
+	margin-bottom:10px;
+	h1 { display:inline; }
+	.by { display:inline; font-size:16px; padding-left:5px; }
+}
 
 // -------------------------------------------------------------------------------
 // User Management Views ---------------------------------------------------------
