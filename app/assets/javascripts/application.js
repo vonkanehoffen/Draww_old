@@ -11,4 +11,4 @@
 //= require jquery.purr
 //= require best_in_place
 //
-//= require posts
+//= require main_ui
