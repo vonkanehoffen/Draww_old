@@ -1,29 +1,17 @@
 <div class="posts_list">
 <% @posts.each do |post| %>
 	<% if post.photo.exists? then %>
-		<div class="post small">
-		<div class="image">
-			<%# TODO: Add vote up/down arrows (on hover?) %>	
-			<%= link_to(image_tag(post.photo.url(:small), :alt => post.title), post, :class => 'pic') %>
-			<%= render :partial => 'posts/ranking', :locals => { :post => post } %>
-		</div>
-		<div class="info">
-			<h3 class="title"><%= post.title %></h3>
-			<span class="author">by <%= 
-				if post.user
-					link_to post.user.username, name_user_path(post.user.username)
-				else 
-					'<span class="deleted">Deleted user</span>' 
-				end
-			%></span>
+		<div class="post">
 			<div class="actions">
-				<%# TODO: Add tooltip to make the plus more obvious %>
 				<%= link_to content_tag(:span, 'New Derivative'), new_child_post_path(post), :class => 'new_deriv' %>
+				<%= render :partial => 'posts/ranking', :locals => { :post => post } %>
+			</div>
+			<div class="image">
+				<%= link_to(image_tag(post.photo.url(:small), :alt => post.title), post, :class => 'pic') %>
 			</div>
 	  	</div>
-	  </div>
 	<% else %>
-		Error! Post has no photo.
+		<div class="post">Error! Post has no photo.</div>
 	<% end %>
 <% end %>
 <div class="clearfix"></div>

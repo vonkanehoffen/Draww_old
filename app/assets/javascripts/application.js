@@ -10,5 +10,6 @@
 //
 //= require jquery.purr
 //= require best_in_place
+//= require lib/jquery.waitforimages.js
 //
 //= require main_ui
