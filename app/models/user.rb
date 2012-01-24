@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   def self.create_from_hash(hash)
     # TODO: Twitter doesn't supply email in OAuth. Need to drop validation and maybe ask user for it
     puts "CREATING USER FROM HASH".log_red
-    user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :email => "testing@test.loc")
+    user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :email => "testing_fb@test.loc")
     user.save! #create the user without performing validations. This is because most of the fields are not set.
     user.reset_persistence_token! #set persistence_token else sessions will not be created
     user

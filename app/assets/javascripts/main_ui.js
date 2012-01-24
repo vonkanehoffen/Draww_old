@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$('.best_in_place').best_in_place();
 
 	$('.posts_list').waitForImages(function() {
-		list_image_fitting();
+		//list_image_fitting();
 	})
 	
 });
