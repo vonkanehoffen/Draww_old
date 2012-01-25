@@ -110,9 +110,8 @@ span.best_in_place {
 	nav.user_actions {
 		position:absolute;
 		right:0;
-		border-left:1px solid rgba(255,255,255,0.2);
 		font-size:0; // Remove space between inline-block elements
-		a {
+		a, .msg {
 			display:inline-block;
 			font-size:14px;
 			font-weight:bold;
@@ -126,6 +125,7 @@ span.best_in_place {
 				border-right:none;
 			}
 		}
+		.msg { border-left:none; font-weight:200; }
 	}
 	#site_title {
 		width:100px;

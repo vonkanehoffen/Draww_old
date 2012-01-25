@@ -15,7 +15,7 @@
 			<nav class="user_actions">
 				<% if current_user %>
 					<%# TODO: Move "Edit Profile" to BIP on users/show %>
-					<div class="msg">Hello, <strong><%= current_user.username %></strong></div>
+					<div class="msg">Hello, <span><%= current_user.username %></span></div>
 					<%= link_to "New", new_post_path %>
 					<%= link_to "My Images", name_user_path(current_user.username) %>
 					<%= link_to "Profile", edit_user_path(current_user.id) %>

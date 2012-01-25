@@ -1,13 +1,33 @@
 class User < ActiveRecord::Base
   
-  # TODO: Add Twitter / Faebook OAuth
   # TODO: Add Website / Gravatar Icon / About you fields
+
+  attr_accessor :needs_no_password
+  # acts_as_authentic
+  # before_validation :update_authlogic_config
+  # def update_authlogic_config
+  #   puts "update_authlogic_config live".log_red
+  #   if self.needs_no_password
+  #     puts "no password!"
+  #     #self.ignore_blank_passwords = true
+  #     #self.validate_password_field = false
+  #   else
+  #     puts "password needed!"
+  #   end
+  # end
   
+  # acts_as_authentic do |c|
+  #   # TODO: This raises "unknown attribute: password_confirmation" for edit user action    
+  #   c.ignore_blank_passwords = true #ignoring passwords
+  #   c.validate_password_field = false #ignoring validations for password fields
+  # end
+
   acts_as_authentic do |c|
-    # TODO: This raises "unknown attribute: password_confirmation" for edit user action
-    c.ignore_blank_passwords = true #ignoring passwords
-    c.validate_password_field = false #ignoring validations for password fields
+    c.merge_validates_confirmation_of_password_field_options({:unless => :needs_no_password})
+    c.merge_validates_length_of_password_field_options({:unless => :needs_no_password})
+    c.merge_validates_length_of_password_confirmation_field_options({:unless => :needs_no_password})
   end
+  
   
   has_many :posts
   has_many :comments
@@ -32,7 +52,7 @@ class User < ActiveRecord::Base
   def self.create_from_hash(hash)
     # TODO: Twitter doesn't supply email in OAuth. Need to drop validation and maybe ask user for it
     puts "CREATING USER FROM HASH".log_red
-    user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :email => "testing_fb@test.loc")
+    user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :email => "testing_tw@test.loc", :needs_no_password => true )
     user.save! #create the user without performing validations. This is because most of the fields are not set.
     user.reset_persistence_token! #set persistence_token else sessions will not be created
     user
