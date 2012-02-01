@@ -4,14 +4,13 @@
 @import "lib/css3_mixins.scss";
 @import "variables.scss";
 
-// TODO: http://coding.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/
-
 /* Contents:
  * - Text & Basic Element Styles
  * - Form & Button Styles
  * --- In-place Editing
  * - Layout Containers
  * - Header & User Navigation
+ * --- Flashes
  * --- Signup banner
  * --- Signup page
  * - Notifications
@@ -90,7 +89,7 @@ span.best_in_place {
 // -------------------------------------------------------------------------------
 
 #view {
-	width:978px;
+	width:$page_width;
 	margin:20px auto;
 }
 
@@ -102,7 +101,7 @@ span.best_in_place {
 	@include linear-gradient(#595959, #747474);
 	height:38px;
 	.inner {
-		width:978px;
+		width:$page_width;
 		margin:0 auto;
 		position:relative;
 		height:10px;
@@ -202,8 +201,10 @@ span.best_in_place {
 // -------------------------------------------------------------------------------
 
 #flash {
+	width:$page_width;
+	margin:0 auto;
 	p {
-		margin:20px;
+		margin:20px 0;
 		display:block;
 		padding:10px;
 		@include linear-gradient(#6db667, #3d9d35);
@@ -230,6 +231,17 @@ span.best_in_place {
 // -------------------------------------------------------------------------------	
 // Footer ------------------------------------------------------------------------
 // -------------------------------------------------------------------------------
+
+footer {
+	width: 100%;
+	background:$l_grey;
+	margin-top:30px;
+	padding:30px 0;
+	.inner {
+		width:$page_width;
+		margin:0 auto;
+	}
+}
 
 // -------------------------------------------------------------------------------
 // Post List View ----------------------------------------------------------------

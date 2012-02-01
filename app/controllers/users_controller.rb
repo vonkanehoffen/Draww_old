@@ -46,6 +46,8 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @authentications = @user.authentications if current_user
+    puts @authentications.inspect.log_red
   end
 
   # POST /users

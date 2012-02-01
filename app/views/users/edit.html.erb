@@ -1,8 +1,9 @@
 <h1>Your Preferences</h1>
-
+<%# TODO: Should be editable without password field (validation) %>
 <%= render 'form' %>
 
-<%= link_to "Manage Authentications", authentications_path if current_user%>
+<h2>Auth</h2>
 
-<%= link_to 'Show', @user %> |
+<%= render 'authentications/auth' %>
+
 <%= link_to 'Back', users_path %>
