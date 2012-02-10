@@ -31,6 +31,10 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+# Use Thin instead of Webrick
+# Start for dev with: thin start -p 10520
+gem 'thin'
+
 gem 'nifty-generators'
 
 gem 'awesome_print'
@@ -50,7 +54,7 @@ group :test, :cucumber do
   gem 'database_cleaner'
 end
 
-#inline editing
+# Inline editing
 gem 'best_in_place'
 
 local_gemfile = File.dirname(__FILE__) + "/Gemfile.robin.rb"  # for my local gem's (e.g. sqlite) file in my local repo only
