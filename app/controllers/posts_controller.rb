@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_filter :require_user, :only => [:new, :create, :update, :edit, :destroy, :vote]
+  respond_to :html, :json, :js
 
   # NOTE: This could be simplified with the following.
   # from http://railscasts.com/episodes/302-in-place-editing
@@ -22,11 +23,8 @@ class PostsController < ApplicationController
       # find all posts
       @posts = Post.order("created_at DESC").page params[:page]
     end
-      
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @posts }
-    end
+
+    respond_with(@posts)
   end
 
   # GET /posts/1
@@ -35,10 +33,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = @post.comments.build
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @post }
-    end
+    respond_with(@post)
   end
 
   # GET /posts/new
@@ -46,19 +41,14 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @post }
-    end
+    respond_with(@post)
   end
   
   def new_child
     @post = Post.new
     @post_parent = Post.find(params[:id])
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @post }
-    end
+
+    respond_with(@post)
   end
 
   # GET /posts/1/edit
@@ -76,16 +66,12 @@ class PostsController < ApplicationController
     # If it's new_child, build relationship to parent
     @post.relationships.build(:relation_id => relation_id) if relation_id
     
-    respond_to do |format|
-      if @post.save
-        current_user.posts << @post
-        format.html { redirect_to @post, :notice => 'Post was successfully created.' }
-        format.json { render :json => @post, :status => :created, :location => @post }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @post.errors, :status => :unprocessable_entity }
-      end
+    if @post.save
+      current_user.posts << @post
+       flash[:notice] = 'Post was successfully created.'
     end
+
+    respond_with(@post)
   end
 
   # PUT /posts/1
@@ -93,15 +79,11 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
  
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, :notice => 'Post was successfully updated.' }
-        format.json { respond_with_bip(@post) }
-      else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@post) }
-      end
+    if @post.update_attributes(params[:post])
+      flash[:notice] = 'Post was successfully updated.'
     end
+    
+    respond_with(@post)
   end
 
   # DELETE /posts/1
@@ -110,10 +92,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
 
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :ok }
-    end
+    respond_with(@post, :location => posts_url)
   end
   
   def vote
