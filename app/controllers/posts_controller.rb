@@ -79,11 +79,15 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
  
-    if @post.update_attributes(params[:post])
-      flash[:notice] = 'Post was successfully updated.'
+    respond_to do |format|
+      if @post.update_attributes(params[:post])
+        format.html { redirect_to @post, :notice => 'Post was successfully updated.' }
+        format.json { respond_with_bip(@post) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@post) }
+      end
     end
-    
-    respond_with(@post)
   end
 
   # DELETE /posts/1
