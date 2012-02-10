@@ -1,0 +1,22 @@
+console.log('new js erb here');
+var el = $('#response');
+
+<% if @post.errors.any? %>
+
+	// Create a list of errors
+	var errors = $('<ul />');
+
+	<% @post.errors.full_messages.each do |error| %>
+		errors.append('<li><%= escape_javascript( error ) %></li>');
+	<% end %>
+
+	// Display errors on form
+	el.html(errors);
+
+<% else %>
+	
+	console.log("no errors");
+	el.html('<%= escape_javascript(flash.discard(:notice)) %>');
+	
+	
+<% end %>
