@@ -5,9 +5,9 @@ $(document).ready(function() {
 	// In-place editing
 	$('.best_in_place').best_in_place();
 
-	$('.posts_list').waitForImages(function() {
+	//$('.posts_list').waitForImages(function() {
 		//list_image_fitting();
-	})
+	//})
 	
 });
 
