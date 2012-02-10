@@ -71,7 +71,7 @@ class PostsController < ApplicationController
        flash[:notice] = 'Post was successfully created.'
     end
 
-    respond_with(@post)
+    respond_with(@post, :layout => !request.xhr? )
   end
 
   # PUT /posts/1

@@ -12,7 +12,7 @@ $(document).ready(function() {
 	dropbox.addEventListener("dragover", dragOver, false);
 	dropbox.addEventListener("drop", drop, false);
 
-	// Save canvas
+	// Inject image data into form ready to save
     $('#new_post, form.edit_post').submit(function() {
 		if (ready_to_save) {
       		$('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
