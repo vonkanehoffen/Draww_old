@@ -5,6 +5,21 @@
 <%= javascript_include_tag "canvas_upload" %>
 <% end %>
 
+<div id="canvas_container">
+	<canvas datasrc="/pjs/draw-processing.pjs" id="canvas" width="640" height="427" tabindex="0">
+		<p>Sorry, you should really upgrade your browser.</p>
+	</canvas>
+</div>
+<div class="canvas_tools">
+	<div class="left">
+		<a href="#" class="tool crop"></a>
+		<a href="#" class="tool pencil"></a>
+	</div>
+	<div class="right">
+		<a href="#" id="save">Save</a>
+	</div>
+</div>
+
 <% @post.tags.build %>
 <%= form_for(@post,:html => { :multipart => true }, :remote => true) do |f| %>
   <% if @post.errors.any? %>
@@ -18,43 +33,27 @@
       </ul>
     </div>
   <% end %>
-	<div id="canvas_container">
-		<canvas datasrc="/pjs/draw-processing.pjs" id="canvas" width="640" height="427" tabindex="0">
-			<p>Sorry, you should really upgrade your browser.</p>
-		</canvas>
-	</div>
-	<div class="canvas_tools">
-		<div class="left">
-			<a href="#" id="crop"></a>
-			<a href="#" id="pencil"></a>
-		</div>
-		<div class="right">
-			<%= f.submit %>
-		</div>
-	</div>
+
 	<%# TODO: Move post meta fields into toolbar and check them with JS before save attempt %>
+
 	<div id="response"></div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
 	<div class="field">
-		<%# f.label :photo %>
-		<%# f.file_field :photo %>
+		<%= f.label :title %><br />
+		<%= f.text_field :title %>
 	</div>
+	<div class="field">
+		<%= f.label :description %><br />
+		<%= f.text_area :description, :rows => 5 %>
+	</div>
+	<h2>Tags</h2>
+	<div class="field">
+		<%= f.label :tag_names %><br />
+		<%= f.text_field :tag_names %>
+	</div>
+
 	<%= f.hidden_field :attachment64 %>
 	<%= f.hidden_field :relation_id, :value => @post_parent.id if @post_parent %>
-	
-<h2>Tags</h2>
-<p>
-  <%= f.label :tag_names %><br />
-  <%= f.text_field :tag_names %>
-</p>
-  <div class="actions">
 
-  </div>
+	<%= f.submit %>
+	
 <% end %>

@@ -4,7 +4,8 @@ var ready_to_save = false;
 
 $(document).ready(function() {
 
-	var dropbox = document.getElementById("canvas")
+	var dropbox = document.getElementById("canvas");
+	var form_el = $('form.new_post, form.edit_post');
 
 	// init event handlers
 	dropbox.addEventListener("dragenter", dragEnter, false);
@@ -12,14 +13,25 @@ $(document).ready(function() {
 	dropbox.addEventListener("dragover", dragOver, false);
 	dropbox.addEventListener("drop", drop, false);
 
-	// Inject image data into form ready to save
-    $('#new_post, form.edit_post').submit(function() {
+	// On submit, inject image data into form
+    form_el.submit(function() {
+		console.log("submitting");
 		if (ready_to_save) {
       		$('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
 		} else {
       		$('#post_attachment64').remove();
 		}
     });
+
+	// Put form fields into a modal box
+	form_el.dialog({
+		modal: 		true,
+		width: 		500,
+		autoOpen: 	false
+	});
+	$('.canvas_tools #save').button().click(function(){
+		form_el.dialog('open');
+	});
 
 	// Resize Canvas
 	pjsReadyFn['auto_resize'] = function() {

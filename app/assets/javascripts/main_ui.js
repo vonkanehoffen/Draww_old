@@ -9,6 +9,7 @@ $(document).ready(function() {
 		//list_image_fitting();
 	//})
 	
+	$('input:submit').button();
 });
 
 // Post _list image fitting

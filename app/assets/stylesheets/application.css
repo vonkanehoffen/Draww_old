@@ -8,7 +8,11 @@
  * and the CSS for canvas editing is included only conditionally
  *= require_self
  *= require boilerplate
+ *= require jquery-ui.aristo
  *= require unified
+
+ * These ones won't be included
+ *
  * require scaffolds
  * require global
  * require home

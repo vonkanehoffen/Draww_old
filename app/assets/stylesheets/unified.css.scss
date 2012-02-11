@@ -50,7 +50,7 @@ h4 {
 // Form & Button Styles ----------------------------------------------------------
 // -------------------------------------------------------------------------------
 
-input, textarea, .button, a.button {
+/*input, textarea, .button, a.button {
 	@include border-radius(2px);
 	display:inline-block;
 }
@@ -74,7 +74,7 @@ input[type=submit], .button, a.button {
 	@include transition(opacity 0.5s);
 	&.green { @include green_gradient; }
 	&.light { @include grey_gradient; }
-}
+}*/
 
 // In-place Editing --------------------------------------------------------------
 

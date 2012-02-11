@@ -16,7 +16,7 @@ var el = $('#response');
 <% else %>
 	
 	console.log("no errors");
-	el.html('<%= escape_javascript(flash.discard(:notice)) %>');
-	
+	//el.html('<%= escape_javascript(flash.discard(:notice)) %>');
+	window.location.href='<%= url_for @post %>';
 	
 <% end %>
