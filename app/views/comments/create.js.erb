@@ -1,0 +1,21 @@
+console.log('comment create js called');
+el = $('#comments');
+
+<% if @comment.errors.any? %>
+
+	// Create a list of errors
+	var errors = $('<ul />');
+
+	<% @post.errors.full_messages.each do |error| %>
+		errors.append('<li><%= escape_javascript( error ) %></li>');
+	<% end %>
+
+	// Display errors on form
+	el.append(errors);
+
+<% else %>
+	
+	el.html('<%= escape_javascript( render @post.comments ) %>');
+	$('textarea#comment_body').val('');
+<% end %>
+$('#flash').html('<%= escape_javascript( render 'shared/flashes') %>');

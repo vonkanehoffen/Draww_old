@@ -47,10 +47,12 @@
 	<% end %>
 
 	<h2>Comments</h2>
-	<%= render @post.comments - [@comment] %>
+	<div id="comments">
+		<%= render @post.comments - [@comment] %>
+	</div>
 
 	<h2>Add a comment:</h2>
-	<%= form_for([@post, @comment]) do |f| %>
+	<%= form_for([@post, @comment], :remote => true) do |f| %>
 	  <% if @comment.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
