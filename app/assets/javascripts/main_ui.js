@@ -41,6 +41,13 @@ $(document).ready(function() {
 		console.log("ajax:aborted:file fired");
 	});
 
+	// Make comments submit on Enter key press
+	
+	$("#comment_body").keypress(function(event) {
+		if ( event.which == 13 ) {
+			$(this).submit();
+		}
+	});
 	
 });
 
