@@ -4,7 +4,6 @@ class Post < ActiveRecord::Base
   before_validation :save_attachment64
   before_save :default_values
   # paginates_per 10 < set in config/initializers/kaminari_config
-  # TODO: needs to validate filesize
  
   # Paperclip
   # All photos should be 3 to 2 aspect
@@ -20,7 +19,8 @@ class Post < ActiveRecord::Base
     :length => { :minimum => 2, :maximum => 40, :message => "Sorry, title too long or too short" },
     :presence => {:message => "Title can't be blank" }
   validates_attachment_presence :photo
-  # validates :title, :presence => true, :length => { :minimum => 2 }
+  validates_attachment_size :photo, :less_than => 1.megabytes
+
   has_many :comments, :dependent => :destroy
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
@@ -38,7 +38,6 @@ class Post < ActiveRecord::Base
   private
   def save_attachment64
     if self.attachment64
-    # unless self.attachment64 == 'no_image' || self.attachment64.nil?
       require Rails.root.join('lib', 'datafy.rb')
       tmp_uri = "tmp/"+friendly_name(self.title)+".jpg"
       puts "Friendly name = "+tmp_uri
@@ -71,7 +70,9 @@ class Post < ActiveRecord::Base
   def tag_names
     @tag_names || tags.map(&:name).join(' ')
   end
-    # ranking system
+  
+  # Ranking System
+  
   def votes_count
     self.votes.count
   end
@@ -79,7 +80,6 @@ class Post < ActiveRecord::Base
   def votes_score
     votes.inject(0){|s,v| s += v.points || 0} 
   end
-
 
   private
 
