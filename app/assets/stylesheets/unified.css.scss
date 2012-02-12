@@ -6,7 +6,7 @@
 
 /* Contents:
  * - Text & Basic Element Styles
- * - Form & Button Styles
+ * - Forms & Buttons
  * --- In-place Editing
  * - Layout Containers
  * - Header & User Navigation
@@ -47,8 +47,16 @@ h4 {
 }
 
 // -------------------------------------------------------------------------------
-// Form & Button Styles ----------------------------------------------------------
+// Forms & Buttons (also see jquery-ui.aristo)------------------------------------
 // -------------------------------------------------------------------------------
+
+.ajax_status { 
+	width:24px;
+	height:24px;
+}
+.ajax_status.loading {
+	background:url('/images/ajax-loader.gif') top left no-repeat;
+}
 
 /*input, textarea, .button, a.button {
 	@include border-radius(2px);

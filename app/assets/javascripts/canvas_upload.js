@@ -15,7 +15,6 @@ $(document).ready(function() {
 
 	// On submit, inject image data into form
     form_el.submit(function() {
-		console.log("submitting");
 		if (ready_to_save) {
       		$('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
 		} else {
@@ -25,6 +24,7 @@ $(document).ready(function() {
 
 	// Put form fields into a modal box
 	form_el.dialog({
+		title: 		"Save", 
 		modal: 		true,
 		width: 		500,
 		autoOpen: 	false
