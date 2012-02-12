@@ -13,12 +13,18 @@ $(document).ready(function() {
 	dropbox.addEventListener("dragover", dragOver, false);
 	dropbox.addEventListener("drop", drop, false);
 
-	// On submit, inject image data into form
     form_el.submit(function() {
+		// Inject image data into form
 		if (ready_to_save) {
       		$('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
 		} else {
       		$('#post_attachment64').remove();
+		}
+		
+		// Populate title if blank
+		var title_el = $('input#post_title');
+		if(title_el.val().length < 1) {
+			title_el.val(title_el.attr('placeholder'));
 		}
     });
 
