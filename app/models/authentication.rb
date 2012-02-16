@@ -9,7 +9,7 @@ class Authentication < ActiveRecord::Base
   end
     
   def self.create_from_hash(hash, user = nil)
-    puts "CREATING AUTH FROM HASH".log_red
+    # puts "CREATING AUTH FROM HASH".log_red
     user ||= User.create_from_hash(hash)
     Authentication.create(:user_id => user.id, :uid => hash['uid'], :provider => hash['provider'])
   end

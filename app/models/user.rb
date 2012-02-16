@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
   
   def self.create_from_hash(hash)
-    puts "CREATING USER FROM HASH".log_red
+    # puts "CREATING USER FROM HASH".log_red
     # user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :email => "testing_tw@test.loc", :created_from_oauth => true )
     user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :created_from_oauth => true )
     user.save! #create the user without performing validations. This is because most of the fields are not set.

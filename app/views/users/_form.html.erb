@@ -15,7 +15,7 @@
 <table>
 	<tbody>
 		<tr>
-			<% if @user.username %>
+			<% if action_name == 'edit' %>
 			<td>Username: </td><td><%= @user.username %></td>
 			<% else %>
 			<td><%= f.label :username %></td>
