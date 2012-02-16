@@ -2,12 +2,15 @@ class User < ActiveRecord::Base
   
   # TODO: Add Website / Gravatar Icon / About you fields
 
-  attr_accessor :needs_no_password
+  attr_accessor :created_from_oauth
 
   acts_as_authentic do |c|
-    c.merge_validates_confirmation_of_password_field_options({:unless => :needs_no_password})
-    c.merge_validates_length_of_password_field_options({:unless => :needs_no_password})
-    c.merge_validates_length_of_password_confirmation_field_options({:unless => :needs_no_password})
+    c.merge_validates_confirmation_of_password_field_options({:unless => :created_from_oauth})
+    c.merge_validates_length_of_password_field_options({:unless => :created_from_oauth})
+    c.merge_validates_length_of_password_confirmation_field_options({:unless => :created_from_oauth})
+    c.merge_validates_length_of_email_field_options({:unless => :created_from_oauth})
+    c.merge_validates_format_of_email_field_options({:unless => :created_from_oauth})
+    c.merge_validates_uniqueness_of_email_field_options({:unless => :created_from_oauth})
   end
   
   
@@ -32,9 +35,9 @@ class User < ActiveRecord::Base
   end
   
   def self.create_from_hash(hash)
-    # TODO: Twitter doesn't supply email in OAuth. Need to drop validation and maybe ask user for it
     puts "CREATING USER FROM HASH".log_red
-    user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :email => "testing_tw@test.loc", :needs_no_password => true )
+    # user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :email => "testing_tw@test.loc", :created_from_oauth => true )
+    user = User.new(:username => hash['info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase, :created_from_oauth => true )
     user.save! #create the user without performing validations. This is because most of the fields are not set.
     user.reset_persistence_token! #set persistence_token else sessions will not be created
     user
