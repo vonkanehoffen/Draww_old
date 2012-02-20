@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       @posts = Tag.find_by_name(params[:tag_name]).posts.order("created_at DESC").page params[:page]
     else
       # find all posts
-      @posts = Post.order("created_at DESC").page params[:page]
+      @posts = Post.order("cached_hotness DESC").page params[:page]
     end
 
     respond_with(@posts)
@@ -68,6 +68,7 @@ class PostsController < ApplicationController
     
     if @post.save
       current_user.posts << @post
+      current_user.vote!(@post)
        flash[:notice] = 'Post was successfully created.'
     end
 

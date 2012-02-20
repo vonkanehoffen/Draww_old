@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
     :length => { :minimum => 2, :maximum => 40, :message => "Sorry, title too long or too short" },
     :presence => {:message => "Title can't be blank" }
   validates_attachment_presence :photo
-  validates_attachment_size :photo, :less_than => 1.megabytes
+  # validates_attachment_size :photo, :less_than => 1.megabytes
 
   has_many :comments, :dependent => :destroy
   has_many :taggings, :dependent => :destroy

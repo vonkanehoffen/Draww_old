@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20120220151552) do
     t.integer  "user_id"
     t.integer  "upvote"
     t.integer  "downvote"
-    t.integer  "rank"
+    t.integer  "rank",               :limit => 8
     t.float    "cached_hotness"
   end
 
