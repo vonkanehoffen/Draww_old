@@ -6,7 +6,7 @@ class Vote < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :post_id
   
   def heat
-    self.points/ (Date.today - created_at.to_date).to_i
+    self.points/ ((Date.today - created_at.to_date).to_i + 1)
   end
 
   private
