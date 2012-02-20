@@ -122,4 +122,16 @@ class PostsController < ApplicationController
     #end
   end
   
+  def sweep_hotness_cache
+    t = Time.now
+    logger.info "Starting Cache Sweep..."
+    Post.all.each do |p|
+      p.cached_hotness = p.calculate_votes_hotness
+      p.save! # where will errors get raised?
+    end
+    logger.info "Cache Swept (in #{((Time.now-t)/6).to_i/10.0} minutes)"
+    flash[:notice] = "Cache Swept"
+    redirect_to :action => :index
+  end
+  
 end

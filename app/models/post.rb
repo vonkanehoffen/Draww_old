@@ -68,7 +68,7 @@ class Post < ActiveRecord::Base
   public
   
   def tag_names
-    @tag_names || tags.map(&:name).join(' ')
+    @tag_names || tags.map(&:name).join(' ') #NB: acts_as_taggable_on does a lot of this for you!
   end
   
   # Ranking System
@@ -81,7 +81,11 @@ class Post < ActiveRecord::Base
     votes.inject(0){|s,v| s += v.points || 0} 
   end
 
-  def hotness
+  def votes_hotness
+    cached_hotness || calculate_votes_hotness
+  end
+  
+  def calculate_votes_hotness
     votes.inject(0){|s,v| s += v.heat || 0} 
   end
 
