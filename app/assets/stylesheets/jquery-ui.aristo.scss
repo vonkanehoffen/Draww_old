@@ -6,7 +6,14 @@
  * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Theming/API
+ *
+ * Modified for Draww by Kane
+ *
  */
+
+// Variables
+$col1: #ededed; // Gradient top 
+$col2: #c4c4c4; // Gradient btm
 
 /* Layout helpers
 ----------------------------------*/
@@ -63,13 +70,13 @@
 .ui-widget-content a { color: #4F4F4F; }
 .ui-widget-header { border: 1px solid #B6B6B6; color: #4F4F4F; font-weight: bold; }
 .ui-widget-header {
-	background: #ededed url(/images/jquery_ui/bg_fallback.png) 0 0 repeat-x; /* Old browsers */
-		background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#c4c4c4)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* Opera11.10+ */
-		background: -ms-linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* IE10+ */
-		background: linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* W3C */
+	background: $col1 url(/images/jquery_ui/bg_fallback.png) 0 0 repeat-x; /* Old browsers */
+		background: -moz-linear-gradient(top, $col1 0%, $col2 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$col1), color-stop(100%,$col2)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, $col1 0%,$col2 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, $col1 0%,$col2 100%); /* Opera11.10+ */
+		background: -ms-linear-gradient(top, $col1 0%,$col2 100%); /* IE10+ */
+		background: linear-gradient(top, $col1 0%,$col2 100%); /* W3C */
 }
 .ui-widget-header a { color: #4F4F4F; }
 
@@ -77,13 +84,13 @@
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #B6B6B6; font-weight: normal; color: #4F4F4F; }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { 
-	background: #ededed url(/images/jquery_ui/bg_fallback.png) 0 0 repeat-x; /* Old browsers */
-		background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#c4c4c4)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* Opera11.10+ */
-		background: -ms-linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* IE10+ */
-		background: linear-gradient(top, #ededed 0%,#c4c4c4 100%); /* W3C */
+	background: $col1 url(/images/jquery_ui/bg_fallback.png) 0 0 repeat-x; /* Old browsers */
+		background: -moz-linear-gradient(top, $col1 0%, $col2 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$col1), color-stop(100%,$col2)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, $col1 0%,$col2 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, $col1 0%,$col2 100%); /* Opera11.10+ */
+		background: -ms-linear-gradient(top, $col1 0%,$col2 100%); /* IE10+ */
+		background: linear-gradient(top, $col1 0%,$col2 100%); /* W3C */
 	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 	box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
@@ -94,7 +101,7 @@
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { 
 	outline: none;
 	color: #1c4257; border: 1px solid #7096ab;
-	background: #ededed url(/images/jquery_ui/bg_fallback.png) 0 -50px repeat-x; /* Old browsers */
+	background: $col1 url(/images/jquery_ui/bg_fallback.png) 0 -50px repeat-x; /* Old browsers */
 		background: -moz-linear-gradient(top, #b9e0f5 0%, #92bdd6 100%); /* FF3.6+ */
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b9e0f5), color-stop(100%,#92bdd6)); /* Chrome,Safari4+ */
 		background: -webkit-linear-gradient(top, #b9e0f5 0%,#92bdd6 100%); /* Chrome10+,Safari5.1+ */
@@ -475,7 +482,7 @@ button.ui-button-icons-only { width: 3.7em; }
 	outline: none;
 	color: #1c4257;
 	border-color: #7096ab;
-	background: #ededed url(/images/jquery_ui/bg_fallback.png) 0 -50px repeat-x; /* Old browsers */
+	background: $col1 url(/images/jquery_ui/bg_fallback.png) 0 -50px repeat-x; /* Old browsers */
 		background: -moz-linear-gradient(top, #b9e0f5 0%, #92bdd6 100%); /* FF3.6+ */
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b9e0f5), color-stop(100%,#92bdd6)); /* Chrome,Safari4+ */
 		background: -webkit-linear-gradient(top, #b9e0f5 0%,#92bdd6 100%); /* Chrome10+,Safari5.1+ */
@@ -521,7 +528,7 @@ input.ui-button::-moz-focus-inner {
 .ui-buttonset .ui-button { margin-left: 0; margin-right: -.3em; }
 .ui-buttonset .ui-button.ui-state-active { color: #1c4257; border-color: #7096ab; }
 .ui-buttonset .ui-button.ui-state-active {
-	background: #ededed url(/images/jquery_ui/bg_fallback.png) 0 -50px repeat-x; /* Old browsers */
+	background: $col1 url(/images/jquery_ui/bg_fallback.png) 0 -50px repeat-x; /* Old browsers */
 		background: -moz-linear-gradient(top, #b9e0f5 0%, #92bdd6 100%); /* FF3.6+ */
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b9e0f5), color-stop(100%,#92bdd6)); /* Chrome,Safari4+ */
 		background: -webkit-linear-gradient(top, #b9e0f5 0%,#92bdd6 100%); /* Chrome10+,Safari5.1+ */
