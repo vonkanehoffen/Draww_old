@@ -16,7 +16,7 @@ Draww::Application.routes.draw do
   
   # Posts Display
   match '/tags/:tag_name' => 'posts#index', :as => :tag_name
-  match '/user/:username' => "Users#show", :as => :name_user
+  match '/u/:username' => "Users#show", :as => :name_user
   match '/posts/new/:id' => 'Posts#new_child', :as => :new_child_post
   
   resources :posts do

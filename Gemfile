@@ -39,7 +39,7 @@ gem 'nifty-generators'
 
 gem 'awesome_print'
 gem 'paperclip'
-gem 'kaminari'
+gem 'kaminari', '~>0.13.0'
 
 gem 'authlogic'
 gem 'omniauth'
