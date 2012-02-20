@@ -1,17 +1,30 @@
-Then /^I should see a link to vote for the post$/ do
+Then /^I should see a link to vote up the post$/ do
 #  binding.pry
-  page.has_link?('vote')
+  page.has_link?('Vote Up')
 end
 
-When /^I click the vote button$/ do
+When /^I vote up$/ do
   #step 'I press "vote for this post"'
-  page.find_link('vote').click
+  page.find_link('Vote Up').click
   #page.links.detect{|l| l =~ /vote/}.click
 end
 
-Then /^the post should have received my vote$/ do
+Then /^I should see a link to vote down the post$/ do
+  page.has_link?('Vote Down')
+end
+
+When /^I vote down$/ do
+  page.find_link('Vote Down').click
+end
+
+Then /^the post should have a positive score$/ do
   Post.last.votes_count.should > 0
 end
+
+Then /^the post should have a negative score$/ do
+  Post.last.votes_count.should < 0
+end
+
 
 Given /^I am a post author$/ do
   FactoryGirl.create(:post, {:user => @current_user})

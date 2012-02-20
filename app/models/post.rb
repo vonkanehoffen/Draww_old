@@ -81,6 +81,10 @@ class Post < ActiveRecord::Base
     votes.inject(0){|s,v| s += v.points || 0} 
   end
 
+  def hotness
+    votes.inject(0){|s,v| s += v.heat || 0} 
+  end
+
   private
 
   def assign_tags

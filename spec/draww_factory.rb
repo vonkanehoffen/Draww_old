@@ -47,6 +47,18 @@ FactoryGirl.define do
     factory :hi_point_vote do
       points 5
     end
+    factory :old_vote do
+      created_at 1.weeks.ago
+      updated_at 1.weeks.ago
+    end
+    factory :older_vote do
+      created_at 2.weeks.ago
+      updated_at 2.weeks.ago
+    end
+    factory :oldest_vote do
+      created_at 4.weeks.ago
+      updated_at 4.weeks.ago
+    end
   end
   
   factory :author, :parent => :user do
