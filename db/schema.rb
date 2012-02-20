@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20111226174225) do
     t.integer  "user_id"
     t.integer  "upvote"
     t.integer  "downvote"
-    t.integer  "rank",               :limit => 8
+    t.integer  "rank"
   end
 
   create_table "relationships", :force => true do |t|

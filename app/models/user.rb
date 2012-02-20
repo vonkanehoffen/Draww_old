@@ -26,9 +26,7 @@ class User < ActiveRecord::Base
   end
   
   def vote!(post)
-    v = votes.build(:post => post)
-    v.save! if v.valid?
-    v
+    v = votes.create!(:post => post)
   end
   
   def self.create_from_hash(hash)
