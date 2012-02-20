@@ -20,6 +20,14 @@ describe "Ranking Mechanism" do
       #binding.pry
       hv.points.should > lv.points
     end
+    it "should be hotter when the vote was more recently created" do
+      ov = FactoryGirl.create(:old_vote)
+      oov = FactoryGirl.create(:older_vote)
+      ooov = FactoryGirl.create(:oldest_vote)
+      @v.heat.should > ov.heat
+      ov.heat.should > oov.heat
+      oov.heat.should > ooov.heat
+    end
   end
   describe User do
     before(:each) do
@@ -75,6 +83,17 @@ describe "Ranking Mechanism" do
       FactoryGirl.create(:lo_score_user).vote!(a)
       FactoryGirl.create(:hi_score_user).vote!(b)
       a.votes_score.should < b.votes_score
+    end
+    describe "hotness" do
+      it "should exist as a number" do
+        @p.hotness.should be_a_kind_of(Numeric)  
+      end
+      it "should be hotter with more recent votes" do
+        @p.votes << FactoryGirl.create_list(:old_vote, 5, :points=>1)
+        hp = FactoryGirl.create(:post)
+        hp.votes << FactoryGirl.create_list(:vote, 5, :points=>1)
+        @p.hotness.should < hp.hotness
+      end
     end
   end
   describe "Efficiency" do

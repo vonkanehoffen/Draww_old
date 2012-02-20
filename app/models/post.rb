@@ -71,15 +71,17 @@ class Post < ActiveRecord::Base
   def tag_names
     @tag_names || tags.map(&:name).join(' ')
   end
-    # ranking system
+  
+  # ranking system
   def votes_count
     self.votes.count
   end
-  
   def votes_score
     votes.inject(0){|s,v| s += v.points || 0} 
   end
-
+  def hotness
+    votes.inject(0){|s,v| s += v.heat || 0} 
+  end
 
   private
 
