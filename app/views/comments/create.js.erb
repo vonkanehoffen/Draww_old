@@ -6,6 +6,7 @@ el = $('#comments');
 	// Create a list of errors
 	var errors = $('<ul />');
 
+	// TODO: Show an error when user not logged in and tries to post comment
 	<% @post.errors.full_messages.each do |error| %>
 		errors.append('<li><%= escape_javascript( error ) %></li>');
 	<% end %>

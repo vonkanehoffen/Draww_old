@@ -1,57 +1,59 @@
-<div id="show">
+<div id="title_strip">
+	<%= render :partial => 'ranking', :locals => {:post => @post} %><%# TODO: Show which users voted %>
+	<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
+	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
 	<div class="actions">
-		<%= render :partial => 'ranking', :locals => {:post => @post} %>
-		<%= link_to content_tag(:span, 'Edit'), new_child_post_path(@post), :class => 'edit' %>
-
-		<% if belongs_to_current_user(@post) %>
-			<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
-		<% end %>
-		<a href="#" class="previous"><span>Previous</span></a>
-		<a href="#" class="zoom"><span>Zoom</span></a>
-		<a href="#" class="next"><span>Next</span></a>
-		<%# TODO: Make Next / Previous / Zoom Links work %>
+		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'edit' %>
+		<a href="#" class="next"><span>Next</span></a><%# TODO: Make Next Link work %>
 	</div>
+</div>
+<div id="show">
 	<% if @post.photo.exists? then %>
-		<%= image_tag @post.photo.url(:medium), :class => 'medium' %></p>
+		<%= image_tag @post.photo.url(:medium), :class => 'medium' %><%# TODO: Should show full screen on click %>
 	<% else %>
 		<p>Error: No photo.</p>
 	<% end %>
+	
+	<% unless @post.parents.empty? %>
+		<div class="parents">
+			<h3>Original</h3>
+			<% for parent in @post.parents %>
+			<%= link_to(image_tag(parent.photo(:thumb)), parent, :class => 'relation') %>
+			<% end %>
+		</div>
+	<% end %>
+	<% unless @post.inverse_relationships.empty? %>
+		<div class="children">
+			<h3>Derivatives</h3>
+			<% for relationship in @post.inverse_relationships %>
+			<%= link_to(image_tag(relationship.post.photo(:thumb)), relationship.post, :class => 'relation') %>
+			<% end %>
+		</div>
+	<% end %>
 </div>
 <div id="meta">
-	<div class="post_title">
-		<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
-		<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
-	</div>
 	<p>
-	  <b>Description:</b>
+		<% if belongs_to_current_user(@post) %>
+			<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
+		<% end %>
+	</p>
+	<p>
+	  <h3>Description:</h3>
 	  <%= best_in_place_if @post.user == current_user, @post, :description, :type => :textarea %>
 	</p>
 
 	<p>
-	  <b>Tags:</b>
+	  <h3>Tags:</h3>
 	  <%= tag_links(@post) %>
 		<%# TODO: find a way to get in-place tag add/delete %>
 	</p>
 
-	<% unless @post.parents.empty? %>
-		<h3>Parents</h3>
-		<% for parent in @post.parents %>
-		<%= link_to(image_tag(parent.photo(:thumb)), parent, :class => 'relation') %>
-		<% end %>
-	<% end %>
-	<% unless @post.inverse_relationships.empty? %>
-		<h3>Children</h3>
-		<% for relationship in @post.inverse_relationships %>
-		<%= link_to(image_tag(relationship.post.photo(:thumb)), relationship.post, :class => 'relation') %>
-		<% end %>
-	<% end %>
-
-	<h2>Comments</h2>
+	<h3>Comments</h3>
 	<div id="comments">
 		<%= render @post.comments - [@comment] %>
 	</div>
 
-	<h2>Add a comment:</h2>
+	<h3>Add a comment:</h3>
 	<%= form_for([@post, @comment], :remote => true) do |f| %>
 	  <% if @comment.errors.any? %>
 	    <div id="error_explanation">
@@ -65,11 +67,11 @@
 	    </div>
 	  <% end %>
 	  <div class="field">
-	    <%= f.text_area :body, :cols => 40, :rows => 6 %>
+	    <%= f.text_area :body, :cols => 35, :rows => 6 %>
 	  </div>
 	    <%= f.submit %>
 	<% end %>
 </div>
 
 <%# link_to 'Edit', edit_post_path(@post) %>
-<div class="clearfix"></div>
+

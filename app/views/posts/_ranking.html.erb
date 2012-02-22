@@ -1,8 +1,6 @@
 <div class="ranking">
 	<%# "#{post.votes_count} votes worth #{post.votes_score} reputation" %>
 	<%- post.upvote - post.downvote %>
-	<%# link_to "Up", upvote_path %>	
 	<%= link_to content_tag(:span, "Vote Up"), vote_path(post), :class => 'vote_up' %>
 	<%= link_to post.votes_count, post, :class => 'vote_total' %>
-	<a href="#" class="vote_down"><span>Vote Down</span></a><%# TODO: Vote down needs to work! %>
 </div>

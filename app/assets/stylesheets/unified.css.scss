@@ -26,10 +26,10 @@
 
 body { 
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-weight:200;
+	font-weight:normal;
 	font-size:14px; 
 	background: #fff;
-	color:#333;
+	color:#444;
 	font-smooth: always;
 	-webkit-font-smoothing: antialiased;
 }
@@ -38,11 +38,18 @@ a {
 	&:hover { opacity:0.7; }
 }
 h1 {
-	font-size:30px;
+	font-size:37px;
 	line-height:1.2em;
+	font-weight:200;
 	color:#666;
 }
 h1.big { font-size:57px; }
+h3 { 
+	font-size:14px; 
+	font-weight:bold; 
+	margin:$pad*2 0;
+}
+
 h4 {
 	font-weight:normal;
 	font-size:15px;
@@ -72,9 +79,8 @@ input[type=text], input[type=password], textarea {
 	@include box-shadow(inset 0,2px,6px, #ddd);
 	color:#333;
 }
-div.field {
-	margin:15px 0;
-}
+div.field { margin:15px 0; }
+form table td { padding:0 15px 15px 0; vertical-align:middle; }
 /*
 input[type=submit], .button, a.button {
 	border:0;
@@ -108,6 +114,14 @@ span.best_in_place {
 	width:$page_width;
 	margin:20px auto;
 }
+#title_strip {
+	margin-bottom:$pad*2;
+	h1 { display:inline; }
+	.by { display:inline; font-size:16px; padding-left:5px; }
+	.actions { float:right; }
+	.ranking { display:inline-block; }
+}
+
 
 // -------------------------------------------------------------------------------
 // Header & User Navigation ------------------------------------------------------
@@ -141,7 +155,7 @@ span.best_in_place {
 				border-right:none;
 			}
 		}
-		.msg { border-left:none; font-weight:200; }
+		.msg { border-left:none; font-weight:normal; }
 	}
 	#site_title {
 		width:100px;
@@ -293,22 +307,32 @@ footer {
 }
 
 .posts_list {
+	margin-right:- $pad;
 	.post {
 		float:left;
-		margin:0 10px 42px 0;
+		position:relative;
+		margin:0 $pad $pad 0;
 		.image {
-			padding-right:32px;
 			a:hover { opacity:1; }
 			img { 
-				width:280px;
-				height:186px;
+				width:316px;  // 948/3 = 316    
+				height:210px;  // 316/3*2 = 210.66666666666666666666
 			}
 		}
 		.actions {
-			width:24px;
-			float:right;
-			// display:none;
+			position:absolute;
+			top:0; left:0;
+			width:316px; height:210px;
+			background:rgba(0,0,0,0.5);
+			display:none;
 			span { display:none; }
+			.show {
+				position:absolute;
+				display:block;
+				width:83px; height:78px;
+				top:68px; left:55px;
+				background:url('/images/show.png') top left no-repeat;
+			}
 			.new_deriv {
 				display:block;
 				background:url('/images/edit.png') top left no-repeat;
@@ -316,10 +340,11 @@ footer {
 				height:24px;
 			}
 			.vote_up {
+				position:absolute;
 				display:block;
-				background:url('/images/vote_up.png') center left no-repeat;
-				width:24px;
-				height:24px;
+				width:108px; height:89px;
+				top:59px; left:170px;
+				background:url('/images/thumb-up.png') top left no-repeat;
 			}
 			.vote_down {
 				display:block;
@@ -346,6 +371,7 @@ footer {
 .pagination {
 	.prev, .next {
 		font-size:30px;
+		font-weight:200;
 		a {
 			text-decoration:none;
 			color:#333;
@@ -361,6 +387,7 @@ footer {
 	// Container for pic and main actions
 	float:left;
 	width:640px;
+	.parents, .children { float:left; margin-right:$pad*2; }
 }
 #meta {
 	// Container for all info
@@ -406,11 +433,19 @@ footer {
 		padding-left:26px;
 	}
 }
-.post_title {
-	margin-bottom:10px;
-	h1 { display:inline; }
-	.by { display:inline; font-size:16px; padding-left:5px; }
+
+// Comments
+.comment {
+	margin-bottom:15px;
+	padding-bottom:15px;
+	border-bottom:1px solid #d5d5d5;
+	.user { 
+		color:#999; display:inline; 
+		a { color:#999; }
+	}
+	.body { display:inline; }
 }
+textarea#comment_body { width:302px; }
 
 // -------------------------------------------------------------------------------
 // User Management Views ---------------------------------------------------------

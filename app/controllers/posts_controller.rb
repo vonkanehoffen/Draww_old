@@ -107,11 +107,12 @@ class PostsController < ApplicationController
     if vote.valid?
       flash[:notice] = "You voted for #{@post.title}!\nOn behalf of #{@post.user.username}, thanks!"
     elsif vote.errors.messages.has_key?(:user_id)
-      flash[:errors] = "You've already voted for #{@post.title}!"
+      flash[:errors] = "You've already voted for #{@post.title}!"  # TODO: This just errors out 'validation failed' at the moment
     else
       flash[:errors] = "Could vote sorry!"
     end
     redirect_to request.referer
+    #respond_with(@post)
     #respond_to do |format|
     #  if current_user.vote!(@post).save
     #    format.html { render :upvote, :notice => "You voted for #{@post.title}!\nOn behalf of #{@post.user.username}, thanks!" }
