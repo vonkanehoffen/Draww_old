@@ -11,9 +11,7 @@
  *
  */
 
-// Variables
-$col1: #14954b; // Gradient top 
-$col2: #0f6c36; // Gradient btm
+@import "variables.scss";
 $ui_br: 5px; // Border radius
 
 /* Layout helpers
@@ -535,7 +533,8 @@ input.ui-button {
 	-webkit-appearance:none;
 	-webkit-font-smoothing: antialiased;
 	color:#fff;
-	padding: 6px 20px 7px 20px; 
+	line-height:36px;
+	padding:0 20px;
 }
 /*remove submit button internal padding in Firefox*/ 
 input.ui-button::-moz-focus-inner { 
@@ -543,12 +542,12 @@ input.ui-button::-moz-focus-inner {
     padding: 0;
 }
 /* fix webkits handling of the box model */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+/*@media screen and (-webkit-min-device-pixel-ratio:0) {
 	input.ui-button {
-		height: 31px !important;
+		height: 36px !important;
 	}
 }
-
+*/
 
 /*button icon element(s) */
 .ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon { position: absolute; top: 50%; margin-top: -8px; }

@@ -3,8 +3,8 @@
 	<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
 	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
 	<div class="actions">
-		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'edit' %>
-		<a href="#" class="next"><span>Next</span></a><%# TODO: Make Next Link work %>
+		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'edit button', :rel => 'nofollow' %>
+		<a href="#" class="next button grey"><span>Next</span></a><%# TODO: Make Next Link work %>
 	</div>
 </div>
 <div id="show">

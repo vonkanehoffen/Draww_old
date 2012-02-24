@@ -11,13 +11,16 @@ $l_grey: #bbb;
 $m_grey: #999;
 $d_grey: #777;
 
+$col1: #14954b; // Gradient top green 
+$col2: #0f6c36; // Gradient btm green
+
 // Gradients
 
 @mixin green_gradient {
-	@include linear-gradient($m_green, $d_green);
+	@include linear-gradient($col1, $col2);
 }
 @mixin grey_gradient {
-	@include linear-gradient($l_grey, $m_grey);
+	@include linear-gradient(#999, #6f6f6f);
 }
 
 // Measurements

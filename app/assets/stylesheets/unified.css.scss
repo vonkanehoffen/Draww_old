@@ -81,22 +81,28 @@ input[type=text], input[type=password], textarea {
 }
 div.field { margin:15px 0; }
 form table td { padding:0 15px 15px 0; vertical-align:middle; }
-/*
-input[type=submit], .button, a.button {
+
+.button {
+	
+}
+
+.button, a.button {
+	display:inline-block;
 	border:0;
-	font-size:12px;
-	padding:6px 10px;
+	font-size:14px;
+	padding:0 20px;
+	line-height:36px;
 	font-weight:bold;
 	color:#fff;
 	text-decoration:none;
-	text-transform:uppercase;
-	@include box-shadow(0,0, 6px, #ccc);
-	@include linear-gradient(#888, #666);
-	// text-shadow: 0 0 4px #222;
-	@include transition(opacity 0.5s);
+	@include green_gradient;
+	@include border-radius(5px);
 	&.green { @include green_gradient; }
-	&.light { @include grey_gradient; }
-}*/
+	&.grey { @include grey_gradient; }
+}
+#title_strip .button {
+	margin-left:$pad;
+}
 
 // In-place Editing --------------------------------------------------------------
 
@@ -118,7 +124,10 @@ span.best_in_place {
 	margin-bottom:$pad*2;
 	h1 { display:inline; }
 	.by { display:inline; font-size:16px; padding-left:5px; }
-	.actions { float:right; }
+	.actions { 
+		float:right; 
+		font-size:0;
+	}
 	.ranking { display:inline-block; }
 }
 
