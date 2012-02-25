@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    # TODO: If logged in, show comments on own posts
     if(params[:username])
       @user = User.where(:username => params[:username]).first
     else
@@ -47,7 +46,6 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @authentications = @user.authentications if current_user
-    # puts @authentications.inspect.log_red
   end
 
   # POST /users
@@ -60,7 +58,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, :notice => 'Registration successfull.' }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new" } # TODO_HELP: How do I redirect this to 'user_sessions/new' without losing validation errors? user_session/new and user/new now occupy the same view (combined login and signup). Am I even doing that the right way?
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
     end
