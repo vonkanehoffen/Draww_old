@@ -145,6 +145,8 @@ span.best_in_place {
 	.actions { 
 		float:right; 
 		font-size:0;
+		a { font-size:14px; }
+		select { font-size:14px; width:200px;}
 	}
 	.ranking { display:inline-block; }
 }

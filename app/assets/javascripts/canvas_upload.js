@@ -35,7 +35,7 @@ $(document).ready(function() {
 		width: 		500,
 		autoOpen: 	false
 	});
-	$('.canvas_tools #save').button().click(function(){
+	$('#save_post').click(function(){
 		form_el.dialog('open');
 	});
 

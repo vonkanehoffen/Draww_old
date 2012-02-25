@@ -4,7 +4,18 @@
 <%= javascript_include_tag "lib/processing" %>
 <%= javascript_include_tag "canvas_upload" %>
 <% end %>
-
+<div id="title_strip">
+	<h1>New Image</h1>
+	<div class="actions">
+		<select id="select_tool" class="grey">
+			<option value="none" selected="yes">Select Tool</option>
+			<option value="crop">Crop &amp; Scale</option>
+			<option value="pen">Pen</option>
+			<option value="line">Line</option>
+		</select>
+		<a href="#" id="save_post" class="button green">Save</a>
+	</div>
+</div>
 <div id="canvas_container">
 	<canvas datasrc="/pjs/draw-processing.pjs" id="canvas" width="640" height="427" tabindex="0">
 		<p>Sorry, you should really upgrade your browser.</p>
@@ -16,7 +27,6 @@
 		<a href="#" class="tool pencil"></a>
 	</div>
 	<div class="right">
-		<a href="#" id="save">Save</a>
 	</div>
 </div>
 

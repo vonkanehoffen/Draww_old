@@ -11,9 +11,9 @@ $(document).ready(function() {
 		//list_image_fitting();
 	//})
 	
-	// Jquery UI Stuff
-	//$('input:submit').button();
-	
+	// Replace Select Menus with Jquery UI
+	$('select').selectmenu();	
+
 	// Generc AJAX handling (jquery-ujs)
 	var ujs_form = $("form[data-remote='true']");
 	ujs_form.on('ajax:before', function(event) {

@@ -107,7 +107,7 @@ class PostsController < ApplicationController
     if vote.valid?
       flash[:notice] = "You voted for #{@post.title}!\nOn behalf of #{@post.user.username}, thanks!"
     elsif vote.errors.messages.has_key?(:user_id)
-      flash[:errors] = "You've already voted for #{@post.title}!"  # TODO_HELP: This just errors out 'validation failed' at the moment
+      flash[:errors] = "You've already voted for #{@post.title}!"  # TODO_HELP: This just errors out ActiveRecord::RecordInvalid at the moment. Why is the validation error not being caught with this flash
     else
       flash[:errors] = "Couldn't vote sorry!"
     end
