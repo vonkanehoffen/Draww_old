@@ -22,17 +22,7 @@
 
 <% @post.tags.build %>
 <%= form_for(@post,:html => { :multipart => true }, :remote => true) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<%= render "shared/error_messages", :target => @post %>
 
 	<%# TODO: Move post meta fields into toolbar and check them with JS before save attempt %>
 
