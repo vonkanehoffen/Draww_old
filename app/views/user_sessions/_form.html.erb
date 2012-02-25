@@ -1,19 +1,22 @@
-<%= form_for(@user_session) do |f| %>
-  <% if @user_session.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this user_session from being saved:</h2>
+<div class="user_sessions_form">
+	<%= form_for(@user_session) do |f| %>
+	  <% if @user_session.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this user_session from being saved:</h2>
 
-      <ul>
-      <% @user_session.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	      <ul>
+	      <% @user_session.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
 
-  <div class="login">
-    <%= f.text_field :username, :placeholder => 'User Name' %>
-    <%= f.password_field :password, :placeholder => 'Password' %>
-    <%= f.submit("Login") %>
-  </div>
-<% end %>
+		<%= f.label :username %>
+	    <%= f.text_field :username %>
+		<%= f.label :password %>
+	    <%= f.password_field :password %>
+	    <%= f.submit "Login" %>
+
+	<% end %>
+</div>

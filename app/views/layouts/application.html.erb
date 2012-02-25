@@ -21,8 +21,7 @@
 					<%= link_to "Profile", edit_user_path(current_user.id) %>
 					<%= link_to "Logout", :logout %>
 				<% else %>
-					<%= link_to "Login", login_path %>
-					<%= link_to "Sign Up", new_user_path %>
+					<%= link_to "Login / Sign up", login_path %>
 				<% end %>
 			</nav>
 		</div>

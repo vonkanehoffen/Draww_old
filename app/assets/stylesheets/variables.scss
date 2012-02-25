@@ -13,14 +13,22 @@ $d_grey: #777;
 
 $col1: #14954b; // Gradient top green 
 $col2: #0f6c36; // Gradient btm green
+$col1l: #43aa6f; // Gradient top green 20% lighter 
+$col2l: #3f895e; // Gradient btm green 20% lighter
 
 // Gradients
 
 @mixin green_gradient {
 	@include linear-gradient($col1, $col2);
 }
+@mixin green_gradient_l {
+	@include linear-gradient($col1l, $col2l);
+}
 @mixin grey_gradient {
 	@include linear-gradient(#999, #6f6f6f);
+}
+@mixin form_bg {
+	@include linear-gradient(#eee, #ccc);
 }
 
 // Measurements

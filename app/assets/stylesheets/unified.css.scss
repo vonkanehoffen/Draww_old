@@ -72,21 +72,34 @@ h4 {
 	display:inline-block;
 }*/
 input[type=text], input[type=password], textarea {
+	display:inline-block;
 	font-size:14px;
+	line-height:20px;
 	padding:7px;
 	border:1px solid #b6b6b6;
 	@include border-radius(5px);
 	@include box-shadow(inset 0,2px,6px, #ddd);
 	color:#333;
 }
-div.field { margin:15px 0; }
-form table td { padding:0 15px 15px 0; vertical-align:middle; }
-
-.button {
-	
+.field_with_errors {
+	display:inline;
+	input[type=text], input[type=password], textarea {
+		border-color:#e44;
+		@include box-shadow(inset 0,2px,6px, #f99);
+		color:#e44;
+	}
+}
+label { 
+	display:inline-block;
+	font-size:14px;
+}
+div.field { 
+	margin-bottom:$pad; 
+	&.submit { text-align:right; }
 }
 
-.button, a.button {
+
+.button, a.button, input[type='submit'] {
 	display:inline-block;
 	border:0;
 	font-size:14px;
@@ -97,8 +110,13 @@ form table td { padding:0 15px 15px 0; vertical-align:middle; }
 	text-decoration:none;
 	@include green_gradient;
 	@include border-radius(5px);
-	&.green { @include green_gradient; }
+	&.green { 
+		// This is default 
+	}
 	&.grey { @include grey_gradient; }
+	&:hover {
+		@include green_gradient_l;		
+	}
 }
 #title_strip .button {
 	margin-left:$pad;
@@ -206,34 +224,65 @@ span.best_in_place {
 	span { display:none; }
 }
 
-// Signup page -------------------------------------------------------------------
+// Login / Signup page ------------------------------------------------------------
 
-.social_connect {
+.auth {
+	float:left;
+	width:$page_width/2-$pad;
+	margin-right:$pad;
+}
+.user_sessions_form {
+	padding:$pad;
+	@include form_bg;
+	@include border-radius(5px);
+	font-size:0;
+	label { 
+		width:100px;
+	}
+	input[type='text'] {
+		width:320px;
+		margin-bottom:$pad;
+	}
+	input[type='password'] {
+		width:220px;
+		margin-right:$pad;
+		margin-bottom:$pad;
+	}
+}
+.signup {
+	float:right;
+	width:$page_width/2-$pad;
+	margin-left:$pad;
+}
+.users_form {
+	padding:$pad;
+	@include form_bg;
+	@include border-radius(5px);
+	label { 
+		width:160px; 
+	}
+	input[type='text'], input[type='password'] {
+		width:264px;
+	}
+	
+}
+.authentications_auth {
 	width:474px;
 	float:left;
 }
-.local_signup {
-	width:474px;
-	float:right;
-	.form {
-		@include linear-gradient(#eee, #ccc);
-		@include border-radius(5px);
-		padding:20px;
+	.auth_provider {
+		display:block;
+		width:222px; height:56px;
+		float:left;
+		span { display:none; }
+		&.facebook {
+			background:url('/images/auth-facebook.png') top left no-repeat;
+			margin-right:$pad*2;
+		}
+		&.twitter {
+			background:url('/images/auth-twitter.png') top left no-repeat;
+		}
 	}
-}
-.auth_provider {
-	display:block;
-	width:474px;
-	height:80px;
-	margin:20px 0;
-	span { display:none; }
-}
-.auth_provider.facebook {
-	background:url('/images/facebook-big.png') top left no-repeat;
-}
-.auth_provider.twitter {
-	background:url('/images/twitter-big.png') top left no-repeat;
-}
 
 
 // -------------------------------------------------------------------------------

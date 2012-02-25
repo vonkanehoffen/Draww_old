@@ -1,42 +1,38 @@
+<div class="users_form">
+	<%# TODO: This breaks on incorrect login user/pass %>
+	<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+		<% if @user.errors.any? %>
+		  <div id="error_explanation">
+		    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<%= form_for(@user, :html => { :multipart => true }) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+		    <ul>
+		    <% @user.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		    </ul>
+		  </div>
+		<% end %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<table>
-	<tbody>
-		<tr>
-			<% if action_name == 'edit' %>
-			<td>Username: </td><td><%= @user.username %></td>
-			<% else %>
-			<td><%= f.label :username %></td>
-			<td><%= f.text_field :username %></td>
-			<% end %>
-		</tr>
-		<tr>
-			<td><%= f.label :email %></td>
-			<td><%= f.text_field :email %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :password %></td>
-			<td><%= f.password_field :password %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :password_confirmation %></td>
-			<td><%= f.password_field :password_confirmation %></td>
-		</tr>
-		<tr>
-			<td colspan="2"><%= f.submit %></td>
-		</tr>
-	</tbody>
-</table>
-<% end %>
+		<% unless action_name == 'edit' %>
+			<div class="field">
+				<%= f.label :username %>
+				<%= f.text_field :username %>
+			</div>
+		<% end %>
+		<div class="field">
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="field">
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+		</div>
+		<div class="field">
+			<%= f.label :password_confirmation %>
+			<%= f.password_field :password_confirmation %>
+		</div>
+		<div class="submit field">
+			<%= f.submit %>
+		</div>
+	<% end %>
+</div>

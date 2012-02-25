@@ -12,7 +12,7 @@ $(document).ready(function() {
 	//})
 	
 	// Jquery UI Stuff
-	$('input:submit').button();
+	//$('input:submit').button();
 	
 	// Generc AJAX handling (jquery-ujs)
 	var ujs_form = $("form[data-remote='true']");

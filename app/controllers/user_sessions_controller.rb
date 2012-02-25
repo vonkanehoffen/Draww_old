@@ -4,6 +4,7 @@ class UserSessionsController < ApplicationController
   # GET /user_sessions/new.xml
   def new
     @user_session = UserSession.new
+    @user = User.new  # for new user signup form
 
     respond_to do |format|
       format.html # new.html.erb
@@ -15,6 +16,7 @@ class UserSessionsController < ApplicationController
   # POST /user_sessions.xml
   def create
     @user_session = UserSession.new(params[:user_session])
+    @user = User.new  # for new user signup form
 
     respond_to do |format|
       if @user_session.save
