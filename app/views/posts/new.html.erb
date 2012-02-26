@@ -1,3 +1,46 @@
-<%= render 'form' %>
-
+<% content_for :head do %>
+	<%= stylesheet_link_tag "canvas" %>
+	<%= javascript_include_tag "lib/jquery.form" %>
+	<%= javascript_include_tag "lib/processing" %>
+	<%= javascript_include_tag "canvas_upload" %>
+	<% if action_name == 'new_child' %>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				// see processingReady()
+				pjsReadyFn['load_image_for_edit'] = function() {
+					loadRemoteImage('<%= @post_parent.photo.url(:medium) if @post_parent.photo.exists? %>');
+				}
+			});
+		</script>
+	<% end %>
+<% end %>
+<div id="posts_new">
+	<div id="title_strip">
+		<h1>New Image</h1>
+		<div class="actions">
+			<select id="select_tool" class="grey select_tool">
+				<option value="none" selected="yes">Select Tool</option>
+				<option value="crop">Crop &amp; Scale</option>
+				<option value="pen">Pen</option>
+				<option value="line">Line</option>
+			</select>
+			<a href="#" id="save_post" class="button green">Save</a>
+		</div>
+	</div>
+	<div id="canvas_container">
+		<canvas datasrc="/pjs/draw-processing.pjs" id="canvas" width="640" height="427" tabindex="0">
+			<p>Sorry, you should really upgrade your browser.</p>
+		</canvas>
+	</div>
+	<div class="canvas_tools">
+		<div class="left">
+			<a href="#" class="tool crop"></a>
+			<a href="#" class="tool pencil"></a>
+		</div>
+		<div class="right">
+		</div>
+	</div>
+	
+	<%= render 'form' %>
+</div>
 <%# link_to 'Back', posts_path %>

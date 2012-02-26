@@ -1,40 +1,6 @@
-<% content_for :head do %>
-<%= stylesheet_link_tag "canvas" %>
-<%= javascript_include_tag "lib/jquery.form" %>
-<%= javascript_include_tag "lib/processing" %>
-<%= javascript_include_tag "canvas_upload" %>
-<% end %>
-<div id="title_strip">
-	<h1>New Image</h1>
-	<div class="actions">
-		<select id="select_tool" class="grey select_tool">
-			<option value="none" selected="yes">Select Tool</option>
-			<option value="crop">Crop &amp; Scale</option>
-			<option value="pen">Pen</option>
-			<option value="line">Line</option>
-		</select>
-		<a href="#" id="save_post" class="button green">Save</a>
-	</div>
-</div>
-<div id="canvas_container">
-	<canvas datasrc="/pjs/draw-processing.pjs" id="canvas" width="640" height="427" tabindex="0">
-		<p>Sorry, you should really upgrade your browser.</p>
-	</canvas>
-</div>
-<div class="canvas_tools">
-	<div class="left">
-		<a href="#" class="tool crop"></a>
-		<a href="#" class="tool pencil"></a>
-	</div>
-	<div class="right">
-	</div>
-</div>
-
 <% @post.tags.build %>
 <%= form_for(@post,:html => { :multipart => true }, :remote => true) do |f| %>
 	<%= render "shared/error_messages", :target => @post %>
-
-	<%# TODO: Move post meta fields into toolbar and check them with JS before save attempt %>
 
 	<div class="ajax_message"></div>
 	<div class="field">

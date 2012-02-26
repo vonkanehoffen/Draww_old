@@ -48,7 +48,8 @@ class PostsController < ApplicationController
     @post = Post.new
     @post_parent = Post.find(params[:id])
 
-    respond_with(@post)
+    #respond_with(@post)
+    render "new"
   end
 
   # GET /posts/1/edit
