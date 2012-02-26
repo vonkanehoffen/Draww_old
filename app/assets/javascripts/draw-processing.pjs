@@ -18,19 +18,15 @@ var mouseDown = false;
 
 // Setup tools
 int[] draww_tools = new int[3];
-draww_tools[0] = new vEllipse();
-draww_tools[1] = new vRect();
+draww_tools[0] = new cropScale();
+draww_tools[1] = new vEllipse();
+draww_tools[2] = new vRect();
 
-var tool = draww_tools[0];
+var tool = draww_tools[1];
 /* @pjs preload="/images/drop-here.png"; */
 void setTool(t) {
-	if(t == 'vRect') {
-		//tool = new vRect();
-		tool = draww_tools[1];
-	}
-	if(t == 'vEllipse') {
-		//tool = new vEllipse();
-		tool = draww_tools[0];
+	if ( t != 'none' ) {
+		tool = draww_tools[t]
 	}
 } 
 

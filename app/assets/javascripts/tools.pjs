@@ -1,5 +1,10 @@
 // Processing Tool: Variable Ellipse
 
+class cropScale {
+	void draw() {
+		return false;
+	}
+}
 class vEllipse {
 	void draw() {
 		variableEllipse(mouseX, mouseY, pmouseX, pmouseY);  
