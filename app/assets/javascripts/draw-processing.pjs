@@ -16,9 +16,24 @@ var imY = 0;
 
 var mouseDown = false;
 
-var tool = new vEllipse();
+// Setup tools
+int[] draww_tools = new int[3];
+draww_tools[0] = new vEllipse();
+draww_tools[1] = new vRect();
+
+var tool = draww_tools[0];
 /* @pjs preload="/images/drop-here.png"; */
- 
+void setTool(t) {
+	if(t == 'vRect') {
+		//tool = new vRect();
+		tool = draww_tools[1];
+	}
+	if(t == 'vEllipse') {
+		//tool = new vEllipse();
+		tool = draww_tools[0];
+	}
+} 
+
 void setup() 
 {
   size(640, 427);
@@ -135,13 +150,6 @@ void mouseReleased()
 {  
   mouseDown = false; 
 }  
-
-void variableEllipse(int x, int y, int px, int py)   
-{  
-  float speed = min(abs(x-px) + abs(y-py) , 60);  
-  stroke(speed);  
-  ellipse(x, y, speed, speed);  
-} 
 
 // Kanes new bits
 

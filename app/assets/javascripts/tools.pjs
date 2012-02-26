@@ -4,4 +4,15 @@ class vEllipse {
 	void draw() {
 		variableEllipse(mouseX, mouseY, pmouseX, pmouseY);  
 	}
+	void variableEllipse(int x, int y, int px, int py)   
+	{  
+	  float speed = min(abs(x-px) + abs(y-py) , 60);  
+	  stroke(speed);  
+	  ellipse(x, y, speed, speed);  
+	}
+}
+class vRect {
+	void draw() {
+		rect(mouseX, mouseY, 20, 20);
+	}
 }

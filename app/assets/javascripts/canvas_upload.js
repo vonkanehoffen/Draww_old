@@ -4,19 +4,20 @@ var ready_to_save = false;
 
 $(document).ready(function() {
 
-	var dropbox = document.getElementById("canvas");
+	var canvas = document.getElementById("canvas");
 	var form_el = $('form.new_post, form.edit_post');
+	var select_tool = $('#select_tool');
 
 	// init event handlers
-	dropbox.addEventListener("dragenter", dragEnter, false);
-	dropbox.addEventListener("dragexit", dragExit, false);
-	dropbox.addEventListener("dragover", dragOver, false);
-	dropbox.addEventListener("drop", drop, false);
+	canvas.addEventListener("dragenter", dragEnter, false);
+	canvas.addEventListener("dragexit", dragExit, false);
+	canvas.addEventListener("dragover", dragOver, false);
+	canvas.addEventListener("drop", drop, false);
 
     form_el.submit(function() {
 		// Inject image data into form
 		if (ready_to_save) {
-      		$('#post_attachment64').val(dropbox.toDataURL("image/jpeg"));
+      		$('#post_attachment64').val(canvas.toDataURL("image/jpeg"));
 		} else {
       		$('#post_attachment64').remove();
 		}
@@ -57,6 +58,16 @@ $(document).ready(function() {
 		}
 	}
 	
+	// Disable Carat pointer when drawing
+	canvas.onselectstart = function () { return false; } // ie
+	canvas.onmousedown = function () { return false; } // mozilla
+	
+	// Select Tool
+	select_tool.change(function(){
+		console.log($(this).val());
+		var p=Processing.getInstanceById('canvas');
+		p.setTool($(this).val());
+	})
 });
 
 function dragEnter(evt) {
