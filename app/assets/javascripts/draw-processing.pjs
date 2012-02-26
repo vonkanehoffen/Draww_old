@@ -15,11 +15,13 @@ var imX = 0;
 var imY = 0;
 
 var mouseDown = false;
+
+/* @pjs preload="/images/drop-here.png"; */
  
 void setup() 
 {
   size(640, 427);
-  background(#000000);
+  background(#999999);
   colorMode(HSB, 360, 1, 1); 
   smooth();
   noStroke();
@@ -58,14 +60,20 @@ void draw()
 
   }else if(!inited){
 
-  	var tWidth = 100;
-	var tHeight = 50;
-	PFont fontA	  = loadFont("Arial");
-	int fontSize = 30;
-	textFont(fontA, fontSize);
-	textAlign(CENTER);
-	//fill(128, 128 , 128);
-	text( "Drop in an image!", width*0.5, height*0.5 );	  	
+  	// var tWidth = 100;
+  	// 	var tHeight = 50;
+  	// 	PFont fontA	  = loadFont("Arial");
+  	// 	int fontSize = 30;
+  	// 	textFont(fontA, fontSize);
+  	// 	textAlign(CENTER);
+  	// 	text( "Drop in an image!", width*0.5, height*0.5 );	  	
+	PImage dropHere;
+	dropHere = loadImage("/images/drop-here.png");
+	// image(dropHere, dropHere.width, dropHere.height);
+	image(dropHere, 
+		int(width/2 - (dropHere.width/2)), 
+		int(height/2 - (dropHere.height/2))
+	);
   }else{
     if(mouseDown){
 		 	//draw circles.
