@@ -16,6 +16,7 @@ var imY = 0;
 
 var mouseDown = false;
 
+var tool = new vEllipse();
 /* @pjs preload="/images/drop-here.png"; */
  
 void setup() 
@@ -76,8 +77,7 @@ void draw()
 	);
   }else{
     if(mouseDown){
-		 	//draw circles.
-  		variableEllipse(mouseX, mouseY, pmouseX, pmouseY);  	
+		tool.draw();
   	}	
   }
   

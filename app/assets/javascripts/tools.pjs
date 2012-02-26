@@ -1,0 +1,7 @@
+// Processing Tool: Variable Ellipse
+
+class vEllipse {
+	void draw() {
+		variableEllipse(mouseX, mouseY, pmouseX, pmouseY);  
+	}
+}
