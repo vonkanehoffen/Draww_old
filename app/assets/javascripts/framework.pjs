@@ -1,0 +1,135 @@
+////////////////////////////////////////
+// Draww Framework
+// Loaded along with tools.pjs
+// Communicates with canvas_upload.js
+////////////////////////////////////////
+
+// Preload interface images -------------------------------
+
+/* @pjs preload="/images/drop-here.png"; */
+
+///////////////////////////////////////////////////////////
+// Globals ////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+// Draw state
+int state = 0; // 0: Init   1: Image Input   2: Image Loaded
+
+// Tools
+int[] draww_tools = new int[3];
+draww_tools[0] = new cropScale();
+draww_tools[1] = new vEllipse();
+draww_tools[2] = new vRect();
+var tool = draww_tools[1];
+
+// Object to hold imported image
+PImage imported_image;
+int image_wait_time = 0; // Hack cos requestImage (imageLoaded) callback's broken
+
+// Initial user instruction image
+PImage dropHere;
+dropHere = loadImage("/images/drop-here.png");
+
+// Misc
+int init_size_x = 640;
+int init_size_y = 427;
+var bg_colour = #999999;
+
+///////////////////////////////////////////////////////////
+// Functions to interface with JS /////////////////////////
+///////////////////////////////////////////////////////////
+
+// Set current tool
+void setTool(t) {
+	if ( t != 'none' ) {
+		tool = draww_tools[t];
+		tool.init();
+	}
+}
+
+// Load image into canvas
+void setImage(s) {
+	console.log('setImage');
+	imported_image = requestImage(s , "" , image_loaded_callback());
+}
+
+// Resize image in canvas
+// TODO: This needs to either take edits with it or not fire after drawing started
+void resizeCanvas(w, h) {
+	console.log('resize called');
+	size(w, h);
+	if(imported_image) { image(imported_image , 0 , 0 , width , height); }
+}
+
+///////////////////////////////////////////////////////////
+// Image Importing ////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+void image_loaded_callback() {
+	console.log('imageloaded callback')
+	image_wait_time = 10;
+	state = 1;
+}
+
+void render_imported_image() {
+	image(imported_image, 0, 0, width, height);
+}
+
+///////////////////////////////////////////////////////////
+// Processing Setup Hook //////////////////////////////////
+///////////////////////////////////////////////////////////
+
+void setup() {
+	size(init_size_x, init_size_y);
+	background(bg_colour);
+	colorMode(HSB, 360, 1, 1); 
+	smooth();
+	noStroke();
+	
+	// Callback for JS (see pjsReadyFn[] )
+	if(typeof window.processingReady == 'function') {
+		processingReady();
+	}
+	
+}
+
+///////////////////////////////////////////////////////////
+// Drawing Loop (called every frame) //////////////////////
+///////////////////////////////////////////////////////////
+
+void draw() {
+	switch(state) {
+		case 0: // Init (nothing loaded)
+
+			image(dropHere, 
+				int(width/2 - (dropHere.width/2)), 
+				int(height/2 - (dropHere.height/2))
+			);
+			// image(dropHere, random(200), random(200));
+			
+		break;
+		
+		case 1: // Image Input
+		
+			if(image_wait_time > 0) {
+				image_wait_time -= 1;
+			} else {
+				render_imported_image();
+				state = 2;
+			}
+			
+		break;
+		
+		case 2: // Drawing!
+		
+			if(mousePressed) {
+				tool.draw();
+			}
+			
+		break;
+	}
+}
+
+
+
+

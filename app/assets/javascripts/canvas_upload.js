@@ -16,6 +16,7 @@ $(document).ready(function() {
 
     form_el.submit(function() {
 		// Inject image data into form
+		// TODO: Get this working in Firefox
 		if (ready_to_save) {
       		$('#post_attachment64').val(canvas.toDataURL("image/jpeg"));
 		} else {
@@ -135,13 +136,19 @@ function processingReady() {
 	}
 }
 
-function imageLoaded(evt)
-{    
-     var p=Processing.getInstanceById('canvas');
-	p.setImage( reader.result );
-}
+// function imageLoaded(evt)
+// {    
+//      var p=Processing.getInstanceById('canvas');
+// 	p.setImage( reader.result );
+// }
 
 function handleReaderLoadEnd(evt) {
+	console.log('handleReaderLoadEnd called');
+	//console.log("target="+evt.target.result);
+	//var cache_sketch = Processing.Sketch;
+	//cache_sketch.imageCache.images = evt.target.result;
+	//cache_sketch.onFrameStart = function() {
+	//	console.log('onFrameStart called');
 	var p=Processing.getInstanceById('canvas');
 	p.setImage( evt.target.result );
 }
@@ -155,5 +162,6 @@ function loadRemoteImage(img) {
 
 function resizeCanvas(w, h) {
 	var p=Processing.getInstanceById('canvas');
+	console.log("resize js");
 	p.resizeCanvas(w, h);
 }

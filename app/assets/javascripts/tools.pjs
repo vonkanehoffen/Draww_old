@@ -1,11 +1,16 @@
 // Processing Tool: Variable Ellipse
 
 class cropScale {
+	void init() {
+		
+	}
 	void draw() {
 		return false;
 	}
 }
 class vEllipse {
+	void init() {
+	}
 	void draw() {
 		variableEllipse(mouseX, mouseY, pmouseX, pmouseY);  
 	}
@@ -17,6 +22,9 @@ class vEllipse {
 	}
 }
 class vRect {
+	void init() {
+		
+	}
 	void draw() {
 		rect(mouseX, mouseY, 20, 20);
 	}

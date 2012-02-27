@@ -26,22 +26,23 @@ var tool = draww_tools[1];
 /* @pjs preload="/images/drop-here.png"; */
 void setTool(t) {
 	if ( t != 'none' ) {
-		tool = draww_tools[t]
+		tool = draww_tools[t];
+		tool.init();
 	}
 } 
 
 void setup() 
 {
-  size(640, 427);
-  background(#999999);
-  colorMode(HSB, 360, 1, 1); 
-  smooth();
-  noStroke();
-
-  // Callback for normal JS stuff
-  if(typeof window.processingReady == 'function') {
-	processingReady();
-  }
+	size(640, 427);
+	background(#999999);
+	colorMode(HSB, 360, 1, 1); 
+	smooth();
+	noStroke();
+	
+	// Callback for normal JS stuff
+	if(typeof window.processingReady == 'function') {
+		processingReady();
+	}
 }
  
 void draw() 
@@ -81,11 +82,12 @@ void draw()
   	// 	text( "Drop in an image!", width*0.5, height*0.5 );	  	
 	PImage dropHere;
 	dropHere = loadImage("/images/drop-here.png");
-	// image(dropHere, dropHere.width, dropHere.height);
 	image(dropHere, 
 		int(width/2 - (dropHere.width/2)), 
 		int(height/2 - (dropHere.height/2))
 	);
+//	image(dropHere, random(200), random(200));
+	
   }else{
     if(mouseDown){
 		tool.draw();
@@ -150,6 +152,7 @@ void mouseReleased()
 // Kanes new bits
 
 void resizeCanvas(w, h) {
+	console.log('resize pjs');
 	size(w, h);
 	if(im) { image(im , imX , imY , width , height); }
 }
