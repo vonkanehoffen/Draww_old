@@ -4,8 +4,8 @@
 
 PImage imported_image;
 imported_image = loadImage("/images/IMG_5178-temp.jpg");
-float im_ratio_w = imported_image.width/imported_image.height;
-float im_ratio_h = imported_image.height/imported_image.width;
+int iiw;
+int iih;
 
 
 // Colours
@@ -61,6 +61,9 @@ void setup() {  // this is run once.
     
     // set the width of the line. 
     strokeWeight(8);
+
+	//imageMode(CENTER);
+	//rectMode(CENTER);
 } 
 
 void draw() {  // this is run repeatedly.  
@@ -69,11 +72,13 @@ void draw() {  // this is run repeatedly.
     background(200);
 
 	// show user image
+	iiw = (box[0]['w']/300)*imported_image.width
+	iih = (box[0]['w']/300)*imported_image.height
 	image(imported_image, 
-		box[0]['x']-(box[0]['w']/2),
-		box[0]['y']-(box[0]['h']/2),
-		(box[0]['w']/100)*imported_image.width, 
-		(box[0]['w']/100)*imported_image.height
+		box[0]['x']-(box[0]['w']/2)-(iiw/2),
+		box[0]['y']-(box[0]['h']/2)-(iih/2),
+		iiw, 
+		iih
 	);
 	text(imported_image.width, 20,20);
 	
@@ -91,7 +96,12 @@ void draw() {  // this is run repeatedly.
     // Check mouseovers
     action_state = 0;
     for (int i = 0; i < 3; i = i+1) {
-        if(mouseX > box[i]['x'] && mouseX < box[i]['x']+box[i]['w'] && mouseY > box[i]['y'] && mouseY < box[i]['y']+box[i]['h']) {
+        if(
+			mouseX > box[i]['x'] 
+			&& mouseX < box[i]['x']+box[i]['w'] 
+			&& mouseY > box[i]['y'] 
+			&& mouseY < box[i]['y']+box[i]['h']
+			) {
             action_state = i+1;
         }
     }
@@ -111,6 +121,7 @@ void draw() {  // this is run repeatedly.
     // if(action_state == 1) { fill(255,255,0); }
     // if(action_state == 2) { fill(255,0,255); }
     // if(action_state == 3) { fill(0,255,00); }
+	text(action_state, 100,20);
     
     
 }
