@@ -4,30 +4,34 @@
 
 PImage imported_image;
 imported_image = loadImage("/images/IMG_5178-temp.jpg");
+float im_ratio_w = imported_image.width/imported_image.height;
+float im_ratio_h = imported_image.height/imported_image.width;
+
+
 // Colours
 color t_black = color(0,0,0,100);
 color t_green = color(0,255,0,100);
 
 // Box params
 
-int wh = 10;
+int wh = 20;
 int[][] box = new int[4][4];
 
 // Main
-box[0]['x'] = 125;
-box[0]['y'] = 125;
-box[0]['w'] = 20;
-box[0]['h'] = 20;
+box[0]['x'] = 100;
+box[0]['y'] = 100;
+box[0]['w'] = 100;
+box[0]['h'] = 100;
 
 // Top Left Corner
-box[1]['x'] = 100;
-box[1]['y'] = 100;
+box[1]['x'] = 100-(wh/2);
+box[1]['y'] = 100-(wh/2);
 box[1]['w'] = wh;
 box[1]['h'] = wh;
 
 // Bottom right corner
-box[2]['x'] = 160;
-box[2]['y'] = 160;
+box[2]['x'] = 200-(wh/2);
+box[2]['y'] = 200-(wh/2);
 box[2]['w'] = wh;
 box[2]['h'] = wh;
 
@@ -56,7 +60,7 @@ void setup() {  // this is run once.
     frameRate(30);
     
     // set the width of the line. 
-    strokeWeight(1);
+    strokeWeight(8);
 } 
 
 void draw() {  // this is run repeatedly.  
@@ -65,13 +69,24 @@ void draw() {  // this is run repeatedly.
     background(200);
 
 	// show user image
-	image(imported_image, 0,0,box[0]['w'], box[0]['h']);
+	image(imported_image, 
+		box[0]['x']-(box[0]['w']/2),
+		box[0]['y']-(box[0]['h']/2),
+		(box[0]['w']/100)*imported_image.width, 
+		(box[0]['w']/100)*imported_image.height
+	);
 	text(imported_image.width, 20,20);
-
+	
     // Draw boxes
-    for (int i = 0; i < 3; i = i+1) {
-        rect(box[i]['x'], box[i]['y'], box[i]['w'], box[i]['h']);
-    }
+    //for (int i = 0; i < 3; i = i+1) {
+	noFill();
+	stroke(t_black);
+	rect(box[0]['x'], box[0]['y'], box[0]['w'], box[0]['h']);
+	noStroke();
+	fill(255,255,255);
+	rect(box[1]['x'], box[1]['y'], box[1]['w'], box[1]['h']);
+	rect(box[2]['x'], box[2]['y'], box[2]['w'], box[2]['h']);
+    //}
     
     // Check mouseovers
     action_state = 0;
@@ -82,19 +97,20 @@ void draw() {  // this is run repeatedly.
     }
     
     // Draw image (or in this case a bounding box)
-    noFill();
-    rect(
-        box[1]['x']-8, 
-        box[1]['y']-8, 
-        box[2]['x']-box[1]['x']+wh+16,
-        box[2]['y']-box[1]['y']+wh+16
-    );
+    //noFill();
+    
+	// rect(
+	//         box[1]['x']-8, 
+	//         box[1]['y']-8, 
+	//         box[2]['x']-box[1]['x']+wh+16,
+	//         box[2]['y']-box[1]['y']+wh+16
+	//     );
     
     // Testing - show hovers as colour
-    if(action_state == 0) { fill(255,0,0); }
-    if(action_state == 1) { fill(255,255,0); }
-    if(action_state == 2) { fill(255,0,255); }
-    if(action_state == 3) { fill(0,255,00); }
+    // if(action_state == 0) { fill(255,0,0); }
+    // if(action_state == 1) { fill(255,255,0); }
+    // if(action_state == 2) { fill(255,0,255); }
+    // if(action_state == 3) { fill(0,255,00); }
     
     
 }
@@ -119,6 +135,7 @@ void mouseDragged() {
         box[action_state-1]['x'] = mouseX-bdifx;
         box[action_state-1]['y'] = mouseY-bdify;
     }
+	// Move main box
     if (action_state == 1) {        
         box[0]['x'] = mouseX-bdifx;
         box[0]['y'] = mouseY-bdify;
