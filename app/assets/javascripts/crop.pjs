@@ -16,6 +16,7 @@ int iiw = init_size_x;
 int iih = (imported_image.height / imported_image.width) * init_size_x;
 int iix = 0;
 int iiy = 0;
+int siiw, siiw; // scaled width and height
 
 // Scale & Rotate Control
 int srox = iix+(iiw/2); // Origin
@@ -60,12 +61,14 @@ void draw() {
 	s_dist = sqrt( (srx*srx) + (sry*sry) );
 	
 	// Draw imported image
+	siiw = iiw/140*s_dist; // calculate scaled width and height
+	siih = iih/140*s_dist;
 	image(
 		imported_image,
-		iix,
-		iiy,
-		iiw,
-		iih
+		srox-siiw/2,
+		sroy-siih/2,
+		siiw,
+		siih
 	);
 	
 	// Draw scale and rotate control
