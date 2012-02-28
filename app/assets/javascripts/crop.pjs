@@ -22,7 +22,7 @@ int srox = iix+(iiw/2); // Origin
 int sroy = iiy+(iih/2);
 int srx = 100; // Control pos
 int sry = 100;
-int s_dist = 10; // distance of control from center
+float s_dist; // distance of control from center
 
 color t_white = color(255,255,255,150);
 
@@ -53,9 +53,12 @@ void draw() {
 	// Clear screen
 	background(bg_colour);
 	
-	// Calculate image w/h
-	//s_dist = ((srx-srox)*(srx-srox))+((sry-sroy)*(srx-sroy));
-	s_dist = srox;
+	// Calculate
+	int srox = iix+(iiw/2); // Calculate origin for center point
+	int sroy = iiy+(iih/2);
+	
+	s_dist = sqrt( (srx*srx) + (sry*sry) );
+	
 	// Draw imported image
 	image(
 		imported_image,
@@ -68,12 +71,15 @@ void draw() {
 	// Draw scale and rotate control
 	fill(t_white);
 	noStroke();
-	int srox = iix+(iiw/2); // Calculate origin for center point
-	int sroy = iiy+(iih/2);
+
 	ellipse(srox, sroy, 40, 40); // Draw center point
 	ellipse(srox+srx, sroy+sry, 40, 40); // Draw control
 	stroke(t_white);
+	strokeWeight(8);
 	line(srox, sroy, srox+srx, sroy+sry); // Draw guide line
+	strokeWeight(1);
+	noFill();
+	ellipse(srox, sroy, s_dist*2, s_dist*2); // Guide circle
 	
 	text("mx"+mouseX+" my"+mouseY+" state"+action_state+" lock "+locked+" dist"+s_dist, 30,30);
 	
