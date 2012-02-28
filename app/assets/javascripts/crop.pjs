@@ -1,0 +1,135 @@
+/* @pjs preload="/images/IMG_5178-temp.jpg"; */
+
+// Load test image
+
+PImage imported_image;
+imported_image = loadImage("/images/IMG_5178-temp.jpg");
+// Colours
+color t_black = color(0,0,0,100);
+color t_green = color(0,255,0,100);
+
+// Box params
+
+int wh = 10;
+int[][] box = new int[4][4];
+
+// Main
+box[0]['x'] = 125;
+box[0]['y'] = 125;
+box[0]['w'] = 20;
+box[0]['h'] = 20;
+
+// Top Left Corner
+box[1]['x'] = 100;
+box[1]['y'] = 100;
+box[1]['w'] = wh;
+box[1]['h'] = wh;
+
+// Bottom right corner
+box[2]['x'] = 160;
+box[2]['y'] = 160;
+box[2]['w'] = wh;
+box[2]['h'] = wh;
+
+// What's the mouse over?
+int action_state = 0;
+
+// Offsets for where inside the box the mouse got pressed
+int bdifx = 0;
+int bdify = 0;
+
+// Are we dragging?
+boolean locked = false;
+
+void setup() {  // this is run once.   
+    
+    // set the background color
+    background(200);
+    
+    // canvas size (Variable aren't evaluated. Integers only, please.)
+    size(978, 652); 
+      
+    // smooth edges
+    smooth();
+    
+    // limit the number of frames per second
+    frameRate(30);
+    
+    // set the width of the line. 
+    strokeWeight(1);
+} 
+
+void draw() {  // this is run repeatedly.  
+    
+    // clear screen
+    background(200);
+
+	// show user image
+	image(imported_image, 0,0,box[0]['w'], box[0]['h']);
+	text(imported_image.width, 20,20);
+
+    // Draw boxes
+    for (int i = 0; i < 3; i = i+1) {
+        rect(box[i]['x'], box[i]['y'], box[i]['w'], box[i]['h']);
+    }
+    
+    // Check mouseovers
+    action_state = 0;
+    for (int i = 0; i < 3; i = i+1) {
+        if(mouseX > box[i]['x'] && mouseX < box[i]['x']+box[i]['w'] && mouseY > box[i]['y'] && mouseY < box[i]['y']+box[i]['h']) {
+            action_state = i+1;
+        }
+    }
+    
+    // Draw image (or in this case a bounding box)
+    noFill();
+    rect(
+        box[1]['x']-8, 
+        box[1]['y']-8, 
+        box[2]['x']-box[1]['x']+wh+16,
+        box[2]['y']-box[1]['y']+wh+16
+    );
+    
+    // Testing - show hovers as colour
+    if(action_state == 0) { fill(255,0,0); }
+    if(action_state == 1) { fill(255,255,0); }
+    if(action_state == 2) { fill(255,0,255); }
+    if(action_state == 3) { fill(0,255,00); }
+    
+    
+}
+
+void mousePressed() {
+    if (action_state > 0) {
+        locked = true;
+    } else {
+        locked = false;
+    }
+    bdifx = mouseX-box[action_state-1]['x'];
+    bdify = mouseY-box[action_state-1]['y'];
+}
+void mouseDragged() {
+    
+    // move resize handles
+    if (action_state > 1) {        
+        box[0]['w'] = box[2]['x']-box[1]['x'];
+        box[0]['h'] = box[2]['y']-box[1]['y'];
+        box[0]['x'] = box[1]['x'];
+        box[0]['y'] = box[1]['y'];
+        box[action_state-1]['x'] = mouseX-bdifx;
+        box[action_state-1]['y'] = mouseY-bdify;
+    }
+    if (action_state == 1) {        
+        box[0]['x'] = mouseX-bdifx;
+        box[0]['y'] = mouseY-bdify;
+        box[1]['x'] = box[0]['x'];
+        box[1]['y'] = box[0]['y'];
+        box[2]['x'] = box[0]['x']+box[0]['w'];
+        box[2]['y'] = box[0]['y']+box[0]['h'];
+    }
+    
+} 
+void mouseReleased() {
+    locked = false;
+}
+
