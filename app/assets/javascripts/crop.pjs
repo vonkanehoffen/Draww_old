@@ -40,6 +40,10 @@ boolean locked = false;
 int bdifx = 0;
 int bdify = 0;
 
+// Previous values (to halt draw if no change)
+int prev_iix, prev_iiy, prev_srx, prev_sry;
+int rc = 0;
+
 //////////////////////////////////////////////////////////////////////////
 
 void setup() {
@@ -54,46 +58,53 @@ void setup() {
 
 void draw() {
 
-	// Clear screen
-	background(bg_colour);
-	
 	// Calculate
 	int srox = iix+(iiw/2); // Calculate origin for center point
 	int sroy = iiy+(iih/2);
 	
 	s_dist = sqrt( (srx*srx) + (sry*sry) ); // distance of control from center
 	angle = atan(srx/sry);
-	
-	// Draw imported image
+
 	siiw = iiw/140*s_dist; // calculate scaled width and height
 	siih = iih/140*s_dist;
-	imageMode(CENTER);
-	translate(srox,sroy);
-	rotate(-angle+angle_offset);
-	image(
-		imported_image,
-		0,
-		0,
-		siiw,
-		siih
-	);
-	rotate(angle-angle_offset);
-	translate(-srox,-sroy);
-	imageMode(CORNER);
-	// Draw scale and rotate control
-	fill(t_white);
-	noStroke();
-
-	ellipse(srox, sroy, 40, 40); // Draw center point
-	ellipse(srox+srx, sroy+sry, 40, 40); // Draw control
-	stroke(t_white);
-	strokeWeight(8);
-	line(srox, sroy, srox+srx, sroy+sry); // Draw guide line
-	strokeWeight(1);
-	noFill();
-	ellipse(srox, sroy, s_dist*2, s_dist*2); // Guide circle
 	
-	text("mx"+mouseX+" my"+mouseY+" state"+action_state+" lock "+locked+" dist"+s_dist+" angle"+angle, 30,30);
+	// Check for activity
+	if (iix != prev_iix || iiy != prev_iiy || srx != prev_srx || sry != prev_sry ) {
+		rc = rc+1;
+
+		// Clear screen
+		background(bg_colour);
+		
+		// Draw Image
+		imageMode(CENTER);
+		translate(srox,sroy);
+		rotate(-angle+angle_offset);
+		image(
+			imported_image,
+			0,
+			0,
+			siiw,
+			siih
+		);
+		rotate(angle-angle_offset);
+		translate(-srox,-sroy);
+		imageMode(CORNER);
+		
+		// Draw scale and rotate control
+		fill(t_white);
+		noStroke();
+		ellipse(srox, sroy, 40, 40); // Draw center point
+		ellipse(srox+srx, sroy+sry, 40, 40); // Draw control
+		stroke(t_white);
+		strokeWeight(8);
+		line(srox, sroy, srox+srx, sroy+sry); // Draw guide line
+		strokeWeight(1);
+		noFill();
+		ellipse(srox, sroy, s_dist*2, s_dist*2); // Guide circle
+		
+	}
+	
+	text("mx"+mouseX+" my"+mouseY+" state"+action_state+" lock "+locked+" dist"+s_dist+" angle"+angle+" rc"+rc, 30,30);
 	
 	// Check action state
 	if(locked == false) {
@@ -105,6 +116,12 @@ void draw() {
 			action_state = 2; // over control
 		}
 	}
+	
+	// Populate vars for activity checking
+	prev_iix = iix;
+	prev_iiy = iiy;
+	prev_srx = srx;
+	prev_sry = sry;
 }
 
 //////////////////////////////////////////////////////////////////////////
