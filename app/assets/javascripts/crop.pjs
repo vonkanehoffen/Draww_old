@@ -23,7 +23,7 @@ int srox = iix+(iiw/2); // Origin
 int sroy = iiy+(iih/2);
 int srx = 100; // Control pos
 int sry = 100;
-float s_dist; // distance of control from center
+float s_dist,angle; // distance of control from center
 
 color t_white = color(255,255,255,150);
 
@@ -58,19 +58,25 @@ void draw() {
 	int srox = iix+(iiw/2); // Calculate origin for center point
 	int sroy = iiy+(iih/2);
 	
-	s_dist = sqrt( (srx*srx) + (sry*sry) );
+	s_dist = sqrt( (srx*srx) + (sry*sry) ); // distance of control from center
+	angle = atan(srx/sry);
 	
 	// Draw imported image
 	siiw = iiw/140*s_dist; // calculate scaled width and height
 	siih = iih/140*s_dist;
+	imageMode(CENTER);
+	translate(srox,sroy);
+	rotate(-angle+0.78);
 	image(
 		imported_image,
-		srox-siiw/2,
-		sroy-siih/2,
+		0,
+		0,
 		siiw,
 		siih
 	);
-	
+	rotate(angle-0.78);
+	translate(-srox,-sroy);
+	imageMode(CORNER);
 	// Draw scale and rotate control
 	fill(t_white);
 	noStroke();
@@ -84,7 +90,7 @@ void draw() {
 	noFill();
 	ellipse(srox, sroy, s_dist*2, s_dist*2); // Guide circle
 	
-	text("mx"+mouseX+" my"+mouseY+" state"+action_state+" lock "+locked+" dist"+s_dist, 30,30);
+	text("mx"+mouseX+" my"+mouseY+" state"+action_state+" lock "+locked+" dist"+s_dist+" angle"+angle, 30,30);
 	
 	// Check action state
 	if(locked == false) {
