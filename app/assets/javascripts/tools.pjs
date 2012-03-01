@@ -1,14 +1,37 @@
-// Processing Tool: Variable Ellipse
+// Draww Tools
 
-class cropScale {
+// Base class
+
+class draww_tool {
 	void init() {
 		
 	}
 	void draw() {
-		return false;
+		
+	}
+	void mousePressed() {
+		
+	}
+	void mouseDragged() {
+		
+	}
+	void mouseReleased() {
+		
 	}
 }
-class vEllipse {
+///////////////////////////////////////////////////////////
+// Crop & Scale
+///////////////////////////////////////////////////////////
+
+class cropScale extends draww_tool {
+
+}
+
+///////////////////////////////////////////////////////////
+// Variable Ellipse
+///////////////////////////////////////////////////////////
+
+class vEllipse extends draww_tool {
 	void init() {
 	}
 	void draw() {
@@ -21,7 +44,12 @@ class vEllipse {
 	  ellipse(x, y, speed, speed);  
 	}
 }
-class vRect {
+
+///////////////////////////////////////////////////////////
+// Variable Rectangle
+///////////////////////////////////////////////////////////
+
+class vRect extends draww_tool {
 	void init() {
 		
 	}

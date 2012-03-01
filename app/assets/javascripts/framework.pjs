@@ -4,6 +4,8 @@
 // Communicates with canvas_upload.js
 ////////////////////////////////////////
 
+// TODO: All processing.js is broken in Firefox 3.6
+
 // Preload interface images -------------------------------
 
 /* @pjs preload="/images/drop-here.png"; */
@@ -16,15 +18,15 @@
 int state = 0; // 0: Init   1: Image Input   2: Image Loaded
 
 // Tools
-int[] draww_tools = new int[3];
-draww_tools[0] = new cropScale();
-draww_tools[1] = new vEllipse();
-draww_tools[2] = new vRect();
-var tool = draww_tools[1];
+int[] tool = new int[3];
+tool[0] = new cropScale();
+tool[1] = new vEllipse();
+tool[2] = new vRect();
+int tool_id = 0;
 
 // Object to hold imported image
 PImage imported_image;
-int image_wait_time = 0; // Hack cos requestImage (imageLoaded) callback's broken
+int image_wait_time = 0; 
 
 // Initial user instruction image
 PImage dropHere;
@@ -42,8 +44,8 @@ var bg_colour = #999999;
 // Set current tool
 void setTool(t) {
 	if ( t != 'none' ) {
-		tool = draww_tools[t];
-		tool.init();
+		tool_id = t;
+		tool[tool_id].init();
 	}
 }
 
@@ -73,6 +75,7 @@ void image_loaded_callback() {
 
 void render_imported_image() {
 	image(imported_image, 0, 0, width, height);
+	ready_to_save = true; // TODO: This should call a function ~ enabling save button
 }
 
 ///////////////////////////////////////////////////////////
@@ -111,6 +114,8 @@ void draw() {
 		
 		case 1: // Image Input
 		
+			// Hack cos requestImage (imageLoaded) callback appears to be broken
+			// https://processing-js.lighthouseapp.com/projects/41284-processingjs/tickets/558-loadimage-behaviour-is-out-of-sync-with-processing-api
 			if(image_wait_time > 0) {
 				image_wait_time -= 1;
 			} else {
@@ -123,13 +128,25 @@ void draw() {
 		case 2: // Drawing!
 		
 			if(mousePressed) {
-				tool.draw();
+				tool[tool_id].draw();
 			}
 			
 		break;
 	}
 }
 
+///////////////////////////////////////////////////////////
+// Other hooks for tools //////////////////////////////////
+///////////////////////////////////////////////////////////
 
+void mousePressed() {	
+	tool[tool_id].mousePressed();
+}
 
+void mouseDragged() {
+	tool[tool_id].mouseDragged();
+}
 
+void mouseReleased() {
+	tool[tool_id].mouseReleased();
+}

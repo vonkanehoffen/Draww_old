@@ -61,7 +61,7 @@ $(document).ready(function() {
 		}
 	}
 	
-	// Show draing controls when mouse over canvas
+	// Show drawing controls when mouse over canvas
 	$('#canvas').mouseenter(function() {
 		show_controls = true;
 	}).mouseleave(function() {
