@@ -1,6 +1,9 @@
 /* Canvas Upload Handler with Jo! */
 
+// Set in pjs when something has been rendered in the canvas
 var ready_to_save = false;
+// Show controls in canvas pjs
+var show_controls = true;
 
 $(document).ready(function() {
 
@@ -8,7 +11,7 @@ $(document).ready(function() {
 	var form_el = $('form.new_post, form.edit_post');
 	var select_tool = $('#select_tool');
 
-	// init event handlers
+	// init event handlers for drag and drop image loading
 	canvas.addEventListener("dragenter", dragEnter, false);
 	canvas.addEventListener("dragexit", dragExit, false);
 	canvas.addEventListener("dragover", dragOver, false);
@@ -16,7 +19,6 @@ $(document).ready(function() {
 
     form_el.submit(function() {
 		// Inject image data into form
-		// TODO: Get this working in Firefox
 		if (ready_to_save) {
       		$('#post_attachment64').val(canvas.toDataURL("image/jpeg"));
 		} else {
@@ -58,6 +60,13 @@ $(document).ready(function() {
 			resizeCanvas(w,h);
 		}
 	}
+	
+	// Show draing controls when mouse over canvas
+	$('#canvas').mouseenter(function() {
+		show_controls = true;
+	}).mouseleave(function() {
+		show_controls = false;
+	});
 	
 	// Disable Carat pointer when drawing
 	canvas.onselectstart = function () { return false; } // ie
