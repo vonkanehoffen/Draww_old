@@ -17,12 +17,8 @@
 // Draw state
 int state = 0; // 0: Init   1: Image Input   2: Image Loaded
 
-// Tools
-int[] tool = new int[3];
-tool[0] = new cropScale();
-tool[1] = new vEllipse();
-tool[2] = new vRect();
-int tool_id = 0;
+// Current tool (pointer for tool array defined in tool.pjs)
+int tool_id = 1;
 
 // Object to hold imported image
 PImage imported_image;

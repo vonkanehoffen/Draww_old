@@ -1,5 +1,12 @@
 // Draww Tools
 
+// Load tools into array for use in framework.pjs draw loop
+
+int[] tool = new int[3];
+tool[0] = new cropScale();
+tool[1] = new vEllipse();
+tool[2] = new vRect();
+
 // Base class
 
 class draww_tool {
@@ -19,12 +26,52 @@ class draww_tool {
 		
 	}
 }
+
 ///////////////////////////////////////////////////////////
 // Crop & Scale
 ///////////////////////////////////////////////////////////
 
 class cropScale extends draww_tool {
+	
+	// Declare variables 
+	// int iiw, iih, iix, iiy, ssiw, siih, srox, sroy, srx, sry, 
+	// action_state, bdifx, bdify, prev_iix, prev_iiy, prev_srx, prev_sry, rc;
+	// float s_dist, s_angle, angle_offset;
+	// boolean locked, prev_show_controls;
+	
+	void init() {
+		// Initial width and height + x/y of image
+		int iiw = init_size_x;
+		int iih = (imported_image.height / imported_image.width) * init_size_x;
+		int iix = 0;
+		int iiy = 0;
+		int siiw, siiw; // scaled width and height
 
+		// Scale & Rotate Control
+		int srox = iix+(iiw/2); // Origin
+		int sroy = iiy+(iih/2);
+		int srx = 100; // Control pos
+		int sry = -100;
+		float s_dist,angle; // distance of control from center
+		float angle_offset = atan(srx/sry);
+
+		color t_white = color(255,255,255,150);
+
+		// Action state (0 - none, 1 - over image, 2 - over scale handle, 3 - over rotate handle)
+		int action_state = 0;
+
+		// Are we dragging?
+		boolean locked = false;
+
+		// What was the offset of the mouse when the drag started?
+		int bdifx = 0;
+		int bdify = 0;
+
+		// Previous values (to halt draw if no change)
+		int prev_iix, prev_iiy, prev_srx, prev_sry;
+		boolean prev_show_controls;
+		int rc = 0;
+	}
 }
 
 ///////////////////////////////////////////////////////////
@@ -57,3 +104,4 @@ class vRect extends draww_tool {
 		rect(mouseX, mouseY, 20, 20);
 	}
 }
+
