@@ -23,14 +23,16 @@ int tool_id = 1;
 // Object to hold imported image
 PImage imported_image;
 int image_wait_time = 0; 
+// Object for finalised canvas after a tool has completed / been changed
+PImage canv_image;
 
 // Initial user instruction image
 PImage dropHere;
 dropHere = loadImage("/images/drop-here.png");
 
 // Misc
-int init_size_x = 640;
-int init_size_y = 427;
+int init_size_x = 978;
+int init_size_y = 652;
 var bg_colour = #999999;
 
 ///////////////////////////////////////////////////////////
@@ -123,9 +125,7 @@ void draw() {
 		
 		case 2: // Drawing!
 		
-			if(mousePressed) {
-				tool[tool_id].draw();
-			}
+			tool[tool_id].draw();
 			
 		break;
 	}
