@@ -4,6 +4,7 @@
 var ready_to_save = false;
 // Show controls in canvas pjs
 var show_controls = true;
+var pjs_instance;
 
 $(document).ready(function() {
 
@@ -45,6 +46,8 @@ $(document).ready(function() {
 
 	// Resize Canvas
 	pjsReadyFn['auto_resize'] = function() {
+		// TODO: Why doesn't declaring this in another pjsReadyFn work?
+		pjs_instance = Processing.getInstanceById('canvas');
 		r();
 		$(window).resize(function() { r(); })
 		function r() {
@@ -75,14 +78,12 @@ $(document).ready(function() {
 	// Select Tool
 	select_tool.change(function(){
 		console.log($(this).val());
-		var p=Processing.getInstanceById('canvas');
-		p.setTool($(this).val());
+		pjs_instance.setTool($(this).val());
 	});
 	
 	// Undo
 	$('#undo').click(function() {
-		var p=Processing.getInstanceById('canvas');
-		p.undo();
+		pjs_instance.undo();
 	})
 });
 
@@ -164,19 +165,16 @@ function handleReaderLoadEnd(evt) {
 	//cache_sketch.imageCache.images = evt.target.result;
 	//cache_sketch.onFrameStart = function() {
 	//	console.log('onFrameStart called');
-	var p=Processing.getInstanceById('canvas');
-	p.setImage( evt.target.result );
+	pjs_instance.setImage( evt.target.result );
 }
 
 // This is called by embedded JS to load approriate image on edit pages
 function loadRemoteImage(img) {
-	var p=Processing.getInstanceById('canvas');
 	console.log(p);
-	p.setImage(img);
+	pjs_instance.setImage(img);
 }
 
 function resizeCanvas(w, h) {
-	var p=Processing.getInstanceById('canvas');
 	console.log("resize js");
-	p.resizeCanvas(w, h);
+	pjs_instance.resizeCanvas(w, h);
 }
