@@ -123,6 +123,7 @@ void draw() {
 			} else {
 				render_imported_image();
 				state = 2;
+				setTool(0);
 			}
 			
 		break;
