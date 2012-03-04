@@ -77,6 +77,12 @@ $(document).ready(function() {
 		console.log($(this).val());
 		var p=Processing.getInstanceById('canvas');
 		p.setTool($(this).val());
+	});
+	
+	// Undo
+	$('#undo').click(function() {
+		var p=Processing.getInstanceById('canvas');
+		p.undo();
 	})
 });
 

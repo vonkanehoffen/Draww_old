@@ -42,6 +42,7 @@ var bg_colour = #999999;
 // Set current tool
 void setTool(t) {
 	if ( t != 'none' ) {
+		tool[tool_id].finalise();
 		tool_id = t;
 		tool[tool_id].init();
 	}
@@ -59,6 +60,10 @@ void resizeCanvas(w, h) {
 	console.log('resize called');
 	size(w, h);
 	if(imported_image) { image(imported_image , 0 , 0 , width , height); }
+}
+
+void undo() {
+	image(canv_image, 0, 0);
 }
 
 ///////////////////////////////////////////////////////////
@@ -83,7 +88,6 @@ void render_imported_image() {
 void setup() {
 	size(init_size_x, init_size_y);
 	background(bg_colour);
-	colorMode(HSB, 360, 1, 1); 
 	smooth();
 	noStroke();
 	
@@ -146,3 +150,4 @@ void mouseDragged() {
 void mouseReleased() {
 	tool[tool_id].mouseReleased();
 }
+

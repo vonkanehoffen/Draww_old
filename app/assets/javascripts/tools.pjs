@@ -26,7 +26,7 @@ class draww_tool {
 		
 	}
 	void finalise() {
-		
+		canv_image = get();
 	}
 }
 
@@ -188,6 +188,7 @@ class cropScale extends draww_tool {
 
 class vEllipse extends draww_tool {
 	void init() {
+		fill(255,0,0);
 	}
 	void draw() {
 		if(mousePressed) {
@@ -208,7 +209,7 @@ class vEllipse extends draww_tool {
 
 class vRect extends draww_tool {
 	void init() {
-		
+		fill(0,255,0);
 	}
 	void draw() {
 		if(mousePressed) {
