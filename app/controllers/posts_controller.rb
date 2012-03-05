@@ -69,7 +69,6 @@ class PostsController < ApplicationController
     
     if @post.save
       current_user.posts << @post
-      current_user.vote!(@post)
        flash[:notice] = 'Post was successfully created.'
     end
 
