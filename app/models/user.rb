@@ -28,8 +28,12 @@ class User < ActiveRecord::Base
     author_score # should perhaps be a % of all author scores or post scores or some such...
   end
   
+  def vote(post)
+    votes.build(:post => post)
+  end
+
   def vote!(post)
-    v = votes.create!(:post => post)
+    votes.create!(:post => post)
   end
   
   def self.create_from_hash(hash)
