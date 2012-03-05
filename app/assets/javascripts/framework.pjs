@@ -42,9 +42,13 @@ var bg_colour = #999999;
 // Set current tool
 void setTool(t) {
 	if ( t != 'none' ) {
+		// push current canvas state to image
 		tool[tool_id].finalise();
+		// set and init tool
 		tool_id = t;
 		tool[tool_id].init();
+		// Make sure correct item is selected in dropdown
+		setToolFormEl(t);
 	}
 }
 

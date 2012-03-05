@@ -178,3 +178,8 @@ function resizeCanvas(w, h) {
 	console.log("resize js");
 	pjs_instance.resizeCanvas(w, h);
 }
+
+function setToolFormEl(t) {
+	console.log('st called');
+	$('#select_tool').selectmenu('index',t);
+}
