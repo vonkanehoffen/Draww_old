@@ -94,7 +94,8 @@ class cropScale extends draww_tool {
 			rc = rc+1;
 
 			// Clear screen
-			background(bg_colour);
+			//background(bg_colour);
+			image(canv_image, 0, 0);
 
 			// Draw Image
 			imageMode(CENTER);
