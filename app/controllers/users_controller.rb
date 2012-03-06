@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, :notice => 'Registration successfull.' }
+        format.html { redirect_to name_user_path(current_user.username), :notice => 'Registration successfull.' }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" } # TODO_HELP: How do I redirect this to 'user_sessions/new' without losing validation errors? user_session/new and user/new now occupy the same view (combined login and signup). Am I even doing that the right way?

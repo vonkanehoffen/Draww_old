@@ -2,10 +2,14 @@
 <%# TODO: Wouldn't it be nice if there was a "follow user" button here %>
 <%# https://github.com/tcocca/acts_as_follower/ perhaps? %>
 
-<%# TODO: If no posts found, show "why don't you post something" message here %>
-<%= render 'posts/new_link' %>
-<%= render '/posts/list' %>
-
+<%# render 'posts/new_link' %>
+<% if @user.posts.count > 0 %>
+	<%= render '/posts/list' %>
+<% elsif @user == current_user %>
+	<h2>Thanks for registering! Why don't you <%= link_to 'post something', new_post_path %> or looks at some fucking stuff? Draww works in some way or another.<br /><br /> TODO: Make this message more encouraging!</h2>
+<% else %>
+	<p><%= @user.username.capitalize %> hasn't posted anything yet</p>
+<% end %>
 <p>
   <strong>Reputation: </strong><%= @user.author_score %>
   The score you have received from the images you've posted.  This currently gives you a casting power of <%= @user.casting_power %> for your votes.
