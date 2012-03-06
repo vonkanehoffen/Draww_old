@@ -26,7 +26,11 @@ class draww_tool {
 		
 	}
 	void finalise() {
+		var prev_controls = show_controls;
+		show_controls = false;
+		this.draw();
 		canv_image = get();
+		show_controls = prev_controls;
 	}
 }
 

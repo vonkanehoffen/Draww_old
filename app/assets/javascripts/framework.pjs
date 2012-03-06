@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////
 
 // Draw state
-int state = 0; // 0: Init   1: Image Input   2: Image Loaded
+int state = 0; // 0: Init   1: Wait for Image   2: Image Loaded
 
 // Current tool (pointer for tool array defined in tool.pjs)
 int tool_id = 1;
@@ -80,11 +80,6 @@ void image_loaded_callback() {
 	state = 1;
 }
 
-void render_imported_image() {
-	image(imported_image, 0, 0, width, height);
-	ready_to_save = true; // TODO: This should call a function ~ enabling save button
-}
-
 ///////////////////////////////////////////////////////////
 // Processing Setup Hook //////////////////////////////////
 ///////////////////////////////////////////////////////////
@@ -118,15 +113,15 @@ void draw() {
 			
 		break;
 		
-		case 1: // Image Input
+		case 1: // Wait for Image
 		
 			// Hack cos requestImage (imageLoaded) callback appears to be broken
 			// https://processing-js.lighthouseapp.com/projects/41284-processingjs/tickets/558-loadimage-behaviour-is-out-of-sync-with-processing-api
 			if(image_wait_time > 0) {
 				image_wait_time -= 1;
 			} else {
-				render_imported_image();
 				state = 2;
+				ready_to_save = true; // TODO: This should call a function ~ enabling save button
 				setTool(0);
 			}
 			
