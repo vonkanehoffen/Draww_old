@@ -170,7 +170,6 @@ function handleReaderLoadEnd(evt) {
 
 // This is called by embedded JS to load approriate image on edit pages
 function loadRemoteImage(img) {
-	console.log(p);
 	pjs_instance.setImage(img);
 }
 
