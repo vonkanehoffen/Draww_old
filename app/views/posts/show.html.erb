@@ -1,13 +1,8 @@
-<div id="title_strip">
+<div class="row">
+  <div class="span8">
 	<%= render :partial => 'ranking', :locals => {:post => @post} %><%# TODO: Show which users voted %>
 	<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
 	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
-	<div class="actions">
-		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'edit button', :rel => 'nofollow' %>
-		<a href="#" class="next button grey"><span>Next</span></a><%# TODO: Make Next Link work %>
-	</div>
-</div>
-<div id="show">
 	<% if @post.photo.exists? then %>
 		<%= image_tag @post.photo.url(:medium), :class => 'medium' %><%# TODO: Should show full screen on click %>
 	<% else %>
@@ -31,7 +26,11 @@
 		</div>
 	<% end %>
 </div>
-<div id="meta">
+<div class="span4">
+  	<div class="actions">
+		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'edit button', :rel => 'nofollow' %>
+		<a href="#" class="next button grey"><span>Next</span></a><%# TODO: Make Next Link work %>
+	</div>
 	<p>
 		<% if belongs_to_current_user(@post) %>
 			<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
@@ -61,7 +60,7 @@
 		</div>
 	    <%= f.submit %>
 	<% end %>
+  </div>
 </div>
-
 <%# link_to 'Edit', edit_post_path(@post) %>
 

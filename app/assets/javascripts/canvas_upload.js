@@ -46,7 +46,6 @@ $(document).ready(function() {
 
 	// Resize Canvas
 	pjsReadyFn['auto_resize'] = function() {
-		// TODO: Why doesn't declaring this in another pjsReadyFn work?
 		pjs_instance = Processing.getInstanceById('canvas');
 		r();
 		$(window).resize(function() { r(); })

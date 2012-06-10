@@ -1,12 +1,23 @@
-<div class="user_sessions_form">
-	<%= form_for(@user_session) do |f| %>
-	  <%= render "shared/error_messages", :target => @user_session %>
-
-		<%= f.label :username %>
-	    <%= f.text_field :username %>
-		<%= f.label :password %>
-	    <%= f.password_field :password %>
-	    <%= f.submit "Login" %>
-
-	<% end %>
-</div>
+<%= form_for( @user_session, :html => { :class => 'form-horizontal' } ) do |f| %>
+  <%= render "shared/error_messages", :target => @user_session %>
+  <fieldset>
+    <legend>With an Existing Account</legend>
+    <div class="control-group">
+      <%= f.label :username, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :username, :class => 'span4' %>        
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :class => 'span4' %>        
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Login", :class => 'btn btn-primary' %>
+      <%# TODO: Use <button> instead of <submit> for forms (better for bootstrap)
+      http://stackoverflow.com/questions/6214548/how-to-implements-a-button-tag-to-form-for-helper %>
+    </div>
+  </fieldset>
+<% end %>

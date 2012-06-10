@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user 
-    # TODO: Needs to redirect back to the same page and highlight the login box. 
+    # TODO_HELP: Needs to redirect back to the same page after login and highlight the login box. 
     # Currently :store_location fucks up and gets .../comments for the current 
     # URL on some pages, cos the comments model is called as part of the 
     # posts/show view etc.
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
   
   def store_location
-    # TODO: The location stored doesn't help redirect after login. Make login on require_user via ajax? 
+    # TODO_HELP: The location stored doesn't help redirect after login. 
     # This points to stuff like /posts/94/comments which is no good as comments never viewed directly.
 
     session[:return_to] = request.fullpath

@@ -1,6 +1,10 @@
 <% flash.each do |key, msg| %>
-  <div id="<%= key %>">
-    <p><%= msg %></p>
+  <div class="row">
+    <div class="span12">
+      <div id="<%= key %>" class="alert alert-success">
+        <%= msg %>
+      </div>
+    </div>
   </div>
 <% end %>
 <% flash.discard %>

@@ -1,19 +1,15 @@
-<div class="posts_list">
+<ul class="thumbnails">
 <% @posts.each do |post| %>
-	<% if post.photo.exists? then %>
-		<div class="post">
-			<div class="actions">
-				<%= link_to(content_tag(:span, post.title), post, :class => 'show') %>
-				<%= render :partial => 'posts/ranking', :locals => { :post => post } %>
-			</div>
-			<div class="image">
-				<%= image_tag(post.photo.url(:small), :alt => post.title, :class => 'pic') %>
-			</div>
-	  	</div>
-	<% else %>
-		<div class="post">Error! Post has no photo.</div>
-	<% end %>
+  <li class="span3">
+    <% if post.photo.exists? then %>
+      <%= link_to(
+        image_tag(post.photo.url(:small), :alt => post.title, :class => 'pic'),
+        post, :class => 'thumbnail') %>
+	<%# render :partial => 'posts/ranking', :locals => { :post => post } %>
+    <% else %>
+      Error! Post has no photo.
+    <% end %>
+  </li>
 <% end %>
-<div class="clearfix"></div>
+</ul>
 <%= paginate @posts %>
-</div>

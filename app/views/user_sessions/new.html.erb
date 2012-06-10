@@ -1,13 +1,11 @@
-<div class="users_new">
-	<h1>Login / Sign up</h1>
-	<div class="auth">
-		<h3>With an Existing Account:</h3>
-		<%= render 'form' %>
-		<h3>Using Social Media:</h3>
-		<%= render 'authentications/auth' %>
-	</div>
-	<div class="signup">
-		<h3>Create a New Account:</h3>
-		<%= render 'users/form' %>
-	</div>
+<h1>Login / Sign up</h1>
+<div class="row">
+  <div class="span6">
+    <%= render 'form' %>
+    <h3>Using Social Media:</h3>
+    <%= render 'authentications/auth' %>
+  </div>
+  <div class="span6">
+    <%= render 'users/form' %>
+  </div>
 </div>

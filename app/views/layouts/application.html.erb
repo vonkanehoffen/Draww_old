@@ -2,45 +2,54 @@
 <html>
 <head>
   <title>Draww</title>
-  <%= stylesheet_link_tag    "application" %>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= yield :head %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-<header>
-	<div id="header_nav">
-		<div class="inner">
-			<%= link_to content_tag(:span, "Draww.co"), root_path, :id => 'site_title' %>
-			<nav class="user_actions">
-				<% if current_user %>
-					<div class="msg">Hello, <span><%= current_user.username %></span></div>
-					<%= link_to "New", new_post_path %>
-					<%= link_to "My Images", name_user_path(current_user.username) %>
-					<%= link_to "Profile", edit_user_path(current_user.id) %>
-					<%= link_to "Logout", :logout %>
-				<% else %>
-					<%= link_to "Login / Sign up", login_path %>
-				<% end %>
-			</nav>
-		</div>
-	</div>
-	<div id="flash">
-		<%= render 'shared/flashes' %>
-	</div>
-</header>
 
-<div role="main" id="view">
-<%= yield %>
-<div class="clearfix"></div>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to content_tag(:span, "Draww.co"), root_path, :class => 'brand' %>
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+            <% if current_user %>
+                <li><p class="navbar-text">Hello, <span><%= current_user.username %></span></p></li>
+                <li><%= link_to "New", new_post_path %></li>
+                <li><%= link_to "My Images", name_user_path(current_user.username) %></li>
+                <li><%= link_to "Profile", edit_user_path(current_user.id) %></li>
+                <li><%= link_to "Logout", :logout %>
+            <% else %>
+                <li><%= link_to "Login / Sign up", login_path %></li>
+            <% end %>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
 </div>
 
-<footer>
-	<div class="inner">
-		<div class="license">
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="/images/cc.png" /></a><br />Except where otherwise noted, <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" rel="dct:type">content</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
-		</div>
-	</div>
-</footer>
+<div role="main" class="container">
+    <%= render 'shared/flashes' %>
+    <%= yield %>
+    <div class="row">
+        <div class="span12">
+            <div class="license">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="/images/cc.png" /></a><br />Except where otherwise noted, <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" rel="dct:type">content</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

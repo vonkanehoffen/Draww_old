@@ -7,6 +7,7 @@
 // NOTE: This is Sprockets stuff. Some scripts included conditionally for views with canvas
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery-ui
 //
 //= require jquery.purr
