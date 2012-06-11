@@ -23,8 +23,8 @@
 				<option value="1">Ellipse</option>
 				<option value="2">Rectangle</option>
 			</select>
-			<a href="#" id="undo" class="button green">Undo</a>
-			<a href="#" id="save_post" class="button green">Save</a>
+			<a href="#" id="undo" class="btn">Undo</a>
+			<a data-toggle="modal" data-target="#save_post_modal" id="save_post" class="btn btn-primary">Save</a>
 		</div>
 	</div>
 	<div id="canvas_container">
@@ -33,7 +33,6 @@
 			<p>Sorry, you should really upgrade your browser.</p>
 		</canvas>
 	</div>
-	
 	<%= render 'form' %>
 </div>
 <%# link_to 'Back', posts_path %>

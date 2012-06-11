@@ -8,10 +8,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery-ui
 //
 //= require jquery.purr
-//= require lib/jquery.ui.selectmenu
 //= require best_in_place
 //= /require lib/jquery.waitforimages.js
 //

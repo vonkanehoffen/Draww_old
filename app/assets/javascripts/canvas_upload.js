@@ -34,15 +34,7 @@ $(document).ready(function() {
     });
 
 	// Put form fields into a modal box
-	form_el.dialog({
-		title: 		"Save", 
-		modal: 		true,
-		width: 		500,
-		autoOpen: 	false
-	});
-	$('#save_post').click(function(){
-		form_el.dialog('open');
-	});
+	$('#save_post_modal').modal({ show: false });
 
 	// Resize Canvas
 	pjsReadyFn['auto_resize'] = function() {
@@ -179,5 +171,5 @@ function resizeCanvas(w, h) {
 
 function setToolFormEl(t) {
 	console.log('st called');
-	$('#select_tool').selectmenu('index',t);
+	//$('#select_tool').selectmenu('index',t);
 }
