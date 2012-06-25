@@ -1,35 +1,21 @@
 <div class="row">
   <div class="span8">
+    <div class="posts-show-header">
 	<%= render :partial => 'ranking', :locals => {:post => @post} %><%# TODO: Show which users voted %>
 	<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
 	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+    </div>
+    <div class="posts-show-image">
 	<% if @post.photo.exists? then %>
 		<%= image_tag @post.photo.url(:medium), :class => 'medium' %><%# TODO: Should show full screen on click %>
 	<% else %>
 		<p>Error: No photo.</p>
 	<% end %>
-	
-	<% unless @post.parents.empty? %>
-		<div class="parents">
-			<h3>Original</h3>
-			<% for parent in @post.parents %>
-			<%= link_to(image_tag(parent.photo(:thumb)), parent, :class => 'relation') %>
-			<% end %>
-		</div>
-	<% end %>
-	<% unless @post.inverse_relationships.empty? %>
-		<div class="children">
-			<h3>Derivatives</h3>
-			<% for relationship in @post.inverse_relationships %>
-			<%= link_to(image_tag(relationship.post.photo(:thumb)), relationship.post, :class => 'relation') %>
-			<% end %>
-		</div>
-	<% end %>
+    </div>
 </div>
 <div class="span4">
   	<div class="actions">
-		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'edit button', :rel => 'nofollow' %>
-		<a href="#" class="next button grey"><span>Next</span></a><%# TODO: Make Next Link work %>
+		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'btn', :rel => 'nofollow' %>
 	</div>
 	<p>
 		<% if belongs_to_current_user(@post) %>
@@ -55,11 +41,24 @@
 	<h3>Add a comment:</h3>
 	<%= form_for([@post, @comment], :remote => true) do |f| %>
 		<%= render "shared/error_messages", :target => @comment %>
-		<div class="field">
-			<%= f.text_area :body, :cols => 35, :rows => 6 %>
-		</div>
+		<%= f.text_area :body, :cols => 35, :rows => 6, :class => 'span4' %>
 	    <%= f.submit %>
 	<% end %>
+	
+        <% unless @post.parents.empty? and @post.inverse_relationships.empty? %>
+          <ul class="thumbnails">          
+            <% for parent in @post.parents %>
+              <li class="span2">
+                <%= link_to(image_tag(parent.photo(:thumb))+content_tag(:h4, 'Parent'), parent, :class => 'thumbnail parent') %>
+              </li>
+            <% end %>
+            <% for relationship in @post.inverse_relationships %>
+              <li class="span2">
+                <%= link_to(image_tag(relationship.post.photo(:thumb))+content_tag(:h4, 'Child'), relationship.post, :class => 'thumbnail child') %>
+              </li>
+            <% end %>
+          </ul>
+      <% end %>
   </div>
 </div>
 <%# link_to 'Edit', edit_post_path(@post) %>
