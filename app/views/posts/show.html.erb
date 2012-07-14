@@ -2,8 +2,10 @@
   <div class="span8">
     <div class="posts-show-header">
 	<%= render :partial => 'ranking', :locals => {:post => @post} %><%# TODO: Show which users voted %>
-	<h1><%= best_in_place_if @post.user == current_user, @post, :title %></h1>
-	<span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+	<h1>
+          <%= best_in_place_if @post.user == current_user, @post, :title %>
+          <span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+        </h1>
     </div>
     <div class="posts-show-image">
 	<% if @post.photo.exists? then %>
@@ -16,12 +18,10 @@
 <div class="span4">
   	<div class="actions">
 		<%= link_to content_tag(:span, 'Draww on this image'), new_child_post_path(@post), :class => 'btn', :rel => 'nofollow' %>
-	</div>
-	<p>
 		<% if belongs_to_current_user(@post) %>
-			<%= link_to content_tag(:span, 'Delete'), @post, :class => 'delete', :confirm => 'Are you sure?', :method => :delete %>
+			<%= link_to content_tag(:span, 'Delete'), @post, :class => 'btn btn-danger', :confirm => 'Are you sure?', :method => :delete %>
 		<% end %>
-	</p>
+	</div>
 	<p>
 	  <h3>Description:</h3>
 	  <%= best_in_place_if @post.user == current_user, @post, :description, :type => :textarea %>

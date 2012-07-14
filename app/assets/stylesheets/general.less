@@ -1,14 +1,21 @@
 // General Styles for Draww
 // Loaded on top of Boilerplate
 
-@grey: #888;
+
+// IN-PLACE EDITING -------------------------------
+
+span.best_in_place {
+	padding-right:20px;
+	background:url('/images/bip_edit.png') center right no-repeat;
+	&:hover { background-color:$white_smoke;}
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // layouts > application
 /////////////////////////////////////////////////////////////////////////////
 
 .license {
-    color:@grey;
+    color:@grayLight;
     font-size:0.9em;
     padding:@gridGutterWidth 0;
     img { padding-right:10px; }
@@ -38,9 +45,35 @@
 
 .posts-show-header {
     padding-bottom:@gridGutterWidth;
-    .ranking, h1, .by { display:inline-block; }
+    .ranking, h1 { display:inline-block; }
+        .by { font-weight:normal; color:@grayLight}
 }
+    .ranking {
+        text-align:center;
+        .vote_up, .vote_down {
+            display:block;
+            .size(14px, 24px);
+            background-position: center center;
+            background-repeat: no-repeat;
+            span { display:none; }
+        }
+        .vote_up    { background-image: url('/images/vote_up.png'); }
+        .vote_down  { background-image: url('/images/vote_down.png'); }
+        .vote_count {
+            color:@grayLight;
+            font-weight:bold;
+            font-size:20px;
+            line-height:20px;
+        }
+    }
 .posts-show-image {
     padding-bottom:@gridGutterWidth;    
     img { width:100%; }
+}
+a.thumbnail.child, .thumbnail.parent {
+    text-decoration:none;
+    h4 {
+        color:#333;
+        margin-top:4px;
+    }
 }

@@ -8,6 +8,5 @@
  * and the CSS for canvas editing is included only conditionally
  *= require_self
  *= require bootstrap_and_overrides
- *= require jquery-ui
 
 */
