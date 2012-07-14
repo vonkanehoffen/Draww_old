@@ -1,4 +1,37 @@
-/* Canvas Upload Handler with Jo! */
+/**
+ * Canvas Upload Handler
+ * 
+ * Thanks to Jo Portus for some of this
+ * What happens here then? Well...
+ * 
+ *  - We listen for 'drop' event when a file is dropped onto the browser
+ *  
+ *  - That file is read as a data url and sent off to the pjs instance for rendering
+ *  
+ *  - We put the hidden /posts/_form.html.erb into a BootStrap modal popup
+ *  
+ *  - An event is attached to the form's submit action (using jquery.form lib) that
+ *    converts whatever's showing in the canvas to a Data URL and injects it into
+ *    a hidden field in the form called post_attachment64 just before the form
+ *    data gets POSTed.
+ *
+ * What it should be doing to sort resolution problems:
+ *
+ *  - Page starts with div showing drop area and hidden PJS
+ *  - When image is dropped, div changes to spinner
+ *  - PJS is resized to #container width
+ *  - Image data is loaded into canvas
+ *  - When that's finished, div is destroyed and canvas shown
+ *  - User can resize image now with PJS controls
+ *  - When save is clicked, canvas is hidden again and form is form partial is shown
+ *  - Hidden canvas is resized to 1024x768 and image rendered using last crop&scale data
+ *  - submit action does the dataurl injection as before.
+ *  
+ *  
+ * PJS instance is scaled to width of #container
+ * TODO: Get rid of all the shit for editing out of the upload js. It should be separate.
+ *    
+ */
 
 // Set in pjs when something has been rendered in the canvas
 var ready_to_save = false;
@@ -40,7 +73,9 @@ $(document).ready(function() {
 	pjsReadyFn['auto_resize'] = function() {
 		pjs_instance = Processing.getInstanceById('canvas');
 		r();
-		$(window).resize(function() { r(); })
+		$(window).resize(function() { resize_width(); })
+		
+		// This resizes based on with AND height of viewport
 		function r() {
 			// work out max size @ 3 to 2 aspect ratio
 			cw = $('#canvas_container').width();
@@ -52,6 +87,13 @@ $(document).ready(function() {
 				w = (ch/2)*3; 
 			}
 			resizeCanvas(w,h);
+		}
+		
+		// This resizes based on #canvas_container width only
+		function resize_width() {
+			cw = $('#canvas_container').width();
+			ch = Math.round( (cw/3)*2 );
+			resizeCanvas(cw,ch);
 		}
 	}
 	
@@ -115,10 +157,13 @@ function handleFiles(files) {
 
 	// init the reader event handlers
 	//reader.onprogress = handleReaderProgress;
-	reader.onloadend = handleReaderLoadEnd;
 
 	// begin the read operation
 	reader.readAsDataURL(file);
+
+	// When it's read, send it off to a function that sends it to canvas
+	reader.onloadend = handleReaderLoadEnd;
+
 }
 /*
 function handleReaderProgress(evt) {

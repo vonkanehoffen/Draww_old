@@ -31,8 +31,8 @@ PImage dropHere;
 dropHere = loadImage("/images/drop-here.png");
 
 // Misc
-int init_size_x = 978;
-int init_size_y = 652;
+int init_size_x = 1024;
+int init_size_y = 768;
 var bg_colour = #999999;
 
 ///////////////////////////////////////////////////////////
