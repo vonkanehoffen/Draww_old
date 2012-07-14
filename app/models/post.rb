@@ -5,6 +5,13 @@ class Post < ActiveRecord::Base
   before_save :default_values
   # paginates_per 10 < set in config/initializers/kaminari_config
  
+  # Allow attributes to be set via mass assignment, eg.
+  # Post.new(:title => 'Whatever', :description=> 'Something)
+  # Needed for new security in Rails 3.2:
+  # http://stackoverflow.com/questions/10050797/rails-error-cant-mass-assign-protected-attributes
+  
+  attr_accessible :title, :description, :tag_names, :attachment64, :photo 
+
   # Paperclip
   # All photos should be 3 to 2 aspect
   has_attached_file :photo,
@@ -47,7 +54,7 @@ class Post < ActiveRecord::Base
   end
 
   def friendly_name(str)
-    s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
+    s = str.encode('utf-8')
     s.downcase!
     s.gsub!(/'/, '')
     s.gsub!(/[^A-Za-z0-9]+/, ' ')
