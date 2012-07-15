@@ -4,33 +4,24 @@
 // Communicates with canvas_upload.js
 ////////////////////////////////////////
 
-// TODO: All processing.js is broken in Firefox 3.6
-
-// Preload interface images -------------------------------
-
-/* @pjs preload="/images/drop-here.png"; */
 
 ///////////////////////////////////////////////////////////
 // Globals ////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
 // Draw state
-int state = 0; // 0: Init   1: Wait for Image   2: Image Loaded
+boolean image_rendered = false;
 
 // Current tool (pointer for tool array defined in tool.pjs)
 int tool_id = 1;
 
 // Object to hold imported image
 PImage imported_image;
-int image_wait_time = 0; 
+
 // Object for finalised canvas after a tool has completed / been changed
 PImage canv_image;
 
-// Initial user instruction image
-PImage dropHere;
-dropHere = loadImage("/images/drop-here.png");
-
-// Misc
+// Canvas parameters
 int init_size_x = 1024;
 int init_size_y = 682;
 var bg_colour = #999999;
@@ -55,29 +46,22 @@ void setTool(t) {
 // Load image into canvas
 void setImage(s) {
 	console.log('setImage');
-	imported_image = requestImage(s , "" , image_loaded_callback());
+	imported_image = requestImage(s , "");
 }
 
 // Resize image in canvas
 // TODO: This needs to either take edits with it or not fire after drawing started
+// Also, image is rendering at wrong dimensions on resize.
+
 void resizeCanvas(w, h) {
-	console.log('resize called');
+	console.log('PJS resizeCanvas called');
 	size(w, h);
 	if(imported_image) { image(imported_image , 0 , 0 , width , height); }
 }
 
 void undo() {
+        console.log('PJS undo called');
 	image(canv_image, 0, 0);
-}
-
-///////////////////////////////////////////////////////////
-// Image Importing ////////////////////////////////////////
-///////////////////////////////////////////////////////////
-
-void image_loaded_callback() {
-	console.log('imageloaded callback')
-	image_wait_time = 10;
-	state = 1;
 }
 
 ///////////////////////////////////////////////////////////
@@ -85,6 +69,9 @@ void image_loaded_callback() {
 ///////////////////////////////////////////////////////////
 
 void setup() {
+    
+        // Set initial canvas size and params, and fire callback for JS
+        
 	size(init_size_x, init_size_y);
 	background(bg_colour);
 	smooth();
@@ -102,37 +89,24 @@ void setup() {
 ///////////////////////////////////////////////////////////
 
 void draw() {
-	switch(state) {
-		case 0: // Init (nothing loaded)
+    
+    // Check if the image is loaded.
+    // If it is, call the JS function to show the the PJS Canvas once, set tool
+    // to crop&scale, and run it once. For every frame after that, just run
+    // the current tool.
+    
+    if(imported_image != null ) {
+        if(imported_image.loaded && !image_rendered) {
+            setTool(0);
+            tool[tool_id].draw();
+            imageRendered();
+            image_rendered = true;
+        }
+        if(imported_image.loaded) {
+            tool[tool_id].draw();
+        }
+    }
 
-			image(dropHere, 
-				int(width/2 - (dropHere.width/2)), 
-				int(height/2 - (dropHere.height/2))
-			);
-			// image(dropHere, random(200), random(200));
-			
-		break;
-		
-		case 1: // Wait for Image
-		
-			// Hack cos requestImage (imageLoaded) callback appears to be broken
-			// https://processing-js.lighthouseapp.com/projects/41284-processingjs/tickets/558-loadimage-behaviour-is-out-of-sync-with-processing-api
-			if(image_wait_time > 0) {
-				image_wait_time -= 1;
-			} else {
-				state = 2;
-				ready_to_save = true; // TODO: This should call a function ~ enabling save button
-				setTool(0);
-			}
-			
-		break;
-		
-		case 2: // Drawing!
-		
-			tool[tool_id].draw();
-			
-		break;
-	}
 }
 
 ///////////////////////////////////////////////////////////

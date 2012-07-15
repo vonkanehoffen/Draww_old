@@ -41,12 +41,16 @@ var pjs_instance;
 
 $(document).ready(function() {
 
+    // Preload spinner
+    $(['/images/ajax-loader-big.gif']).preload();
+    
+    // Get interface elements
     var canvas = 	document.getElementById("canvas");
     var drop_area = 	document.getElementById("drop_area");
     var form_el = 	$('form.new_post, form.edit_post');
     var select_tool = 	$('#select_tool');
 
-    // init event handlers for drag and drop image loading
+    // Init event handlers for drag and drop image loading
     drop_area.addEventListener("dragenter", dragEnter, false);
     drop_area.addEventListener("dragexit", dragExit, false);
     drop_area.addEventListener("dragover", dragOver, false);
@@ -54,11 +58,7 @@ $(document).ready(function() {
 
     form_el.submit(function() {
 	// Inject image data into form
-	if (ready_to_save) {
 	$('#post_attachment64').val(canvas.toDataURL("image/jpeg"));
-	} else {
-	$('#post_attachment64').remove();
-	}
 	
 	// Populate title if blank
 	var title_el = $('input#post_title');
@@ -148,7 +148,6 @@ function drop(evt) {
     }
 }
 
-var objImage;
 var reader;
 
 function handleFiles(files) {
@@ -196,8 +195,6 @@ function processingReady() {
 // }
 
 function handleReaderLoadEnd(evt) {
-    $('#drop_area').hide();
-    $('#canvas').show();
     console.log('handleReaderLoadEnd called');
     pjs_instance.setImage( evt.target.result );
 }
@@ -213,6 +210,13 @@ function resizeCanvas(w, h) {
 }
 
 function setToolFormEl(t) {
-    console.log('st called');
+    console.log('JS setToolFormEl called');
     //$('#select_tool').selectmenu('index',t);
+}
+
+// Called when image is actually rendered in the PJS canvas
+function imageRendered() {
+    console.log('JS imageLoaded Called');
+    $('#drop_area').hide();
+    $('#canvas').show();
 }
