@@ -56,7 +56,12 @@ $(document).ready(function() {
     drop_area.addEventListener("dragover", dragOver, false);
     drop_area.addEventListener("drop", drop, false);
 
+    // Put form fields in a modal
+    $('#save_post_modal').modal({ show: false });
+    
     form_el.submit(function() {
+	
+	$("#save_post_modal input[type='submit']").val('Uploading').attr("disabled", true);
 	// Inject image data into form
 	$('#post_attachment64').val(canvas.toDataURL("image/jpeg"));
 	
@@ -92,7 +97,7 @@ $(document).ready(function() {
 	    cw = $('#canvas_container').width();
 	    console.log("Resizing to: "+cw);
 	    ch = Math.round( (cw/3)*2 );
-	    resizeCanvas(cw,ch);
+	    //resizeCanvas(cw,ch);
 	}
     }
     
@@ -122,11 +127,13 @@ $(document).ready(function() {
 function dragEnter(evt) {
     evt.stopPropagation();
     evt.preventDefault();
+    $('#drop_area').addClass('over');
 }
 
 function dragExit(evt) {
     evt.stopPropagation();
     evt.preventDefault();
+    $('#drop_area').removeClass('over');
 }
 
 function dragOver(evt) {
@@ -143,6 +150,7 @@ function drop(evt) {
 
     // Only call the handler if 1 or more files was dropped.
     if (count > 0) {
+	$('#drop_area').removeClass('over');
 	$('#drop_area').addClass('loading');
 	handleFiles(files);
     }
@@ -214,9 +222,16 @@ function setToolFormEl(t) {
     //$('#select_tool').selectmenu('index',t);
 }
 
-// Called when image is actually rendered in the PJS canvas
+// This is called from the PJS when image has been rendered.
+// We swap hide the drop area <div> and show the canvas, and swap the navigation
+// for a save button which will show the form with the actual rails save action on it
+
 function imageRendered() {
-    console.log('JS imageLoaded Called');
+    console.log('JS imageRendered Called');
+
     $('#drop_area').hide();
+    $('#canvas_container').addClass('active');
     $('#canvas').show();
+    $('.navbar ul.nav').html('<li><a data-toggle="modal" data-target="#save_post_modal" id="save_post" class="btn btn-primary">Save</a></li>');
+
 }

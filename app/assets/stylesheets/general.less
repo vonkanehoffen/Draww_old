@@ -1,6 +1,7 @@
 // General Styles for Draww
 // Loaded on top of Boilerplate
 
+html { height:100%; }
 
 // IN-PLACE EDITING -------------------------------
 
@@ -14,6 +15,10 @@ span.best_in_place {
 // layouts > application
 /////////////////////////////////////////////////////////////////////////////
 
+.navbar-inner {
+    //background:none;
+    //.box-shadow(none);
+}
 .license {
     color:@grayLight;
     font-size:0.9em;
@@ -82,17 +87,36 @@ a.thumbnail.child, .thumbnail.parent {
 // Posts > New
 /////////////////////////////////////////////////////////////////////////////
 
-#canvas_container {
-    #canvas {
+body.posts.new {
+    height:100%;
+    padding:0;
+    .container { height:100%; }
+    #actions {
         display:none;
     }
 }
+
 #drop_area {
-    .size(336px,219px);
+    width:100%;
+    height:100%;
+    min-height:336px;
     background:url('/images/drop_area.png') center center no-repeat;
     span { display:none; }
     margin:auto;
+    &.over {
+        background-color:#eee;
+    }
     &.loading {
         background-image:url('/images/ajax-loader-big.gif');
     }
 }
+#canvas_container {
+    position:fixed;
+    top:50%; left:50%;
+    margin-top:-682/2px;
+    margin-left:-1024/2px;
+    #canvas {
+        display:none;
+    }
+}
+

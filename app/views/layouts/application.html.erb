@@ -16,30 +16,23 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <%= link_to content_tag(:span, "Draww.co"), root_path, :class => 'brand' %>
-      <div class="nav-collapse">
-        <ul class="nav pull-right">
-            <% if current_user %>
-                <li><p class="navbar-text">Hello, <span><%= current_user.username %></span></p></li>
-                <li><%= link_to "New", new_post_path %></li>
-                <li><%= link_to "My Images", name_user_path(current_user.username) %></li>
-                <li><%= link_to "Profile", edit_user_path(current_user.id) %></li>
-                <li><%= link_to "Logout", :logout %>
-            <% else %>
-                <li><%= link_to "Login / Sign up", login_path %></li>
-            <% end %>
-        </ul>
-      </div><!--/.nav-collapse -->
+      <%= link_to content_tag(:span, "Draww.co"), root_path, :class => 'brand' %></li>
+      <ul class="nav pull-right">
+          <% if current_user %>
+              <li><p class="navbar-text">Hello, <span><%= current_user.username %></span></p></li>
+              <li><%= link_to "New", new_post_path %></li>
+              <li><%= link_to "My Images", name_user_path(current_user.username) %></li>
+              <li><%= link_to "Profile", edit_user_path(current_user.id) %></li>
+              <li><%= link_to "Logout", :logout %>
+          <% else %>
+              <li><%= link_to "Login / Sign up", login_path %></li>
+          <% end %>
+      </ul>
     </div>
   </div>
 </div>
 
-<div role="main" class="container">
+<div role="main" class="view container">
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%# Don't render the footer for new post page.

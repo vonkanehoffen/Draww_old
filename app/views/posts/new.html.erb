@@ -14,26 +14,24 @@
 		</script>
 	<% end %>
 <% end %>
-<div id="posts_new">
-	<div id="title_strip">
-		<h1>New Image</h1>
-		<div class="actions">
-			<select id="select_tool" class="grey select_tool">
-				<option value="0" selected="yes">Crop &amp; Scale</option>
-				<option value="1">Ellipse</option>
-				<option value="2">Rectangle</option>
-			</select>
-			<a href="#" id="undo" class="btn">Undo</a>
-			<a data-toggle="modal" data-target="#save_post_modal" id="save_post" class="btn btn-primary">Save</a>
-		</div>
-	</div>
-	<div id="drop_area"><span>Drop an image file here (JPEG or PNG, Any Size)</span></div>
-	<div id="canvas_container">
-		<canvas datasrc="/assets/framework.pjs /assets/tools.pjs" id="canvas" tabindex="0">
-		<%# <canvas datasrc="/assets/crop_and_save.pjs" id="canvas" tabindex="0"> %>
-			<p>Sorry, you should really upgrade your browser.</p>
-		</canvas>
-	</div>
-	<%= render 'form' %>
+
+<div id="actions">
+	<select id="select_tool" class="grey select_tool">
+		<option value="0" selected="yes">Crop &amp; Scale</option>
+		<option value="1">Ellipse</option>
+		<option value="2">Rectangle</option>
+	</select>
+	<a href="#" id="undo" class="btn">Undo</a>
+	<!--<a data-toggle="modal" data-target="#save_post_modal" id="save_post" class="btn btn-primary">Save</a>-->
 </div>
+
+<div id="drop_area"><span>Drop an image file here (JPEG or PNG, Any Size)</span></div>
+
+<div id="canvas_container">
+	<canvas datasrc="/assets/framework.pjs /assets/tools.pjs" id="canvas" tabindex="0">
+	<%# <canvas datasrc="/assets/crop_and_save.pjs" id="canvas" tabindex="0"> %>
+		<p>Sorry, you should really upgrade your browser.</p>
+	</canvas>
+</div>
+<%= render 'form' %>
 <%# link_to 'Back', posts_path %>

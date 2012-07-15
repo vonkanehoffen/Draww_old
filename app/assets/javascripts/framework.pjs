@@ -64,6 +64,14 @@ void undo() {
 	image(canv_image, 0, 0);
 }
 
+// Resize canvas to init dimensions ready to have data pulled for saving
+// If we don't do this, the saved images will be different sizes depending on
+// the user's browser resolution.
+
+void prepare_to_save() {
+
+}
+
 ///////////////////////////////////////////////////////////
 // Processing Setup Hook //////////////////////////////////
 ///////////////////////////////////////////////////////////
