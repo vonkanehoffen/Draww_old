@@ -32,7 +32,7 @@ dropHere = loadImage("/images/drop-here.png");
 
 // Misc
 int init_size_x = 1024;
-int init_size_y = 768;
+int init_size_y = 682;
 var bg_colour = #999999;
 
 ///////////////////////////////////////////////////////////

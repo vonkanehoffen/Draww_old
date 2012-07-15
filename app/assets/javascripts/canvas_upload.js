@@ -41,10 +41,10 @@ var pjs_instance;
 
 $(document).ready(function() {
 
-    var canvas = document.getElementById("canvas");
-    var drop_area = $('#drop_area');
-    var form_el = $('form.new_post, form.edit_post');
-    var select_tool = $('#select_tool');
+    var canvas = 	document.getElementById("canvas");
+    var drop_area = 	document.getElementById("drop_area");
+    var form_el = 	$('form.new_post, form.edit_post');
+    var select_tool = 	$('#select_tool');
 
     // init event handlers for drag and drop image loading
     drop_area.addEventListener("dragenter", dragEnter, false);
@@ -142,8 +142,10 @@ function drop(evt) {
     var count = files.length;
 
     // Only call the handler if 1 or more files was dropped.
-    if (count > 0)
-	    handleFiles(files);
+    if (count > 0) {
+	$('#drop_area').addClass('loading');
+	handleFiles(files);
+    }
 }
 
 var objImage;
@@ -194,12 +196,9 @@ function processingReady() {
 // }
 
 function handleReaderLoadEnd(evt) {
+    $('#drop_area').hide();
+    $('#canvas').show();
     console.log('handleReaderLoadEnd called');
-    //console.log("target="+evt.target.result);
-    //var cache_sketch = Processing.Sketch;
-    //cache_sketch.imageCache.images = evt.target.result;
-    //cache_sketch.onFrameStart = function() {
-    //	console.log('onFrameStart called');
     pjs_instance.setImage( evt.target.result );
 }
 

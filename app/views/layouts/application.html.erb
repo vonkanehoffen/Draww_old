@@ -42,6 +42,9 @@
 <div role="main" class="container">
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <%# Don't render the footer for new post page.
+        Also, root_path works as an arg here for the home page %>
+    <% if !current_page?(:controller => 'posts', :action => 'new') then %>
     <div class="row">
         <div class="span12">
             <div class="license">
@@ -49,6 +52,7 @@
             </div>
         </div>
     </div>
+    <% end %>
 </div>
 
 </body>

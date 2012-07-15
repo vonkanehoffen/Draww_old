@@ -82,3 +82,17 @@ a.thumbnail.child, .thumbnail.parent {
 // Posts > New
 /////////////////////////////////////////////////////////////////////////////
 
+#canvas_container {
+    #canvas {
+        display:none;
+    }
+}
+#drop_area {
+    .size(336px,219px);
+    background:url('/images/drop_area.png') top left no-repeat;
+    span { display:none; }
+    margin:auto;
+    &.loading {
+        background-color:#f00;
+    }
+}
