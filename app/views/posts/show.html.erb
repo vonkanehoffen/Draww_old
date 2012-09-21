@@ -9,7 +9,7 @@
     </div>
     <div class="posts-show-image">
 	<% if @post.photo.exists? then %>
-		<%= image_tag @post.photo.url(:medium), :class => 'medium' %><%# TODO: Should show full screen on click %>
+		<%= image_tag @post.photo.url(:original), :class => 'medium' %><%# TODO: Should show full screen on click %>
 	<% else %>
 		<p>Error: No photo.</p>
 	<% end %>

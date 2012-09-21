@@ -16,10 +16,7 @@ class Post < ActiveRecord::Base
   # All photos should be 3 to 2 aspect
   has_attached_file :photo,
     :styles => {
-      :thumb=>    ["160x107>", :jpg],
-      :small  =>  ["320x213>", :jpg],
-      :medium =>  ["640x427>", :jpg],
-      :large =>   ["1024x683>", :jpg] 
+      :thumb=>    ["170x170>", :jpg],
       }
       
   validates :title, 

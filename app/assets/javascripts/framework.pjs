@@ -22,8 +22,8 @@ PImage imported_image;
 PImage canv_image;
 
 // Canvas parameters
-int init_size_x = 1024;
-int init_size_y = 682;
+int init_size_x = 530;
+int init_size_y = 530;
 var bg_colour = #999999;
 
 ///////////////////////////////////////////////////////////

@@ -5,6 +5,7 @@ config/database.yml
 tmp/
 .sass-cache/
 public/system/photos/
+public/system/posts/
 config/database.yml
 doc/psd/
 .DS_Store
