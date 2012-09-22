@@ -1,15 +1,42 @@
 // Main UI Interaction
 
+var draww = {
+    grid: {
+        show: function (url, tile) {
+            var overlay = $('.overlay', tile);
+            overlay.addClass('loading');
+
+            $.ajax({ url: url }).done(function(data){
+                overlay.removeClass('loading');
+                $('#index .show').hide();
+                
+                // Build a container and put the content in it
+                var container = $('<div class="show" />');
+                var push = tile.position().left > ($('#index').width())/2 ? "push-right" : "push-left";                
+                container.addClass(push);
+                container.html(data);
+
+                // Find the first tile on the current row and insert before it
+                var inserted = false;
+                $('.thumb').each(function(i){
+                    if(!inserted) {
+                        if($(this).position().top == tile.position().top) {
+                            $(this).before(container);
+                            inserted = true;
+                        }
+                    }
+                });
+                
+            })
+        }
+    }
+}
 $(document).ready(function() {
 	
 	$(['/images/ajax-loader.gif']).preload();
 	
 	// In-place editing
 	$('.best_in_place').best_in_place();
-
-	//$('.posts_list').waitForImages(function() {
-		//list_image_fitting();
-	//})
 	
 	// Generc AJAX handling (jquery-ujs)
 	var ujs_form = $("form[data-remote='true']");
@@ -47,60 +74,11 @@ $(document).ready(function() {
 	});
         
     $("a.inspect").live("click", function() {
-        var el = $(this);
-        $.getScript(this.href, function() {
-            // Where are we?
-            var current_pos = el.parent().parent().parent().position(); // .thumb
-            console.log('current:',current_pos);
-            var left = 0;
-            var right = 0;
-            var inserted = false;
-            $('.thumb').each(function(i){
-                if(!inserted) {
-                    p = $(this).position();
-                    if(p.top == current_pos.top) {
-                        $(this).before(ajax_content);
-                        console.log("insert", ajax_content);
-                        if(current_pos.left > ($('#index').width())/2) {
-                            $(ajax_content,'.show').removeClass('push-left').addClass('push-right');
-                        } else {
-                            $(ajax_content,'.show').removeClass('push-right').addClass('push-left');
-                        }
-                    }
-                }
-            })
-        });
+        draww.grid.show(this.href, $(this).parent().parent().parent());
         return false;
     });
 	
 });
-
-/////////////////////////////////////////////////////////
-// Post _list image fitting
-/////////////////////////////////////////////////////////
-
-function list_image_fitting() {
-
-	// Get initial image dimensions
-	var imgs = $('.posts_list .post img');
-	var iw = imgs.first().outerWidth();
-	var ih = imgs.first().outerHeight();
-	var ip = 42; // right padding
-	
-	// On resize, scale images accordingly
-	$(window).resize(function() {
-		scale();
-	})
-	scale(); // also scale on load
-	function scale() {
-		var vw = $('.posts_list').width();
-		var new_iw = (vw-(ip*3))/3;
-		imgs.each(function(){
-			$(this).width(new_iw);
-		})
-	}
-	
-}
 
 /////////////////////////////////////////////////////////
 // Preload Images

@@ -158,6 +158,11 @@ body {
                 opacity:0.7;
             }
         }
+        &.loading {
+            display:block;
+            .actions { display:none; }
+            background:rgba(0,0,0,0.5) url('/assets/ajax-loader-big.gif') center center no-repeat;
+        }
     }
     &:hover .overlay { display:block; }
 }
@@ -183,7 +188,7 @@ body {
         background-color:#eee;
     }
     &.loading {
-        background-image:url('/images/ajax-loader-big.gif');
+        background-image:url('/assets/ajax-loader-big.gif');
     }
 }
 #canvas_container {

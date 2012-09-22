@@ -1,7 +1,0 @@
-<div class="show">
-    <% if @post.photo.exists? then %>
-        <%= image_tag @post.photo.url(:original) %>
-    <% else %>
-        <p>Error: No image.</p>
-    <% end %>
-</div>

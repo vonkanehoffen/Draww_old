@@ -1,3 +1,11 @@
+<div class="full_image">
+    <% if @post.photo.exists? then %>
+        <%= image_tag @post.photo.url(:original), :class => 'medium' %><%# TODO: Should show full screen on click %>
+    <% else %>
+        <p>Error: No photo.</p>
+    <% end %>
+</div>
+<!--
 <div class="row">
   <div class="span8">
     <div class="posts-show-header">
@@ -7,13 +15,7 @@
           <span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
         </h1>
     </div>
-    <div class="posts-show-image">
-	<% if @post.photo.exists? then %>
-		<%= image_tag @post.photo.url(:original), :class => 'medium' %><%# TODO: Should show full screen on click %>
-	<% else %>
-		<p>Error: No photo.</p>
-	<% end %>
-    </div>
+
 </div>
 <div class="span4">
   	<div class="actions">
@@ -62,4 +64,4 @@
   </div>
 </div>
 <%# link_to 'Edit', edit_post_path(@post) %>
-
+-->
