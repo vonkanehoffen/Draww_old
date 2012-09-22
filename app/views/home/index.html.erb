@@ -1,6 +1,4 @@
-<% if current_user %>
-	<%= render 'posts/new_link' %>
-<% else %>
+<% if !current_user %>
 	<div class="hero-unit">
           <h1>Draww is a community where people share and collaborate with images.</h1>
 	  <h4>Upload your own, alter them, and vote for the best. <%= link_to 'Get started now!', new_user_path %></h4>

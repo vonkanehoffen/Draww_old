@@ -7,6 +7,6 @@
  * This is 'Sprockets' stuff. We're not using 'require_tree .' now as the load order was wrong
  * and the CSS for canvas editing is included only conditionally
  *= require_self
- *= require bootstrap_and_overrides
-
+ * require bootstrap_and_overrides
+ *= require main
 */

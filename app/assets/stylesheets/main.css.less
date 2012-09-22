@@ -1,0 +1,193 @@
+/**
+ * Main Draww stylesheet.
+ */
+
+
+// Twitter Bootstrap -----------------------------------------------------------
+
+
+// CSS Reset
+@import "twitter/bootstrap/reset";
+
+// Core variables and mixins
+@import "twitter/bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
+@import "twitter/bootstrap/mixins";
+
+// Grid system and page structure
+@import "twitter/bootstrap/scaffolding";
+@import "twitter/bootstrap/grid";
+@import "twitter/bootstrap/layouts";
+
+// Base CSS
+@import "twitter/bootstrap/type";
+@import "twitter/bootstrap/code";
+@import "twitter/bootstrap/forms";
+@import "twitter/bootstrap/tables";
+
+// Components: Buttons & Alerts
+@import "twitter/bootstrap/buttons";
+@import "twitter/bootstrap/button-groups";
+@import "twitter/bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons
+
+// Components: Popovers
+@import "twitter/bootstrap/modals";
+@import "twitter/bootstrap/tooltip";
+@import "twitter/bootstrap/popovers";
+
+// Components: Misc
+@import "twitter/bootstrap/progress-bars";
+
+// Utility classes
+@import "twitter/bootstrap/utilities"; // Has to be last to override when necessary
+
+
+// General ---------------------------------------------------------------------
+
+body {
+    padding:60px 0;
+}
+
+#container {
+    width:1260px;
+    margin:0 auto;
+    // Note: All these extra rules come from bootstrap .container
+    // Not sure if they're even necessary
+    position: relative;
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        line-height: 0;
+        content: "";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+// HTC sensation XE resolution 540px
+// Iphone 4: 640px
+@media screen and (max-width:1260px) { // 7 wide
+    #container, #navbar .inner { width:1080px; } // 6 wide
+}
+@media screen and (max-width:1080px) {
+    #container, #navbar .inner { width:900px; } // 5 wide
+}
+@media screen and (max-width:900px) {
+    #container, #navbar .inner { width:720px; } // 4 wide
+}
+@media screen and (max-width:720px) {
+    #container, #navbar .inner { width:540px; } // 3 wide
+}
+
+// Navigation ------------------------------------------------------------------
+
+#navbar {
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    z-index:10;
+    .inner {
+        position:relative;
+        margin:0 auto;
+    }
+        .brand { float:left; margin-left:5px; }
+        .actions {
+            position:absolute;
+            top:0; right:0;
+            margin-right:5px;
+            list-style:none;
+            li {
+                float:left;
+                margin-left:10px;
+                a {
+                    display:block;
+                    height:35px;
+                    line-height:35px;
+                    padding:0 20px;
+                    background:#777;
+                    .border-radius(0 0 5px 5px);
+                    text-decoration:none;
+                    font-weight:bold;
+                    color:#fff;
+                    &:hover {
+                        background:#888;
+                    }
+                }
+                ul {
+                    display:none;
+                    list-style:none;
+                    padding:0; margin:0;
+                }
+            }
+            .dropdown {
+                &:hover {
+                    ul { display:block; }
+                    a { .border-radius(0); }
+                    li:last-child a { .border-radius(0 0 5px 5px); }
+                }
+                ul li {
+                    margin:0;
+                    display:block;
+                    float:none;
+                }
+            }
+        }
+}
+
+
+// Image Grid (home page) ------------------------------------------------------
+
+.thumb {
+    margin:5px;
+    display:inline-block;
+
+    position:relative;
+    .overlay {
+        display:none;
+        position:absolute;
+        top:0; right:0;
+        background:rgba(0,0,0,0.5);
+        width:100%; height:100%;
+        .actions {
+            margin-top:55px;
+            text-align:center;
+            a img { .transition(opacity 0.3s); }
+            a:hover img {
+                opacity:0.7;
+            }
+        }
+    }
+    &:hover .overlay { display:block; }
+}
+
+.show {
+    margin: 5px;
+}
+    .push-left { float:left; }
+    .push-right { float:right; }
+    
+    
+// New Image -------------------------------------------------------------------
+
+
+#drop_area {
+    width:530px;
+    height:530px;
+    min-height:336px;
+    background:#ddd url('/images/drop_area.png') center center no-repeat;
+    span { display:none; }
+    margin:auto;
+    &.over {
+        background-color:#eee;
+    }
+    &.loading {
+        background-image:url('/images/ajax-loader-big.gif');
+    }
+}
+#canvas_container {
+    #canvas {
+        display:none;
+    }
+}

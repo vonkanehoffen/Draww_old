@@ -45,6 +45,33 @@ $(document).ready(function() {
 			$(this).submit();
 		}
 	});
+        
+    $("a.inspect").live("click", function() {
+        var el = $(this);
+        $.getScript(this.href, function() {
+            // Where are we?
+            var current_pos = el.parent().parent().parent().position(); // .thumb
+            console.log('current:',current_pos);
+            var left = 0;
+            var right = 0;
+            var inserted = false;
+            $('.thumb').each(function(i){
+                if(!inserted) {
+                    p = $(this).position();
+                    if(p.top == current_pos.top) {
+                        $(this).before(ajax_content);
+                        console.log("insert", ajax_content);
+                        if(current_pos.left > ($('#index').width())/2) {
+                            $(ajax_content,'.show').removeClass('push-left').addClass('push-right');
+                        } else {
+                            $(ajax_content,'.show').removeClass('push-right').addClass('push-left');
+                        }
+                    }
+                }
+            })
+        });
+        return false;
+    });
 	
 });
 

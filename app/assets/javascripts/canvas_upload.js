@@ -232,6 +232,6 @@ function imageRendered() {
     $('#drop_area').hide();
     $('#canvas_container').addClass('active');
     $('#canvas').show();
-    $('.navbar ul.nav').html('<li><a data-toggle="modal" data-target="#save_post_modal" id="save_post" class="btn btn-primary">Save</a></li>');
+    $('#navbar ul.actions').html('<li><a data-toggle="modal" data-target="#save_post_modal" id="save_post" class="btn btn-primary">Save</a></li>');
 
 }

@@ -1,15 +1,21 @@
-<ul class="thumbnails">
-<% @posts.each do |post| %>
-  <li class="span3">
+<div id="index">
+<% @posts.each do |post| %><div class="thumb">
     <% if post.photo.exists? then %>
-      <%= link_to(
-        image_tag(post.photo.url(:thumb), :alt => post.title, :class => 'pic'),
-        post, :class => 'thumbnail') %>
+      <%= image_tag(post.photo.url(:thumb), :alt => post.title, :class => 'pic') %>
 	<%# render :partial => 'posts/ranking', :locals => { :post => post } %>
+        <div class="overlay">
+            <div class="actions">
+                <%= link_to( image_tag("inspect.svg", :alt => "Inspect", :size => "60x60"),
+                  post, :class => "inspect" ) %>
+                <%= link_to( image_tag("vote.svg", :alt => "Vote", :size => "60x60"),
+                  vote_path(post), :class => "vote" ) %>
+                <!--<a href="#" class="inspect"><img src="assets/images/inspect.svg" alt="Inspect" width="60" height="60" /></a>
+                <a href="#" class="vote"><img src="assets/images/vote.svg" alt="Vote" width="60" height="60" /></a>-->
+            </div>
+        </div>
     <% else %>
       Error! Post has no photo.
     <% end %>
-  </li>
-<% end %>
-</ul>
+  </div><% end %>
+</div>
 <%= paginate @posts %>

@@ -1,8 +1,6 @@
 <% @post.tags.build %>
-<div class="modal fade hide" id="save_post_modal">
   <%= form_for(@post,:html => { :multipart => true }, :remote => true) do |f| %>
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
     <h3>Save Image</h3>
   </div>
   <div class="modal-body">
@@ -32,6 +30,5 @@
     <%= f.submit :class => 'btn btn-primary' %>
   </div>
   <% end %>
-</div>
 
 	

@@ -13,38 +13,36 @@
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to content_tag(:span, "Draww.co"), root_path, :class => 'brand' %></li>
-      <ul class="nav pull-right">
-          <% if current_user %>
-              <li><p class="navbar-text">Hello, <span><%= current_user.username %></span></p></li>
-              <li><%= link_to "New", new_post_path %></li>
-              <li><%= link_to "My Images", name_user_path(current_user.username) %></li>
-              <li><%= link_to "Profile", edit_user_path(current_user.id) %></li>
-              <li><%= link_to "Logout", :logout %>
-          <% else %>
-              <li><%= link_to "Login / Sign up", login_path %></li>
-          <% end %>
-      </ul>
-    </div>
+<div id="navbar">
+  <div class="inner">
+  <%= link_to image_tag("draww.png", :alt => "Draww"), root_path, :class => 'brand' %>
+    <ul class="actions">
+      <% if current_user %>
+        <li class="new"><%= link_to "New", new_post_path %></li>
+        <li class="user dropdown">
+          <a href="#"><%= current_user.username %></a>
+          <ul>
+            <li><%= link_to "My Images", name_user_path(current_user.username) %></li>
+            <li class="user"><%= link_to "My Profile", edit_user_path(current_user.id) %></li>
+            <li class="logout"><%= link_to "Logout", :logout %></li>
+          </ul>
+        </li>
+      <% else %>
+        <li><%= link_to "Login / Sign up", login_path %></li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
-<div role="main" class="view container">
+<div role="main" id="container">
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%# Don't render the footer for new post page.
         Also, root_path works as an arg here for the home page %>
     <% if !current_page?(:controller => 'posts', :action => 'new') then %>
-    <div class="row">
-        <div class="span12">
-            <div class="license">
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="/images/cc.png" /></a>Except where otherwise noted, <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" rel="dct:type">content</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
-            </div>
-        </div>
-    </div>
+      <div class="license">
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="/images/cc.png" /></a>Except where otherwise noted, <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" rel="dct:type">content</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+      </div>
     <% end %>
 </div>
 
