@@ -3,31 +3,41 @@
 var draww = {
     grid: {
         show: function (url, tile) {
-            var overlay = $('.overlay', tile);
-            overlay.addClass('loading');
-
-            $.ajax({ url: url }).done(function(data){
-                overlay.removeClass('loading');
+            // Get current post ID
+            var id = tile.attr('id');
+            console.log(id);
+            if($('#'+id+'_show').length > 0) {
                 $('#index .show').hide();
-                
-                // Build a container and put the content in it
-                var container = $('<div class="show" />');
-                var push = tile.position().left > ($('#index').width())/2 ? "push-right" : "push-left";                
-                container.addClass(push);
-                container.html(data);
-
-                // Find the first tile on the current row and insert before it
-                var inserted = false;
-                $('.thumb').each(function(i){
-                    if(!inserted) {
-                        if($(this).position().top == tile.position().top) {
-                            $(this).before(container);
-                            inserted = true;
+                $('#'+id+'_show').show();
+            } else {
+                var overlay = $('.overlay', tile);
+                overlay.addClass('loading');
+    
+                $.ajax({ url: url }).done(function(data){
+                    overlay.removeClass('loading');
+                    $('#index .show').hide();
+                    
+                    // Build a container and put the content in it
+                    var container = $('<div class="show" id="'+id+'_show" />');
+                    var push = tile.position().left > ($('#index').width())/2 ? "push-right" : "push-left";                
+                    container.addClass(push);
+                    container.addClass(tile.attr('class'));
+                    container.removeClass('thumb');
+                    container.html(data);
+    
+                    // Find the first tile on the current row and insert before it
+                    var inserted = false;
+                    $('.thumb').each(function(i){
+                        if(!inserted) {
+                            if($(this).position().top == tile.position().top) {
+                                $(this).before(container);
+                                inserted = true;
+                            }
                         }
-                    }
-                });
-                
-            })
+                    });
+                    
+                })
+            }
         }
     }
 }

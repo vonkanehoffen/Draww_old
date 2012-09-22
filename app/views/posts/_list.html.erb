@@ -1,5 +1,5 @@
 <div id="index">
-<% @posts.each do |post| %><div class="thumb">
+<% @posts.each do |post| %><div class="thumb" id="post_<%= post.id %>">
     <% if post.photo.exists? then %>
       <%= image_tag(post.photo.url(:thumb), :alt => post.title, :class => 'pic') %>
 	<%# render :partial => 'posts/ranking', :locals => { :post => post } %>
