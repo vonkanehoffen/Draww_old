@@ -5,6 +5,12 @@
         <p>Error: No photo.</p>
     <% end %>
 </div>
+<div class="actions">
+    <%= link_to content_tag(:span, 'Like'), vote_path(@post), :class => 'like' %>
+    <div class="vote_count"><%= @post.votes_count %></div>
+    <%= link_to content_tag(:span, 'Edit'), new_child_post_path(@post), :class => 'edit', :rel => 'nofollow' %>
+    <a href="#" class="comments"><span>Comments</span></a>
+</div>
 <!--
 <div class="row">
   <div class="span8">

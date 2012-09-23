@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    sleep 2
+    #sleep 2
     @post = Post.find(params[:id])
     @comment = @post.comments.build
 

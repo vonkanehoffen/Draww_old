@@ -44,7 +44,7 @@
 // General ---------------------------------------------------------------------
 
 body {
-    padding:60px 0;
+    padding:70px 0;
 }
 
 #container {
@@ -167,8 +167,36 @@ body {
     &:hover .overlay { display:block; }
 }
 
+// posts/show (inside image grid) ----------------------------------------------
+
 .show {
     margin: 5px;
+    .actions {
+        a, div {
+            .size(80px, 80px);
+            margin:10px 10px 10px 0;
+            display:block;
+            float:left;
+            background-color:#777;
+            background-position: center center;
+            background-repeat: no-repeat;
+            .border-radius(5px);
+            span { display:none; }
+            &:hover { background-color: #888; }
+        }
+            .edit       { background-image: url('/assets/edit.svg'); }
+            .like       { background-image: url('/assets/like.svg'); }
+            .comments   { background-image: url('/assets/comments.svg'); }
+            .vote_count {
+                line-height:80px;
+                text-align:center;
+                font-weight:bold;
+                font-size:18px;
+                color:#fff;
+                background:#999;
+                &:hover { background: #999; }
+            }
+    }
 }
     .push-left { float:left; }
     .push-right { float:right; }

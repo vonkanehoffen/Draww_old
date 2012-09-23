@@ -19,7 +19,7 @@ var draww = {
                     
                     // Build a container and put the content in it
                     var container = $('<div class="show" id="'+id+'_show" />');
-                    var push = tile.position().left > ($('#index').width())/2 ? "push-right" : "push-left";                
+                    var push = tile.position().left >= ($('#index').width())/2 ? "push-right" : "push-left";                
                     container.addClass(push);
                     container.addClass(tile.attr('class'));
                     container.removeClass('thumb');
