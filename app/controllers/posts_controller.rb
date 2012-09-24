@@ -24,13 +24,13 @@ class PostsController < ApplicationController
       @posts = Post.order("cached_hotness DESC").page params[:page]
     end
 
-    respond_with(@posts)
+    respond_with(@posts, :layout => !request.xhr?)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    #sleep 2
+    # sleep 2
     @post = Post.find(params[:id])
     @comment = @post.comments.build
 
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
 
-    respond_with(@post)
+    respond_with(@post, :layout => !request.xhr?)
   end
   
   def new_child

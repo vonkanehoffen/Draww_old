@@ -9,6 +9,8 @@
 // Globals ////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
+draww.editor.callback.pjs_loaded();
+
 // Draw state
 boolean image_rendered = false;
 
@@ -39,7 +41,7 @@ void setTool(t) {
 		tool_id = t;
 		tool[tool_id].init();
 		// Make sure correct item is selected in dropdown
-		setToolFormEl(t);
+		//setToolFormEl(t);
 	}
 }
 
@@ -107,7 +109,7 @@ void draw() {
         if(imported_image.loaded && !image_rendered) {
             setTool(0);
             tool[tool_id].draw();
-            imageRendered();
+            draww.editor.callback.image_rendered();
             image_rendered = true;
         }
         if(imported_image.loaded) {

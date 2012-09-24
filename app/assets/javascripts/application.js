@@ -7,10 +7,12 @@
 // NOTE: This is Sprockets stuff. Some scripts included conditionally for views with canvas
 //= require jquery
 //= require jquery_ujs
+//= require lib/jquery.form
+//= require lib/processing-1.4.1
 //= require twitter/bootstrap
 //
 //= require jquery.purr
 //= require best_in_place
-//= /require lib/jquery.waitforimages.js
+//= /require lib/jquery.waitforimages
 //
 //= require main_ui

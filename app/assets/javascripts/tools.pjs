@@ -26,11 +26,11 @@ class draww_tool {
 		
 	}
 	void finalise() {
-		var prev_controls = show_controls;
-		show_controls = false;
+		var prev_controls = draww.show_controls;
+		draww.show_controls = false;
 		this.draw();
 		canv_image = get();
-		show_controls = prev_controls;
+		draww.show_controls = prev_controls;
 	}
 }
 
@@ -94,7 +94,7 @@ class cropScale extends draww_tool {
 		// text("mx"+mouseX+" my"+mouseY+" state"+action_state+" lock "+locked+" dist"+s_dist+" angle"+angle+" rc"+rc, 30,30);
 
 		// Check for activity (only redraw if there is some)
-		if (iix != prev_iix || iiy != prev_iiy || srx != prev_srx || sry != prev_sry || show_controls != prev_show_controls ) {
+		if (iix != prev_iix || iiy != prev_iiy || srx != prev_srx || sry != prev_sry || draww.show_controls != prev_show_controls ) {
 			rc = rc+1;
 
 			// Clear screen
@@ -116,7 +116,7 @@ class cropScale extends draww_tool {
 			translate(-srox,-sroy);
 			imageMode(CORNER);
 
-			if(show_controls) {
+			if(draww.show_controls) {
 				// Draw scale and rotate control
 				fill(t_white);
 				noStroke();
@@ -147,7 +147,7 @@ class cropScale extends draww_tool {
 		prev_iiy = iiy;
 		prev_srx = srx;
 		prev_sry = sry;
-		prev_show_controls = show_controls;
+		prev_show_controls = draww.show_controls;
 	}
 	
 	

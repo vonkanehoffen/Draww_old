@@ -1,34 +1,21 @@
 <% @post.tags.build %>
-  <%= form_for(@post,:html => { :multipart => true }, :remote => true) do |f| %>
-  <div class="modal-header">
-    <h3>Save Image</h3>
-  </div>
-  <div class="modal-body">
+<%= form_for(@post,:html => { :multipart => true }, :remote => true) do |f| %>
     <%= render "shared/error_messages", :target => @post %>
 
-    <div class="ajax_message"></div>
     <div class="field">
-            <%= f.label :title %>
-            <%= f.text_field :title, :placeholder => 'Untitled' %>
+        <%= f.label :title %>
+        <%= f.text_field :title, :placeholder => 'Untitled' %>
     </div>
     <div class="field">
-            <%= f.label :description %>
-            <%= f.text_area :description, :rows => 5 %>
+        <%= f.label :description %>
+        <%= f.text_area :description, :rows => 1 %>
     </div>
     <div class="field">
-            <%= f.label :tag_names %>
-            <%= f.text_field :tag_names %>
+        <%= f.label :tag_names %>
+        <%= f.text_field :tag_names %>
     </div>
 
     <%= f.hidden_field :attachment64 %>
     <%= f.hidden_field :relation_id, :value => @post_parent.id if @post_parent %>
-
-    <div class="ajax_status"></div>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
     <%= f.submit :class => 'btn btn-primary' %>
-  </div>
-  <% end %>
-
-	
+<% end %>

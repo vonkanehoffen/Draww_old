@@ -6,10 +6,15 @@
     <% end %>
 </div>
 <div class="actions">
-    <%= link_to content_tag(:span, 'Like'), vote_path(@post), :class => 'like' %>
-    <div class="vote_count"><%= @post.votes_count %></div>
+    <%= link_to content_tag(:span, @post.votes_count), vote_path(@post), :class => 'vote' %>
     <%= link_to content_tag(:span, 'Edit'), new_child_post_path(@post), :class => 'edit', :rel => 'nofollow' %>
     <a href="#" class="comments"><span>Comments</span></a>
+</div>
+<div class="title">
+    <h1>
+        <%= best_in_place_if @post.user == current_user, @post, :title %>
+        <span class="by">by <%= link_to @post.user.username, name_user_path(@post.user.username) %></span>
+    </h1>
 </div>
 <!--
 <div class="row">

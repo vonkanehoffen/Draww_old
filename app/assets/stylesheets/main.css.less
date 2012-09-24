@@ -65,22 +65,6 @@ body {
     }
 }
 
-
-// HTC sensation XE resolution 540px
-// Iphone 4: 640px
-@media screen and (max-width:1260px) { // 7 wide
-    #container, #navbar .inner { width:1080px; } // 6 wide
-}
-@media screen and (max-width:1080px) {
-    #container, #navbar .inner { width:900px; } // 5 wide
-}
-@media screen and (max-width:900px) {
-    #container, #navbar .inner { width:720px; } // 4 wide
-}
-@media screen and (max-width:720px) {
-    #container, #navbar .inner { width:540px; } // 3 wide
-}
-
 // Navigation ------------------------------------------------------------------
 
 #navbar {
@@ -90,6 +74,7 @@ body {
     z-index:10;
     .inner {
         position:relative;
+        width:1260px;
         margin:0 auto;
     }
         .brand { float:left; margin-left:5px; }
@@ -136,6 +121,23 @@ body {
         }
 }
 
+// Responsive layout adjustments -----------------------------------------------
+
+// HTC sensation XE resolution 540px
+// Iphone 4: 640px
+@media screen and (max-width:1260px) { // 7 wide
+    #container, #navbar .inner { width:1080px; } // 6 wide
+}
+@media screen and (max-width:1080px) {
+    #container, #navbar .inner { width:900px; } // 5 wide
+}
+@media screen and (max-width:900px) {
+    #container, #navbar .inner { width:720px; } // 4 wide
+}
+@media screen and (max-width:720px) {
+    #container, #navbar .inner { width:540px; } // 3 wide
+}
+
 
 // Image Grid (home page) ------------------------------------------------------
 
@@ -161,7 +163,7 @@ body {
         &.loading {
             display:block;
             .actions { display:none; }
-            background:rgba(0,0,0,0.5) url('/assets/ajax-loader-big.gif') center center no-repeat;
+            background:rgba(0,0,0,0.5) url('/assets/spinner.svg') center center no-repeat;
         }
     }
     &:hover .overlay { display:block; }
@@ -172,7 +174,8 @@ body {
 .show {
     margin: 5px;
     .actions {
-        a, div {
+        float:left;
+        a {
             .size(80px, 80px);
             margin:10px 10px 10px 0;
             display:block;
@@ -185,42 +188,69 @@ body {
             &:hover { background-color: #888; }
         }
             .edit       { background-image: url('/assets/edit.svg'); }
-            .like       { background-image: url('/assets/like.svg'); }
             .comments   { background-image: url('/assets/comments.svg'); }
-            .vote_count {
+            .vote {
                 line-height:80px;
                 text-align:center;
                 font-weight:bold;
                 font-size:18px;
                 color:#fff;
-                background:#999;
-                &:hover { background: #999; }
+                span { display:block; }
+                &:hover {
+                    span { display:none; }
+                    background-image: url('/assets/like.svg');
+                }
             }
+    }
+    .title {
+        float:left;
+        width:260px;
+        margin-top:5px;
+        h1 { font-size:28px; line-height:30px; }
+        .by {
+            font-weight:normal;
+            font-size:18px;
+            white-space: nowrap;
+        }
     }
 }
     .push-left { float:left; }
     .push-right { float:right; }
     
     
-// New Image -------------------------------------------------------------------
+// New Image (inside image grid) -----------------------------------------------
 
 
-#drop_area {
-    width:530px;
-    height:530px;
-    min-height:336px;
-    background:#ddd url('/images/drop_area.png') center center no-repeat;
-    span { display:none; }
-    margin:auto;
-    &.over {
-        background-color:#eee;
-    }
+#index .new_post {
+    .size(710px, 530px);
+    overflow:hidden;
+    margin:5px;
+    float:left;
     &.loading {
-        background-image:url('/assets/ajax-loader-big.gif');
+        background:#ccc url('/assets/spinner.svg') center center no-repeat;
     }
+    // form
+    .field { display:inline-block; }
 }
-#canvas_container {
-    #canvas {
-        display:none;
+
+    #drop_area {
+        width:530px;
+        height:530px;
+        background:#ccc url('/images/drop_area.png') center center no-repeat;
+        span { display:none; }
+        &.over {
+            background-color:#eee;
+        }
+        &.loading {
+            background-image:url('/assets/spinner.svg');
+        }
     }
+
+// Preloading (divs at bottom of applicatikon layout) --------------------------
+
+
+.preload {
+    width:0; height:0; overflow:hidden;
+    .vote       { background: url('/assets/like.svg'); }
+    .spinner    { background: url('/assets/spinner.svg'); }
 }
