@@ -79,6 +79,7 @@ void prepare_to_save() {
 ///////////////////////////////////////////////////////////
 
 void setup() {
+    console.log("framework setup");
     
         // Set initial canvas size and params, and fire callback for JS
         
@@ -89,7 +90,7 @@ void setup() {
 	
 	// Callback for JS (see pjsReadyFn[] )
 	if(typeof window.processingReady == 'function') {
-		processingReady();
+	    processingReady();
 	}
 	
 }
@@ -99,6 +100,7 @@ void setup() {
 ///////////////////////////////////////////////////////////
 
 void draw() {
+    console.log("framework draw");
     
     // Check if the image is loaded.
     // If it is, call the JS function to show the the PJS Canvas once, set tool
@@ -116,7 +118,7 @@ void draw() {
             tool[tool_id].draw();
         }
     }
-
+    
 }
 
 ///////////////////////////////////////////////////////////

@@ -1,0 +1,17 @@
+// Test PJS file for dynamic loading
+
+draww.editor.callback.pjs_loaded();
+
+void setup() {
+    size(530,530);
+    stroke(#ff0000);
+    strokeWeight(10);
+    image(draww.buffer_img, 0, 0);
+}
+
+void draw() {
+}
+
+void mouseDragged() {
+    ellipse(pmouseX, pmouseY, mouseX, mouseY);
+}

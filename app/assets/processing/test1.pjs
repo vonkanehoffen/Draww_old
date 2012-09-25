@@ -1,0 +1,18 @@
+// Test PJS file for dynamic loading
+
+draww.editor.callback.pjs_loaded();
+
+void setup() {
+    size(530,530);
+    stroke(#ffff00);
+    strokeWeight(8);
+    image(draww.buffer_img, 0, 0);
+}
+
+void draw() {
+}
+
+void mouseDragged() {
+    console.log("test1 mouseDragged");
+    line(pmouseX, pmouseY, mouseX, mouseY);
+}

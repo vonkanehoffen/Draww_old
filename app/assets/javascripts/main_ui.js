@@ -4,9 +4,14 @@
  */
 
 var draww = {
-    
-    pjs: {}, // Global to reference Processing canvas. Populated from framework.pjs
-    show_controls: {},
+
+    // Reference to Processing canvas. Populated from
+    // draww.editor.callback.pjs_loaded() ,which gets fired by framework.pjs
+    pjs: {},
+    // Should processing render tool controls or not?
+    show_controls: new Boolean,
+    // Storage for canvas image data inbetween tool changes and for undo.
+    buffer_img: {},
 
     view: {
         
@@ -108,7 +113,7 @@ var draww = {
         },
         init_pjs: function(canvas_id) {
             Processing.loadSketchFromSources(canvas_id,
-                ['/assets/framework.pjs', '/assets/tools.pjs']); //, '/assets/tools.pjs'
+                ['/assets/framework.pjs', '/assets/tools.pjs']); 
         },
         
         // Callbacks triggered from processing.js 
@@ -125,15 +130,23 @@ var draww = {
         prepare_upload: function(form) {
             $("input[type='submit']", form).val('Uploading').attr("disabled", true);
             // Inject image data into form
-            console.log("injecting to", $('#post_attachment64', form));
-            $('#post_attachment64', form).val(
-                document.getElementById("pjs_canvas").toDataURL("image/jpeg")
-            );
+            $('#post_attachment64').val( document.getElementById("pjs_canvas").toDataURL("image/jpeg") );
             // Populate title if blank
             var title_el = $('input#post_title', form);
             if(title_el.val().length < 1) {
-                    title_el.val(title_el.attr('placeholder'));
+                title_el.val(title_el.attr('placeholder'));
             }
+        },
+        
+        write_buffer: function() {
+            var img = document.getElementById("pjs_canvas").toDataURL("image/jpeg");
+            draww.buffer_img = draww.pjs.loadImage(img);
+        },
+        
+        change_tool: function(file) {
+            draww.editor.write_buffer();
+            draww.pjs.exit();
+            Processing.loadSketchFromSources('pjs_canvas', [file]);
         }
     }
 }
@@ -187,8 +200,13 @@ $(document).ready(function() {
         draww.view.new_post(this.href);
         return false;
     });
-    $("form#new_post").live("submit", function() {
+    $("form#new_post").live("ajax:before", function() {
         draww.editor.prepare_upload($('form#new_post'));
     });
+    $('#pjs_canvas').live("mouseenter", function() { draww.show_controls = true; } );
+    $('#pjs_canvas').live("mouseleave", function() { draww.show_controls = false; } );
+    $(".actions .tool").live("click", function() {
+        draww.editor.change_tool($(this).data('tool-src'));
+    })
     
 });
