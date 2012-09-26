@@ -65,6 +65,8 @@ body {
     }
 }
 
+#index { display:inline; }
+
 // Navigation ------------------------------------------------------------------
 
 #navbar {
@@ -257,6 +259,37 @@ body {
             cursor: pointer;
         }
     }
+
+
+// Pagination (image grid) -----------------------------------------------------
+
+
+.pagination.previous { display:none; }
+.pagination.next {
+    float:right;
+    margin:5px;
+    .size(85px,85px);
+    .border-radius(5px);
+    background: #ccc url('/assets/next.svg') center center no-repeat;
+    &:hover { background-color: #ddd; }
+        span { display:none; }
+
+}
+
+
+
+// Footer ----------------------------------------------------------------------
+
+
+footer {
+    display:block;
+    width:100%;
+    padding:20px 0;
+    clear:both;
+    .license {
+        
+    }
+}
 
 // Preloading (divs at bottom of applicatikon layout) --------------------------
 

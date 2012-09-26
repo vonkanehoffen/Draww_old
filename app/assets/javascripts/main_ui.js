@@ -72,6 +72,14 @@ var draww = {
                 });
             }
             
+        },
+        
+        load_more: function(url, link_el) {
+            link_el.addClass('loading');
+            $.ajax({url: url}).done(function(data) {
+                link_el.remove();
+                $('#index').append(data);
+            });
         }
     },
     editor: {
@@ -134,7 +142,7 @@ var draww = {
         prepare_upload: function(form) {
             $("input[type='submit']", form).val('Uploading').attr("disabled", true);
             // Inject image data into form
-            $('#post_attachment64').val( document.getElementById("pjs_canvas").toDataURL("image/jpeg") );
+            $('#post_attachment64').val( document.getElementById("pjs_canvas").toDataURL("image/jpeg", 0.9) );
             // Populate title if blank
             var title_el = $('input#post_title', form);
             if(title_el.val().length < 1) {
@@ -143,7 +151,7 @@ var draww = {
         },
         
         write_buffer: function() {
-            var img = document.getElementById("pjs_canvas").toDataURL("image/jpeg");
+            var img = document.getElementById("pjs_canvas").toDataURL("image/png");
             draww.buffer_img = draww.pjs.loadImage(img);
         },
         
@@ -196,6 +204,12 @@ $(document).ready(function() {
     // posts/show
     $("a.inspect").live("click", function() {
         draww.view.show_post(this.href, $(this).parent().parent().parent());
+        return false;
+    });
+    
+    // Pagination
+    $(".pagination.next").live("click", function() {
+        draww.view.load_more(this.href, $(this));
         return false;
     });
     
