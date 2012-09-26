@@ -22,7 +22,7 @@ var draww = {
             var id = tile.attr('id');
             console.log(id);
             if($('#'+id+'_show').length > 0) {
-                $('#index .show').hide();
+                $('#index .show, #index .new_post').hide();
                 $('#'+id+'_show').show();
             } else {
                 var overlay = $('.overlay', tile);
@@ -30,8 +30,7 @@ var draww = {
     
                 $.ajax({ url: url }).done(function(data){
                     overlay.removeClass('loading');
-                    $('#index .show').hide();
-                    $('#index .new_post').remove();
+                    $('#index .show, #index .new_post').hide();
                     
                     // Build a container and put the content in it
                     var container = $('<div class="show" id="'+id+'_show" />');
@@ -59,15 +58,20 @@ var draww = {
         // Fetch posts/new view with Ajax and attach upload handlers
         
         new_post: function(url) {
-            var container = $('<div class="new_post loading" />');
             $('#index .show').hide();
-            $('#index').prepend(container);
-            $.ajax({ url: url }).done(function(data){
-                container.removeClass("loading");
-                container.html(data);
-                draww.editor.init_pjs('pjs_canvas');
-                draww.editor.attach_dnd_handlers($('#drop_area'));
-            });
+            if($('.new_post').length>0) {
+                $('.new_post').show();
+            } else {
+                var container = $('<div class="new_post loading" />');
+                $('#index').prepend(container);
+                $.ajax({ url: url }).done(function(data){
+                    container.removeClass("loading");
+                    container.html(data);
+                    draww.editor.init_pjs('pjs_canvas');
+                    draww.editor.attach_dnd_handlers($('#drop_area'));
+                });
+            }
+            
         }
     },
     editor: {
