@@ -2,7 +2,6 @@
 <%# TODO: Wouldn't it be nice if there was a "follow user" button here %>
 <%# https://github.com/tcocca/acts_as_follower/ perhaps? %>
 
-<%# render 'posts/new_link' %>
 <% if @user.posts.count > 0 %>
 	<%= render '/posts/list' %>
 <% elsif @user == current_user %>
