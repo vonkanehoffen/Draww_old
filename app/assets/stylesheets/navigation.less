@@ -1,0 +1,57 @@
+/**
+ * Navigation
+ */
+
+#navbar {
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    z-index:10;
+    .inner {
+        position:relative;
+        width:1260px;
+        margin:0 auto;
+    }
+        .brand { float:left; margin-left:5px; }
+        .actions {
+            position:absolute;
+            top:0; right:0;
+            margin-right:5px;
+            list-style:none;
+            li {
+                float:left;
+                margin-left:10px;
+                a {
+                    display:block;
+                    height:35px;
+                    line-height:35px;
+                    padding:0 20px;
+                    background:#777;
+                    .border-radius(0 0 5px 5px);
+                    text-decoration:none;
+                    font-weight:bold;
+                    color:#fff;
+                    &:hover {
+                        background:#888;
+                    }
+                }
+                ul {
+                    display:none;
+                    list-style:none;
+                    padding:0; margin:0;
+                }
+            }
+            .dropdown {
+                &:hover {
+                    ul { display:block; }
+                    a { .border-radius(0); }
+                    li:last-child a { .border-radius(0 0 5px 5px); }
+                }
+                ul li {
+                    margin:0;
+                    display:block;
+                    float:none;
+                }
+            }
+        }
+}

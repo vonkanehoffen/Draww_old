@@ -1,118 +1,33 @@
-// General Styles for Draww
-// Loaded on top of Boilerplate
+/**
+ * General
+ */
 
-html { height:100%; }
-
-// IN-PLACE EDITING -------------------------------
-
-span.best_in_place {
-	padding-right:20px;
-	background:url('/images/bip_edit.png') center right no-repeat;
-	&:hover { background-color:$white_smoke;}
+body {
+    padding:70px 0;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// layouts > application
-/////////////////////////////////////////////////////////////////////////////
-
-.navbar-inner {
-    //background:none;
-    //.box-shadow(none);
-}
-.license {
-    color:@grayLight;
-    font-size:0.9em;
-    padding:@gridGutterWidth 0;
-    img { padding-right:10px; }
+#container {
+    width:1260px;
+    margin:0 auto;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// user_sessions > new
-/////////////////////////////////////////////////////////////////////////////
+// Footer ----------------------------------------------------------------------
 
-.auth_provider {
+footer {
     display:block;
-    width:222px; height:56px;
-    float:left;
-    span { display:none; }
-    &.facebook {
-            background:url('/images/auth-facebook.png') top left no-repeat;
-            margin-right:@gridGutterWidth;
-    }
-    &.twitter {
-            background:url('/images/auth-twitter.png') top left no-repeat;
+    width:100%;
+    padding:20px 0;
+    clear:both;
+    .license {
+        
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// Posts > Show
-/////////////////////////////////////////////////////////////////////////////
+// Preloading ------------------------------------------------------------------
+// (divs at bottom of application layout)
 
-.posts-show-header {
-    padding-bottom:@gridGutterWidth;
-    .ranking, h1 { display:inline-block; }
-        .by { font-weight:normal; color:@grayLight}
+.preload {
+    width:0; height:0; overflow:hidden;
+    .vote       { background: url('/assets/like.svg'); }
+    .spinner    { background: url('/assets/spinner.svg'); }
 }
-    .ranking {
-        text-align:center;
-        .vote_up, .vote_down {
-            display:block;
-            .size(14px, 24px);
-            background-position: center center;
-            background-repeat: no-repeat;
-            span { display:none; }
-        }
-        .vote_up    { background-image: url('/images/vote_up.png'); }
-        .vote_down  { background-image: url('/images/vote_down.png'); }
-        .vote_count {
-            color:@grayLight;
-            font-weight:bold;
-            font-size:20px;
-            line-height:20px;
-        }
-    }
-.posts-show-image {
-    padding-bottom:@gridGutterWidth;    
-    img { width:100%; }
-}
-a.thumbnail.child, .thumbnail.parent {
-    text-decoration:none;
-    h4 {
-        color:#333;
-        margin-top:4px;
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// Posts > New
-/////////////////////////////////////////////////////////////////////////////
-
-body.posts.new {
-    height:100%;
-    //padding:0;
-    .container { height:100%; }
-    #actions {
-        display:none;
-    }
-}
-
-#drop_area {
-    width:530px;
-    height:530px;
-    min-height:336px;
-    background:#ddd url('/images/drop_area.png') center center no-repeat;
-    span { display:none; }
-    margin:auto;
-    &.over {
-        background-color:#eee;
-    }
-    &.loading {
-        background-image:url('/images/ajax-loader-big.gif');
-    }
-}
-#canvas_container {
-    #canvas {
-        display:none;
-    }
-}
-

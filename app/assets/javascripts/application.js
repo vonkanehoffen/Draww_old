@@ -9,10 +9,8 @@
 //= require jquery_ujs
 //= require lib/jquery.form
 //= require lib/processing-1.4.1
-//= require twitter/bootstrap
 //
 //= require jquery.purr
 //= require best_in_place
-//= /require lib/jquery.waitforimages
 //
 //= require main_ui

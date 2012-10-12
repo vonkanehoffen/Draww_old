@@ -7,12 +7,12 @@
         <%= f.text_field :title, :placeholder => 'Untitled' %>
     </div>
     <div class="field">
-        <%= f.label :description %>
-        <%= f.text_area :description, :rows => 1 %>
-    </div>
-    <div class="field">
         <%= f.label :tag_names %>
         <%= f.text_field :tag_names %>
+    </div>
+    <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description, :rows => 3 %>
     </div>
 
     <%= f.hidden_field :attachment64 %>
