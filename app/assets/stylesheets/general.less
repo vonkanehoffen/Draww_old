@@ -4,11 +4,25 @@
 
 body {
     padding:70px 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #666;
+    font-size:14px;
 }
 
 #container {
     width:1260px;
     margin:0 auto;
+}
+
+ul, li { margin:0; padding:0; }
+
+// Text ------------------------------------------------------------------------
+
+a {
+    color:#222;
+    &:hover { color:#000; }
 }
 
 // Footer ----------------------------------------------------------------------
@@ -18,8 +32,8 @@ footer {
     width:100%;
     padding:20px 0;
     clear:both;
-    .license {
-        
+    .license a {
+        text-decoration:none;
     }
 }
 

@@ -16,7 +16,7 @@
         .actions {
             position:absolute;
             top:0; right:0;
-            margin-right:5px;
+            margin:0 5px 0 0;
             list-style:none;
             li {
                 float:left;
@@ -26,7 +26,7 @@
                     height:35px;
                     line-height:35px;
                     padding:0 20px;
-                    background:#777;
+                    #gradient.vertical(#555, #777);
                     .border-radius(0 0 5px 5px);
                     text-decoration:none;
                     font-weight:bold;
@@ -38,19 +38,21 @@
                 ul {
                     display:none;
                     list-style:none;
-                    padding:0; margin:0;
                 }
             }
             .dropdown {
                 &:hover {
                     ul { display:block; }
-                    a { .border-radius(0); }
+                    a {
+                        .border-radius(0);
+                    }
                     li:last-child a { .border-radius(0 0 5px 5px); }
                 }
                 ul li {
                     margin:0;
                     display:block;
                     float:none;
+                    a { background: #777; &:hover { background: #888; } }
                 }
             }
         }
