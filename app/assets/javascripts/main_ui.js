@@ -12,6 +12,8 @@ var draww = {
     show_controls: new Boolean,
     // Storage for canvas image data inbetween tool changes and for undo.
     buffer_img: {},
+    // Storage of imported image for crop & scale (import.pjs)
+    imported_img: {},
 
     view: {
         
@@ -118,7 +120,7 @@ var draww = {
 
                     reader.readAsDataURL(file);
                     reader.onloadend = function(evt){
-                        draww.pjs.setImage( evt.target.result );
+                        draww.imported_img = draww.pjs.loadImage(evt.target.result);
                     }
                 }
             });

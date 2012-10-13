@@ -8,9 +8,6 @@ $(document).trigger('pjs_loaded');
 // Draw state
 boolean image_rendered = false;
 
-// Object to hold imported image
-PImage imported_image;
-
 // Canvas parameters
 int init_size_x = 530;
 int init_size_y = 530;
@@ -26,7 +23,7 @@ color t_white = color(255,255,255,150);
 void setup_vars() {
     // Initial width and height + x/y of image
     iiw = init_size_x;
-    iih = (imported_image.height / imported_image.width) * init_size_x;
+    iih = (draww.imported_img.height / draww.imported_img.width) * init_size_x;
     iix = 0;
     iiy = 0;
     
@@ -53,15 +50,6 @@ void setup_vars() {
     draww.buffer_img = get();
 }
 
-// Called from JS //////////////////////////////////////////////////////////////
-// TODO: Can't this be done directly from JS?
-
-// Load image into canvas
-void setImage(s) {
-    console.log('setImage Called');
-    imported_image = requestImage(s , "");
-}
-
 // Processing Setup ////////////////////////////////////////////////////////////
 
 void setup() {
@@ -79,15 +67,14 @@ void setup() {
 // Processing Draw loop ////////////////////////////////////////////////////////
 
 void draw() {
-    console.log("framework draw");
-    
+
     // Check if the image is loaded.
     // If it is, call the JS function to show the the PJS Canvas once, set tool
     // to crop&scale, and run it once. For every frame after that, just run
     // the current tool.
     
-    if(imported_image != null ) {
-        if(imported_image.loaded) {
+    if(draww.imported_img != null ) {
+        if(draww.imported_img.loaded) {
             if(!image_rendered) {
                 $(document).trigger('pjs_image_rendered');
                 setup_vars();
@@ -123,7 +110,7 @@ void draw() {
                         translate(srox,sroy);
                         rotate(-angle+angle_offset);
                         image(
-                                imported_image,
+                                draww.imported_img,
                                 0,
                                 0,
                                 siiw,
