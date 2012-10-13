@@ -125,7 +125,7 @@ var draww = {
         },
         init_pjs: function(canvas_id) {
             Processing.loadSketchFromSources(canvas_id,
-                ['/assets/framework.pjs', '/assets/tools.pjs']); 
+                ['/assets/import.pjs']); 
         },
         
         prepare_upload: function(form) {
