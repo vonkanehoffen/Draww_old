@@ -5,10 +5,8 @@
 	<%# render :partial => 'posts/ranking', :locals => { :post => post } %>
         <div class="overlay">
             <div class="actions">
-                <%= link_to( image_tag("inspect.svg", :alt => "Inspect", :size => "60x60"),
-                  post, :class => "inspect" ) %>
-                <%= link_to( image_tag("vote.svg", :alt => "Vote", :size => "60x60"),
-                  vote_path(post), :class => "vote" ) %>
+                <%= link_to( content_tag("span", "Inspect"), post, :class => "inspect" ) %>
+                <%= link_to( content_tag("span", "Vote"), vote_path(post), :class => "vote" ) %>
             </div>
         </div>
     <% else %>
