@@ -17,5 +17,7 @@
 
     <%= f.hidden_field :attachment64 %>
     <%= f.hidden_field :relation_id, :value => @post_parent.id if @post_parent %>
-    <%= f.submit :class => 'btn btn-primary' %>
+    <div class="submit">
+        <%= f.button "Post This" %>
+    </div>
 <% end %>
