@@ -11,9 +11,6 @@ boolean image_rendered = false;
 // Object to hold imported image
 PImage imported_image;
 
-// Object for finalised canvas after a tool has completed / been changed
-PImage canv_image;
-
 // Canvas parameters
 int init_size_x = 530;
 int init_size_y = 530;
@@ -53,7 +50,7 @@ void setup_vars() {
     // Previous values (to halt draw if no change)
     rc = 0;
     
-    canv_image = get();
+    draww.buffer_img = get();
 }
 
 // Called from JS //////////////////////////////////////////////////////////////
@@ -119,7 +116,7 @@ void draw() {
     
                         // Clear screen
                         //background(bg_colour);
-                        image(canv_image, 0, 0);
+                        image(draww.buffer_img, 0, 0);
     
                         // Draw Image
                         imageMode(CENTER);
