@@ -34,21 +34,21 @@ var bg_colour = #999999;
 
 // Set current tool
 void setTool(t) {
-	if ( t != 'none' ) {
-		// push current canvas state to image
-		tool[tool_id].finalise();
-		// set and init tool
-		tool_id = t;
-		tool[tool_id].init();
-		// Make sure correct item is selected in dropdown
-		//setToolFormEl(t);
-	}
+    if ( t != 'none' ) {
+        // push current canvas state to image
+        tool[tool_id].finalise();
+        // set and init tool
+        tool_id = t;
+        tool[tool_id].init();
+        // Make sure correct item is selected in dropdown
+        //setToolFormEl(t);
+    }
 }
 
 // Load image into canvas
 void setImage(s) {
-	console.log('setImage');
-	imported_image = requestImage(s , "");
+    console.log('setImage Called');
+    imported_image = requestImage(s , "");
 }
 
 // Resize image in canvas
@@ -56,14 +56,14 @@ void setImage(s) {
 // Also, image is rendering at wrong dimensions on resize.
 
 void resizeCanvas(w, h) {
-	console.log('PJS resizeCanvas called');
-	size(w, h);
-	if(imported_image) { image(imported_image , 0 , 0 , width , height); }
+    console.log('PJS resizeCanvas called');
+    size(w, h);
+    if(imported_image) { image(imported_image , 0 , 0 , width , height); }
 }
 
 void undo() {
-        console.log('PJS undo called');
-	image(canv_image, 0, 0);
+    console.log('PJS undo called');
+    image(canv_image, 0, 0);
 }
 
 // Resize canvas to init dimensions ready to have data pulled for saving
@@ -81,18 +81,18 @@ void prepare_to_save() {
 void setup() {
     console.log("framework setup");
     
-        // Set initial canvas size and params, and fire callback for JS
-        
-	size(init_size_x, init_size_y);
-	background(bg_colour);
-	smooth();
-	noStroke();
-	
-	// Callback for JS (see pjsReadyFn[] )
-	if(typeof window.processingReady == 'function') {
-	    processingReady();
-	}
-	
+    // Set initial canvas size and params, and fire callback for JS
+    
+    size(init_size_x, init_size_y);
+    background(bg_colour);
+    smooth();
+    noStroke();
+    
+    // Callback for JS (see pjsReadyFn[] )
+    if(typeof window.processingReady == 'function') {
+        processingReady();
+    }
+    
 }
 
 ///////////////////////////////////////////////////////////
@@ -126,14 +126,14 @@ void draw() {
 ///////////////////////////////////////////////////////////
 
 void mousePressed() {	
-	tool[tool_id].mousePressed();
+    tool[tool_id].mousePressed();
 }
 
 void mouseDragged() {
-	tool[tool_id].mouseDragged();
+    tool[tool_id].mouseDragged();
 }
 
 void mouseReleased() {
-	tool[tool_id].mouseReleased();
+    tool[tool_id].mouseReleased();
 }
 
