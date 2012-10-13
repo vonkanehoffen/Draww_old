@@ -5,8 +5,8 @@
 
 var draww = {
 
-    // Reference to Processing canvas. Populated from
-    // draww.editor.callback.pjs_loaded() ,which gets fired by framework.pjs
+    // Reference to Processing canvas. Populated from pjs_loaded event (see $(document).bind below)
+    // gets fired by framework.pjs when loaded using jquery trigger.
     pjs: {},
     // Should processing render tool controls or not?
     show_controls: new Boolean,
@@ -128,17 +128,6 @@ var draww = {
                 ['/assets/framework.pjs', '/assets/tools.pjs']); 
         },
         
-        // Callbacks triggered from processing.js 
-        callback: {
-            pjs_loaded: function() {
-                draww.pjs = Processing.getInstanceById('pjs_canvas');
-            },
-            image_rendered: function() {
-                $('#drop_area').hide();
-                $('#pjs_canvas').show();
-            }
-        },
-        
         prepare_upload: function(form) {
             $("button", form).html('Uploading').attr("disabled", true);
             // Inject image data into form
@@ -162,6 +151,18 @@ var draww = {
         }
     }
 }
+
+// Callbacks triggered from processing.js 
+$(document).bind('pjs_loaded', function() {
+    console.log('pjs_loaded triggered');
+    draww.pjs = Processing.getInstanceById('pjs_canvas');
+});
+
+$(document).bind('pjs_image_rendered', function() {
+    console.log('pjs_image_rendered triggered');
+    $('#drop_area').hide();
+    $('#pjs_canvas').show();
+});
 
 // Setup handlers when everything's loaded
 

@@ -1,6 +1,7 @@
 // Test PJS file for dynamic loading
 
-draww.editor.callback.pjs_loaded();
+$(document).trigger('pjs_loaded');
+console.log("test1.pjs loaded");
 
 void setup() {
     size(530,530);

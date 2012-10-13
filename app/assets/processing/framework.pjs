@@ -9,7 +9,7 @@
 // Globals ////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-draww.editor.callback.pjs_loaded();
+$(document).trigger('pjs_loaded');
 
 // Draw state
 boolean image_rendered = false;
@@ -111,7 +111,7 @@ void draw() {
         if(imported_image.loaded && !image_rendered) {
             setTool(0);
             tool[tool_id].draw();
-            draww.editor.callback.image_rendered();
+            $(document).trigger('pjs_image_rendered');
             image_rendered = true;
         }
         if(imported_image.loaded) {
