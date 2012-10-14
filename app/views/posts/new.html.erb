@@ -1,21 +1,4 @@
-<% content_for :head do %>
-	<% if action_name == 'new_child' %>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				// see processingReady()
-				pjsReadyFn['load_image_for_edit'] = function() {
-					loadRemoteImage('<%= @post_parent.photo.url(:medium) if @post_parent.photo.exists? %>');
-				}
-			});
-		</script>
-	<% end %>
-<% end %>
-
-<div id="drop_area"><span>Drop an image file here (JPEG or PNG, Any Size)</span></div>
-
-
-<!--<canvas data-processing-sources="/assets/framework.pjs /assets/tools.pjs" id="pjs_canvas" tabindex="0">-->
-<canvas id="pjs_canvas" tabindex="0" style="display:none;">
+<canvas id="pjs_canvas" tabindex="0">
     <p>Sorry, you should really upgrade your browser.</p>
 </canvas>
 <div class="actions">

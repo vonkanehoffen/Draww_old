@@ -47,13 +47,13 @@ void setup_vars() {
     // Previous values (to halt draw if no change)
     rc = 0;
     
-    draww.buffer_img = get();
+    //draww.buffer_img = get();
 }
 
 // Processing Setup ////////////////////////////////////////////////////////////
 
 void setup() {
-    console.log("framework setup");
+    console.log("import.pjs setup");
     
     // Set initial canvas size and params, and fire callback for JS
     

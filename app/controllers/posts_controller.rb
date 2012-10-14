@@ -40,6 +40,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
+    # sleep 2
     @post = Post.new
 
     respond_with(@post, :layout => !request.xhr?)
@@ -49,8 +50,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @post_parent = Post.find(params[:id])
 
-    #respond_with(@post)
-    render "new"
+    render("new", :layout => !request.xhr?)
   end
 
   # GET /posts/1/edit

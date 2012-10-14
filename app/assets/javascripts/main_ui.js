@@ -70,10 +70,23 @@ var draww = {
                     container.removeClass("loading");
                     container.html(data);
                     draww.editor.init_pjs('pjs_canvas');
-                    draww.editor.attach_dnd_handlers($('#drop_area'));
+                    draww.editor.attach_dnd_handlers($('#pjs_canvas'));
                 });
             }
             
+        },
+        
+        new_child_post: function(url, show_el, img_src) {
+            $('.new_post').remove();
+            $.ajax({ url: url}).done(function(data){
+                show_el.html(data);
+                draww.editor.init_pjs('pjs_canvas');
+                $(document).bind('pjs_loaded', function() {
+                    draww.buffer_img = draww.pjs.loadImage(img_src);
+                });
+                // temp
+                draww.editor.attach_dnd_handlers($('#pjs_canvas'));
+            })
         },
         
         load_more: function(url, link_el) {
@@ -162,8 +175,9 @@ $(document).bind('pjs_loaded', function() {
 
 $(document).bind('pjs_image_rendered', function() {
     console.log('pjs_image_rendered triggered');
-    $('#drop_area').hide();
-    $('#pjs_canvas').show();
+    
+    //$('#drop_area').hide();
+    //$('#pjs_canvas').show();
 });
 
 // Setup handlers when everything's loaded
@@ -221,11 +235,25 @@ $(document).ready(function() {
         draww.view.new_post(this.href);
         return false;
     });
+    
+    // posts/new/xx (new_child)
+    $(".show a.edit").live("click", function() {
+        var show_el = $(this).parent().parent()
+        var img_src = show_el.find('.full_image img').attr('src');
+        draww.view.new_child_post(this.href, show_el, img_src);
+        return false;
+    })
+    
+    // posts/new: populate hidden field with image data to send to server
     $("form#new_post").live("ajax:before", function() {
         draww.editor.prepare_upload($('form#new_post'));
     });
+    
+    // posts/new: show/hide tools inside canvas
     $('#pjs_canvas').live("mouseenter", function() { draww.show_controls = true; } );
     $('#pjs_canvas').live("mouseleave", function() { draww.show_controls = false; } );
+    
+    // posts/new: change tool when buttons clicked
     $(".actions .tool").live("click", function() {
         draww.editor.change_tool($(this).data('tool-src'));
     })
