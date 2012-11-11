@@ -153,6 +153,8 @@ void draw() {
                 prev_sry = sry;
                 prev_show_controls = draww.show_controls;
             }
+        } else {
+            image(draww.buffer_img, 0, 0);
         }
     }
 }
