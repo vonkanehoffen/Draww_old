@@ -70,10 +70,7 @@ var draww = {
                     container.removeClass("loading");
                     container.html(data);
                     draww.editor.init_pjs('pjs_canvas');
-                    $(document).bind('pjs_loaded', function() {
-                        console.log("drop_area.png loaded into buffer_img");
-                        draww.buffer_img = draww.pjs.loadImage("/assets/drop_area.png");
-                    });
+                    $(document).bind('pjs_loaded', draww.event_action.load_drop_area_img);
                     draww.editor.attach_dnd_handlers($('#pjs_canvas'));
                 });
             }
@@ -165,10 +162,18 @@ var draww = {
         },
         
         change_tool: function(file) {
+            console.log("draww.editor.change_tool: "+file)
+            $(document).unbind('pjs_loaded', draww.event_action.load_drop_area_img);
             draww.editor.write_buffer();
-            $(document).unbind('pjs_loaded');
             draww.pjs.exit();
             Processing.loadSketchFromSources('pjs_canvas', [file]);
+        }
+    },
+    
+    event_action: {
+        load_drop_area_img: function() {
+            draww.buffer_img = draww.pjs.loadImage("/assets/drop_area.png");
+            console.log("drop_area.png loaded into buffer_img");
         }
     }
 }
